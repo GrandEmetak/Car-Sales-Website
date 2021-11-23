@@ -22,8 +22,9 @@ create table users
     name     VARCHAR(255),
     email    VARCHAR(55),
     password VARCHAR(255),
-    post_id  INT NOT NULL REFERENCES posts (id),
-    car_id   INT NOT NULL REFERENCES cars (id)
+    /*post_id  INT NOT NULL REFERENCES posts (id),
+    car_id   INT NOT NULL REFERENCES cars (id),*/
+    unique (email)
 );
 
 INSERT INTO posts(description, status, created)
@@ -34,5 +35,5 @@ values ('ДИЛЕРСКИЙ АВТОМОБИЛЬ! МАКСИМАЛЬНАЯ КО�
        ('МАКСИМАЛЬНАЯ КОМПЛЕКТАЦИЯ! ПОЛНЫЙ ПРИВОД! Новая резина, сигнализация. без вложений', 'false',
         '2021-11-16 14:34:25.853');
 
-insert into users(name, email, password, post_id, car_id)
-values ('Petr Arsentev', 'PetrArsentev@mail.ru', 'root@tool', 1, 1);
+insert into users(name, email, password)
+values ('Petr Arsentev', 'PetrArsentev@mail.ru', 'root@tool');

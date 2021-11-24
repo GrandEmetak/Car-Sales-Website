@@ -14,6 +14,7 @@ import java.util.Objects;
  * - Спроектируйте SQL схему для сайта по продажам машин.
  * - Добавьте POJO классы и hibernate mapping. В этом задании нужно использовать аннотации.
  * - Загрузите схему в корень репозитория в папку db.
+ *
  * @author SlartiBartFast-art
  * @version 01
  * @since 22.11.21
@@ -30,10 +31,13 @@ public class Post {
     private boolean status;
 
     @ManyToOne
-    private User author;
+    private User user;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Car car;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Photo photo;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
@@ -41,12 +45,10 @@ public class Post {
     public Post() {
     }
 
-    public Post of(String description, User author, Car car) {
+    public Post of(String description, boolean status) {
         Post post = new Post();
-        this.description = description;
-        this.status = false;
-        this.author = author;
-        this.car = car;
+        post.description = description;
+        post.status = false;
         this.created = new Date(System.currentTimeMillis());
         return post;
     }
@@ -75,12 +77,12 @@ public class Post {
         this.status = status;
     }
 
-    public User getAuthor() {
-        return author;
+    public User getUser() {
+        return user;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Car getCar() {
@@ -97,6 +99,14 @@ public class Post {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
     }
 
     @Override
@@ -118,13 +128,7 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{"
-                + "id=" + id
-                + ", description='" + description + '\''
-                + ", status=" + status
-                + ", author=" + author
-                + ", car=" + car
-                + ", created=" + created
-                + '}';
+        return String.format("Post: id=%s, description=%s, status=%s, User=%s, Car=%s, created=%s",
+                id, description, status, user, car, created);
     }
 }

@@ -35,6 +35,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user_id")
     private List<Car> carList = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user_id")
+    private List<Post> postList = new ArrayList<>();
+
     public User() {
     }
 

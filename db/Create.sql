@@ -1,3 +1,4 @@
+
 create table cars
 (
     id        serial primary key,
@@ -13,7 +14,15 @@ create table posts
     status      boolean,
     created     TIMESTAMP with time zone,
     user_id     INT NOT NULL REFERENCES users (id),
-    car_id      INT NOT NULL REFERENCES cars (id)
+    car_id      INT NOT NULL REFERENCES cars (id),
+    photos_id      INT NOT NULL REFERENCES posts (id)
+);
+
+create table photos
+(
+    id        serial primary key,
+    imagename VARCHAR(255),
+    post_id   INT NOT NULL REFERENCES posts (id)
 );
 
 create table users

@@ -20,6 +20,12 @@
   </properties>
 
   <dependencies>
+    <dependency><!--HsqlDB - она позволяет генерировать БД, в которой будут храниться записи, в памяти,  -->
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>2.5.1</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.hibernate</groupId> <!--зависимости hibernate. -->
       <artifactId>hibernate-core</artifactId>

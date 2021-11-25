@@ -65,15 +65,17 @@ public class AdRepository implements Store {
     /**
      * - показать объявления за последний день
      *
-     * @return
+     * @return Collection List<> Post object
      */
     @Override
     public List<Post> lastDay() {
         return this.tx(
                 session -> {
-                    var query = session.createQuery("from ru.job4j.cars.model.Post s where s.created between :date1 and :date2"
-                    ).setParameter("date1", subtractDays())
-                     .setParameter("date2", new Date(System.currentTimeMillis()));
+                    var query = session.createQuery("from ru.job4j.cars.model.Post s"
+                            + " where s.created between :start and :finish"
+                    )
+                            .setParameter("start", subtractDays())
+                            .setParameter("finish", new Date(System.currentTimeMillis()));
                     return query.list();
                 }
         );
@@ -82,7 +84,7 @@ public class AdRepository implements Store {
     /**
      * метод определение даты минус 1 день
      *
-     * @return
+     * @return Date time one day before
      */
     private Date subtractDays() {
         Date date = new Date(System.currentTimeMillis());
@@ -96,7 +98,7 @@ public class AdRepository implements Store {
     /**
      * - показать объявления с фото
      *
-     * @return
+     * @return Collection List<> Post object
      */
     @Override
     public List<Post> whenPhotoTrue() {
@@ -104,14 +106,10 @@ public class AdRepository implements Store {
         return this.tx(
                 session -> {
                     var query = session.createQuery(
-                            "select distinct st from Post st join fetch st.photo a ", Post.class
+                            "select distinct st from Post st join fetch st.photo a "
+                                    + "where st.photo is not null ", Post.class
                     );
-                    for (var post : query.list()) {
-                        if (post.getPhoto() != null) {
-                            postList.add(post);
-                        }
-                    }
-                    return postList;
+                    return query.list();
                 }
         );
     }
@@ -119,8 +117,8 @@ public class AdRepository implements Store {
     /**
      * - показать объявления определенной марки.
      *
-     * @param name
-     * @return
+     * @param name auto mark
+     * @return Collection List<> Post object
      */
     @Override
     public List<Post> whenMarkAuto(String name) {
@@ -142,7 +140,7 @@ public class AdRepository implements Store {
      * - поиск пользователей по email
      *
      * @param email
-     * @return
+     * @return Collection List<> User object
      */
     @Override
     public List<User> findByEmail(String email) {

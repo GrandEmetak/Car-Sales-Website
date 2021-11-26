@@ -27,7 +27,7 @@
     <script src="scripts/doneFalse.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>AJAX</title>
+    <title>CARS</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -37,9 +37,9 @@
 <%--});--%>
 <%--</script>--%>
 
-<title>TO DO</title>
+<title>CARS</title>
 
-<H1>TO DO</H1> TO DO
+<H1>Cars</H1>
 <div class="fixed-top">
     <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark p-4">
@@ -58,109 +58,89 @@
 <br>
 <br>
 <body>
-<div class="row">
-    <ul class="nav">
-        <br>
-        <li class="nav-item">
-            <a class="nav-link" href="<%=request.getContextPath()%>/reg.do">Регистрация</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> Авторизация </a>
-        </li>
-    </ul>
-    <div class="container">
-        <form class=" need -validation " novalidate>
-            <div class="form-group">
-                <div class="col-md-6 mb-3">
-
-                    <label for="validationDefault01">Добавить новое задание</label>
-                    <textarea class="form-control" id="validationDefault01" rows="5"></textarea>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-3 mb-3">
-                        <label for="validationDefault02">Category</label>
-                        <select class="custom-select" id="validationDefault02" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>normal</option>
-                            <option>hard</option>
-                            <option>important</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row"> <!-- type="submit"-->
-                        <button id="btn" class="btn btn-primary" onclick="add()"> Submit form</button>
-                    </div>
-                </div>
-                <div class="row float-right">
-                    <script>
-                        $('#btn').click(function () {
-                            add();
-                        });
-                    </script>
-                </div>
-            </div>
+<div class="container">
+    <div class="row">
+        <ul class="nav">
             <br>
-            <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="checkbox">
-                <label class="custom-control-label" for="checkbox">Show all elements</label>
-            </div>
-            <p id="text" style="display: none;">Каждый веб-разработчик знает, что такое текст-«рыба».
-                Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов.
-                Используется он веб-дизайнерами для вставки на интернет-страницы и демонстрации внешнего вида контента,
-                просмотра шрифтов, абзацев, отступов и т.д. Так как цель применения такого текста
-                исключительно демонстрационная, то и смысловую нагрузку ему нести совсем необязательно.
-                Более того, нечитабельность текста сыграет на руку при оценке качества восприятия макета.</p>
-            <script> <!--показать контент по нажатию  $('#text').show(100); если не активна то он скрыт $('#text').hide(100);-->
-            $('#checkbox').click(function () {
-                if ($(this).is(':checked')) {
-                    $('#text').show(100);
-                    doneFalse();
-                } else {
-                    location.reload();
-                }
-            });
-            </script>
-            <table id="table" class="table">
-                <caption>list of notes according to the selected category</caption>
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Created</th>
-                    <th scope="col">Category</th>
-                </tr>
-                </thead>
-                <tbody>
-                <div>
-
-                </div>
-                </tbody>
-                <script><!--чекбокс/радиокнопка  состоянние true/false-->
-                $('#checkbox').click(function () {
-                    let checkboxStatus = $(this).prop('checked')
-                    console.log(checkboxStatus);
-                });
-                </script>
-
-
-            </table><!-- то что выбрали на радио кнопку-->
-            <div class="row float-right">
-                <script>
-                    $('input').on('click', function () {
-                        $('#outputField').text('Вы выбрали ' + $('input:checked').val());
-                    });
-                </script>
-            </div>
-            <nav class="navbar navbar-light bg-light">
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </nav>
-        </form>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/reg.do">Регистрация</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> Авторизация </a>
+            </li>
+        </ul>
     </div>
+    <br>
+    <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="checkbox">
+        <label class="custom-control-label" for="checkbox">Show all elements</label>
+    </div>
+    <p id="text" style="display: none;">Каждый веб-разработчик знает, что такое текст-«рыба».
+        Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов.
+        Используется он веб-дизайнерами для вставки на интернет-страницы и демонстрации внешнего вида
+        контента,
+        просмотра шрифтов, абзацев, отступов и т.д. Так как цель применения такого текста
+        исключительно демонстрационная, то и смысловую нагрузку ему нести совсем необязательно.
+        Более того, нечитабельность текста сыграет на руку при оценке качества восприятия макета.</p>
+    <script> <!--показать контент по нажатию  $('#text').show(100); если не активна то он скрыт $('#text').hide(100);-->
+    $('#checkbox').click(function () {
+        if ($(this).is(':checked')) {
+            $('#text').show(100);
+            doneFalse();
+        } else {
+            location.reload();
+        }
+    });
+    </script>
+    <div class="row">
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                Сегодняшние вакансии.
+            </div>
+            <div class="card-body">
+                <table id="table" class="table">
+                    <caption>list of notes according to the selected category</caption>
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Category</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div>
+
+                    </div>
+                    </tbody>
+                    <script><!--чекбокс/радиокнопка  состоянние true/false-->
+                    $('#checkbox').click(function () {
+                        let checkboxStatus = $(this).prop('checked')
+                        console.log(checkboxStatus);
+                    });
+                    </script>
+
+
+                </table><!-- то что выбрали на радио кнопку-->
+            </div>
+        </div>
+    </div>
+
+    <div class="row float-right">
+        <script>
+            $('input').on('click', function () {
+                $('#outputField').text('Вы выбрали ' + $('input:checked').val());
+            });
+        </script>
+    </div>
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+    </form>
 </div>
 </body>
 </html>

@@ -29,11 +29,35 @@ public class Car {
 
     private String bodyType;
 
+    private String engine;
+
+    private String transmission;
+
+    private String color;
+
+    private String drive;
+
+    private String mileage;
+
     @ManyToOne
     @JoinColumn(name = "car")
     private User user;
 
     public Car() {
+    }
+
+    public Car of(String mark, String bodyType, String engine,
+                  String transmission, String color,
+                  String drive, String mileage) {
+        Car car = new Car();
+        car.mark = mark;
+        car.bodyType = bodyType;
+        car.engine = engine;
+        car.transmission = transmission;
+        car.color = color;
+        car.drive = drive;
+        car.mileage = mileage;
+        return car;
     }
 
     public Car of(String mark, String bodyType) {
@@ -75,6 +99,46 @@ public class Car {
         this.user = user;
     }
 
+    public String getEngine() {
+        return engine;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public String getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(String transmission) {
+        this.transmission = transmission;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getDrive() {
+        return drive;
+    }
+
+    public void setDrive(String drive) {
+        this.drive = drive;
+    }
+
+    public String getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(String mileage) {
+        this.mileage = mileage;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -94,11 +158,8 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{"
-                + "id=" + id
-                + ", mark='" + mark + '\''
-                + ", bodyType='" + bodyType + '\''
-                + ", user=" + user
-                + '}';
+        return String.format("Car: id=%s, mark=%s, bodyType=%s, engine=%s,"
+                        + " transmission=%s, color=%s, drive=%s, mileage=%s, User=%s",
+                id, mark, bodyType, engine, transmission, color, drive, mileage, user);
     }
 }

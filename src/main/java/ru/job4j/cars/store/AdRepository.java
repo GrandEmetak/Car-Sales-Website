@@ -63,6 +63,47 @@ public class AdRepository implements Store {
     }
 
     /**
+     * - put User in to DB cars
+     *
+     * @param user Object to paste
+     * @return Objec User(includes new id) or User null Object
+     */
+    @Override
+    public User saveUser(User user) {
+        User rsl = null;
+        try {
+            Session session = sf.openSession();
+            Transaction tx = session.beginTransaction();
+            var result = session.save(user);
+            int index = (int) result;
+            user.setId(index);
+            rsl = user;
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
+        return rsl;
+    }
+
+    /**
+     * - показать все объявления из БД posts
+     *
+     * @return
+     */
+    @Override
+    public List<Post> findAllPost() {
+        return this.tx(
+                session -> {
+                    var query = session.createQuery("from ru.job4j.cars.model.Post");
+                    return query.list();
+                }
+        );
+    }
+
+    /**
      * - показать объявления за последний день
      *
      * @return Collection List<> Post object
@@ -131,6 +172,28 @@ public class AdRepository implements Store {
                                     + "join fetch st.photo c "
                                     + "where st.car.mark = :sBrandName", Post.class
                     ).setParameter("sBrandName", name);
+                    return query.list();
+                }
+        );
+    }
+
+    /**
+     * - найти Пост по id
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Post> findPostBiId(int id) {
+        return this.tx(
+                session -> {
+                    var query = session.createQuery(
+                            "select distinct st from Post st "
+                                    + "join fetch st.user a "
+                                    + "join fetch st.car b "
+                                    + "join fetch st.photo c "
+                                    + "where st.id = :sId", Post.class
+                    ).setParameter("sId", id);
                     return query.list();
                 }
         );

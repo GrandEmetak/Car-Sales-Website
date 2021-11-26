@@ -26,7 +26,11 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String header;
+
     private String description;
+
+    private int price;
 
     private boolean status;
 
@@ -45,9 +49,11 @@ public class Post {
     public Post() {
     }
 
-    public Post of(String description, boolean status) {
+    public Post of(String header, String description, int price, boolean status) {
         Post post = new Post();
+        post.header = header;
         post.description = description;
+        post.price = price;
         post.status = false;
         this.created = new Date(System.currentTimeMillis());
         return post;
@@ -59,6 +65,14 @@ public class Post {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     public String getDescription() {
@@ -109,6 +123,14 @@ public class Post {
         this.photo = photo;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -128,7 +150,8 @@ public class Post {
 
     @Override
     public String toString() {
-        return String.format("Post: id=%s, description=%s, status=%s, User=%s, Car=%s, created=%s",
-                id, description, status, user, car, created);
+        return String.format("Post: id=%s, header=%s, description=%s, price=%s, status=%s,"
+                        + " User=%s, Car=%s, created=%s",
+                id, header, description, photo, status, user, car, created);
     }
 }

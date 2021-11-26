@@ -14,6 +14,12 @@ import java.util.List;
  */
 public interface Store {
 
+    public User saveUser(User user);
+
+    public void savePost();
+
+    public List<Post> findAllPost();
+
     public List<Post> lastDay();
 
     public List<Post> whenPhotoTrue();
@@ -21,5 +27,7 @@ public interface Store {
     public List<Post> whenMarkAuto(String name);
 
     public List<User> findByEmail(String email);
+
+    public List<Post> findPostBiId(int id);
 
 }

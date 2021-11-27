@@ -38,8 +38,8 @@ create table users
     name     VARCHAR(255) NOT NULL,
     email    VARCHAR(55)  NOT NULL,
     password VARCHAR(255) NOT NULL,
-    /*post_id  INT NOT NULL REFERENCES posts (id),
-    car_id   INT NOT NULL REFERENCES cars (id),*/
+--     post_id  INT NOT NULL REFERENCES posts (id),
+--     car_id   INT NOT NULL REFERENCES cars (id),
     unique (email)
 );
 

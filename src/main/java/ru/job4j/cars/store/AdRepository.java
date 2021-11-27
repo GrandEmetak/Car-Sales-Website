@@ -7,6 +7,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
+import ru.job4j.cars.model.Car;
+import ru.job4j.cars.model.Photo;
 import ru.job4j.cars.model.Post;
 import ru.job4j.cars.model.User;
 
@@ -75,6 +77,7 @@ public class AdRepository implements Store {
             Session session = sf.openSession();
             Transaction tx = session.beginTransaction();
             var result = session.save(post);
+            System.out.println("То что сохраняем : " + post);
             int index = (int) result;
             post.setId(index);
             rsl = post;
@@ -86,8 +89,52 @@ public class AdRepository implements Store {
             StandardServiceRegistryBuilder.destroy(registry);
         }
         return rsl;
+    }
+
+    @Override
+    public Photo savePhoto(Photo photo) {
+       Photo rsl = null;
+        try {
+            Session session = sf.openSession();
+            Transaction tx = session.beginTransaction();
+            var result = session.save(photo);
+            System.out.println("То что сохраняем : " + photo);
+            int index = (int) result;
+            photo.setId(index);
+            rsl = photo;
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
+        return rsl;
 
     }
+
+    @Override
+    public Car saveCar(Car car) {
+       Car rsl = null;
+        try {
+            Session session = sf.openSession();
+            Transaction tx = session.beginTransaction();
+            var result = session.save(car);
+            System.out.println("То что сохраняем : " + car);
+            int index = (int) result;
+            car.setId(index);
+            rsl = car;
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
+        return rsl;
+
+    }
+
 
     /**
      * - put User in to DB cars

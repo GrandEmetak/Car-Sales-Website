@@ -61,6 +61,7 @@
         <servlet-name>DeleteServlet</servlet-name>
         <url-pattern>/delete.do</url-pattern>
     </servlet-mapping>
+
     <filter-mapping>
         <!--В url-pattern можно указать полный путь или маску поиска.
         * - все запросы.

@@ -1,5 +1,7 @@
 package ru.job4j.cars.servlet;
 
+import ru.job4j.cars.store.AdRepository;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,12 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
+/** - @WebServlet(urlPatterns = "/candidateT.do")
  * Серлет отвечает за кандидатов за последне 24 часа
  * ATTENTION! -
  * удален файл web.xml, произведена замена во всех классах на аннотацию @WebServlet(urlPattern = " маппинг имя")
  */
-@WebServlet(urlPatterns = "/candidateT.do")
 public class CandidateTodayServlet extends HttpServlet {
     /**
      * мы перенаправляем запрос в index.jsp.
@@ -38,7 +39,9 @@ public class CandidateTodayServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("candidates", PsqlStore.instOf().findByData());
+       // req.setAttribute("candidates", PsqlStore.instOf().findByData());
+
+        req.setAttribute("candidates", AdRepository.instOf().lastDay());
         req.getRequestDispatcher("candidatesToday.jsp").forward(req, resp);
     }
 }

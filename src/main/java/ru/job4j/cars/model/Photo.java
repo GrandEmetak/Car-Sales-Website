@@ -29,7 +29,7 @@ public class Photo {
     public Photo() {
     }
 
-    public static Photo of(String name, byte[] image) {
+    public static Photo of(String name) {
         Photo photo = new Photo();
         photo.imageName = name;
        /* photo.image = image;*/

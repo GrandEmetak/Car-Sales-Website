@@ -1,9 +1,45 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: SlartiBartFast-art
+  Date: 27.10.2021
+  Time: 16:22
+  To change this template use File | Settings | File Templates.
+   У нас есть отдельная кнопка Выйти - ее функционал реализуем отдельно. Для этого определим следующую ссылку в сервлете:
+<c:if test="${user != null}">
+    <li class="nav-item">
+        <a class="nav-link" href="<%=request.getContextPath()%>/logout.do">Выйти</a>
+    </li>
+</c:if>
+--%>
+<%--
+                   было <% for (Candidate candidate : (Collection<Candidate>) request.getAttribute("posts")) { %>
+                    Когда в браузере открывается любая ссылка, он отправляет http запрос с типом GET.
+                   public class CandidateServlet extends HttpServlet {
+                   @Override
+                   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                   req.setAttribute("posts", Store.instOf().findAllPosts()); - В методу doGet мы загружаем в request список вакансий.
+                   req.getRequestDispatcher("candidate.jsp").forward(req, resp);    }
+
+                  WARNING!!! было до переписывани под библиотеку JSPL
+                   <% for (Candidate candidate : (Collection<Candidate>) request.getAttribute("candidates")) { --%>
+<%--   <tr>
+       <td>                <%--добавить иконку редактирования втаблицу и ссылку на страницу edit.
+   <a href="<%=request.getContextPath()%>/candidate/edit.jsp?id=<%=candidate.getId()%>">
+       <i class="fa fa-edit mr-3"></i>
+   </a>
+   <%= candidate.getName() %>
+   </td>
+   </tr>
+   --%>
+
 <%-- библиотекой JSTL. Напомню, что Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.cars.model.Post" %>
-<%@ page import="ru.job4j.cars.model.Car" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="ru.job4j.cars.store.AdRepository" %>
+<%@ page import="ru.job4j.cars.model.User" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDateTime" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
@@ -24,17 +60,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
+
+    <script src="js/validate.js"></script>
+
     <%--Иконки редактирования (квадрат с карандашом) --%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Cars</title>
+    <title>Работа мечты</title>
 </head>
 <body>
 <%
     String id = request.getParameter("id");
-    //Candidate candidate = new Candidate(0, "");
     Post post = new Post(0, "");
+    // Candidate candidate = new Candidate(0, "", "", "");
     if (id != null) {
+        //   candidate = PsqlStore.instOf().findByIdCandidate(Integer.parseInt(id));
         post = AdRepository.instOf().findPostBiId(Integer.parseInt(id)).get(0);
     }
 %>
@@ -43,9 +83,10 @@
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Объявления</a>
-            </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить объявление</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить
+                    объявление</a>
             </li>
             <c:if test="${user == null}">
                 <li class="nav-item">

@@ -31,12 +31,12 @@ public class User {
     private String email;
 
     private String password;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user_id")
-    private List<Car> carList = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user_id")
-    private List<Post> postList = new ArrayList<>();
+//
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user_id")
+//    private List<Car> carList = new ArrayList<>();
+//
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user_id")
+//    private List<Post> postList = new ArrayList<>();
 
     public User() {
     }
@@ -49,9 +49,13 @@ public class User {
         return user;
     }
 
-    public void addCars(Car car) {
-        this.carList.add(car);
-    }
+//    public void addCars(Car car) {
+//        this.carList.add(car);
+//    }
+//
+//    public void addPost(Post ps) {
+//        this.postList.add(ps);
+//    }
 
     public int getId() {
         return id;
@@ -85,13 +89,13 @@ public class User {
         this.password = password;
     }
 
-    public List<Car> getCarList() {
-        return carList;
-    }
-
-    public void setCarList(List<Car> carList) {
-        this.carList = carList;
-    }
+//    public List<Car> getCarList() {
+//        return carList;
+//    }
+//
+//    public void setCarList(List<Car> carList) {
+//        this.carList = carList;
+//    }
 
     @Override
     public boolean equals(Object o) {

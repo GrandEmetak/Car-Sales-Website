@@ -40,7 +40,7 @@ public class Car {
     private String mileage;
 
     @ManyToOne
-    @JoinColumn(name = "car")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Car() {
@@ -65,6 +65,10 @@ public class Car {
         this.mark = mark;
         this.bodyType = bodyType;
         return car;
+    }
+
+    public void addUser(User user) {
+        this.user = user;
     }
 
     public Integer getId() {

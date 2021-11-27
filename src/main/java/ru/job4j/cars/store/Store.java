@@ -1,5 +1,7 @@
 package ru.job4j.cars.store;
 
+import ru.job4j.cars.model.Car;
+import ru.job4j.cars.model.Photo;
 import ru.job4j.cars.model.Post;
 import ru.job4j.cars.model.User;
 
@@ -33,5 +35,9 @@ public interface Store {
     public List<Post> findPostBiId(int id);
 
     public boolean deletePostId(int id);
+
+    public Photo savePhoto(Photo photo);
+
+    public Car saveCar(Car car);
 
 }

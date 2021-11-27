@@ -72,6 +72,10 @@ public class Post {
         this.user = usr;
     }
 
+    public void addPhoto(Photo ph) {
+        this.photo = ph;
+    }
+
     public int getId() {
         return id;
     }

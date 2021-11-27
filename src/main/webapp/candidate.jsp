@@ -32,8 +32,8 @@
 <body>
 <%
   String id = request.getParameter("id");
-  Candidate candidate = new Candidate(0, "");
-  Post post = new Post();
+  //Candidate candidate = new Candidate(0, "");
+  Post post = new Post(0, "");
   if (id != null) {
     post = AdRepository.instOf().findPostBiId(Integer.parseInt(id)).get(0);
   }
@@ -42,17 +42,10 @@
   <div class="row">
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
+        <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Объявления</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Кандидаты</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить
-          кандидата</a>
+        <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить объявление</a>
       </li>
       <c:if test="${user == null}">
         <li class="nav-item">
@@ -83,34 +76,40 @@
           <thead>
           <tr>
             <th scope="col"></th>
-            <th scope="col">Name</th>
+            <th scope="col">Header</th>
+            <th scope="col">Car Info</th>
             <th scope="col">Description</th>
-            <th scope="col">City</th>
-            <th scope="col">Date</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Data</th>
             <th scope="col">Edit/Delete</th>
           </tr>
           </thead>
           <tbody>
           <%-- загрузка КандидатСервлеет, doGet - от него приходит перечень Кандидатов--%>
-          <c:forEach items="${candidates}" var="candidate">
+          <c:forEach items="${posts}" var="post">
             <tr>
               <td> <%-- Передали в ДонлоадСервлет по ключу name - id Кандидата, doGet вернул фото из папки с таким номером--%>
-                <img src="<c:url value='/download?name=${candidate.id}'/>" width="50px" height="50px"/>
+                <img src="<c:url value='/download?name=${post.id}'/>" width="50px" height="50px"/>
               </td>
-              <td><c:out value="${candidate.name}"/></td>
+              <td><c:out value="${post.header}"/></td>
                 <%-- c:out value="post.name"- Вывод значения post. --%>
-              <td><c:out value="${candidate.position}"/></td>
-              <td><c:out value="${candidate.cityId}"/></td>
-              <td><c:out value="${candidate.created}"/></td>
+              <td><c:out value="${post.car.name}"/></td>
+              <td><c:out value="${post.description}"/></td>
+              <td><c:out value="${post.price}"/></td>
+              <td><c:out value="${post.status}"/></td>
+              <td><c:out value="${post.user.name}"/></td>
+              <td><c:out value="${post.created}"/></td>
               <td>                <%--добавить иконку редактирования в таблицу и ссылку на страницу edit. --%>
-                <a href="<c:url value='/candidate/edit.jsp?id=${candidate.id}'/>">
+                <a href="<c:url value='/candidate/edit.jsp?id=${post.id}'/>">
                   <em class="fa fa-edit mr-3"></em>
                 </a>
                 <br>
-                <a href="<c:url value='/upload.jsp?id=${candidate.id}'/>">
+                <a href="<c:url value='/upload.jsp?id=${post.id}'/>">
                   Edit photo</a>
                 <br>
-                <form style="display: inline" action="<c:url value='/delete.do?id=${candidate.id}'/>"
+                <form style="display: inline" action="<c:url value='/delete.do?id=${post.id}'/>"
                       method="post">
                   <button>Delete candidate</button>
                 </form>
@@ -119,7 +118,7 @@
             </tr>
           </c:forEach>
           </tbody>
-        </table> <!-- -->
+        </table>
       </div>
     </div>
   </div>

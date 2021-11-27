@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import java.io.IOException;
 
 /**
+ * - @WebServlet(urlPatterns = "/auth.do")
  * 0. Страница Login.jsp
  * Сервлет проверяет почту и пароль, если они совпадают, то переходит на страницу вакансий.
  * Если нет, то возвращает обратно на страницу Login.
@@ -24,7 +25,6 @@ import java.io.IOException;
  * @author SlartiBartFast-art
  * @since 20.10.21
  */
-@WebServlet(urlPatterns = "/auth.do")
 public class AuthServlet extends HttpServlet {
 
     /**
@@ -61,7 +61,7 @@ public class AuthServlet extends HttpServlet {
             admin.setName(user.getName());
             admin.setEmail(user.getEmail());
             sc.setAttribute("user", admin);
-            resp.sendRedirect(req.getContextPath() + "/posts.do"); // перевести на страницу где все
+            resp.sendRedirect(req.getContextPath() + "/candidates.do"); // перевести на страницу где все
         } else {
             req.setAttribute("error", "Не верный email или пароль");
             req.getRequestDispatcher("login.jsp").forward(req, resp);

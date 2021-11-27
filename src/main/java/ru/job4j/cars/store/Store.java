@@ -16,7 +16,7 @@ public interface Store {
 
     public User saveUser(User user);
 
-    public void savePost();
+    public Post savePost(Post post);
 
     public List<Post> findAllPost();
 
@@ -28,6 +28,10 @@ public interface Store {
 
     public List<User> findByEmail(String email);
 
+    public List<User> findUserById(int id);
+
     public List<Post> findPostBiId(int id);
+
+    public boolean deletePostId(int id);
 
 }

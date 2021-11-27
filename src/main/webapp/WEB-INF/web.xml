@@ -21,6 +21,22 @@
         <servlet-name>CandidateServlet</servlet-name>
         <servlet-class>ru.job4j.cars.servlet.CandidateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DownloadServlet</servlet-name>
+        <servlet-class>ru.job4j.cars.servlet.DownloadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>ru.job4j.cars.servlet.UploadServlet</servlet-class>
+    </servlet>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>ru.job4j.cars.filter.AuthFilter</filter-class>
+    </filter>
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>ru.job4j.cars.servlet.DeleteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AuthServlet</servlet-name>
         <url-pattern>/auth.do</url-pattern>
@@ -33,5 +49,27 @@
         <servlet-name>CandidateTodayServlet</servlet-name>
         <url-pattern>/candidateT.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadServlet</servlet-name>
+        <url-pattern>/download</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/delete.do</url-pattern>
+    </servlet-mapping>
+    <filter-mapping>
+        <!--В url-pattern можно указать полный путь или маску поиска.
+        * - все запросы.
+        *.html - все запросы с расширением html. Например, index.html, users.html
+        /static/* - запросы содержащие в URL блок /static/. Используется для кеширования css, js, html.
+        Здесь используется маска *.do.Все запросы с расширением *.do будут обрабатываться нашим фильтром
+         -->
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
 
 </web-app>

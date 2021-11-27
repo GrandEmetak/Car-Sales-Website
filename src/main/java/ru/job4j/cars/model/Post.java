@@ -30,7 +30,7 @@ public class Post {
 
     private String description;
 
-    private int price;
+    private String price;
 
     private boolean status;
 
@@ -49,14 +49,27 @@ public class Post {
     public Post() {
     }
 
-    public Post of(String header, String description, int price, boolean status) {
+    public Post(int id, String header) {
+        this.id = id;
+        this.header = header;
+    }
+
+    public static Post of(String header, String description, String price, boolean status) {
         Post post = new Post();
         post.header = header;
         post.description = description;
         post.price = price;
         post.status = false;
-        this.created = new Date(System.currentTimeMillis());
+        post.created = new Date(System.currentTimeMillis());
         return post;
+    }
+
+    public void addCar(Car car) {
+        this.car = car;
+    }
+
+    public void addUser(User usr) {
+        this.user = usr;
     }
 
     public int getId() {
@@ -123,11 +136,11 @@ public class Post {
         this.photo = photo;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

@@ -63,10 +63,37 @@ public class AdRepository implements Store {
     }
 
     /**
+     * save Post Object in to DB Post
+     *
+     * @param post Object
+     * @return Post object
+     */
+    @Override
+    public Post savePost(Post post) {
+        Post rsl = null;
+        try {
+            Session session = sf.openSession();
+            Transaction tx = session.beginTransaction();
+            var result = session.save(post);
+            int index = (int) result;
+            post.setId(index);
+            rsl = post;
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
+        return rsl;
+
+    }
+
+    /**
      * - put User in to DB cars
      *
      * @param user Object to paste
-     * @return Objec User(includes new id) or User null Object
+     * @return Object User(includes new id) or User null Object
      */
     @Override
     public User saveUser(User user) {
@@ -98,6 +125,24 @@ public class AdRepository implements Store {
         return this.tx(
                 session -> {
                     var query = session.createQuery("from ru.job4j.cars.model.Post");
+                    return query.list();
+                }
+        );
+    }
+
+    /**
+     * - find User object by id
+     *
+     * @param id User Object
+     * @return List User Object
+     */
+    @Override
+    public List<User> findUserById(int id) {
+        return this.tx(
+                session -> {
+                    var query = session.createQuery("from ru.job4j.cars.model.User s "
+                            + "where s.id = :sId")
+                            .setParameter("sId", id);
                     return query.list();
                 }
         );
@@ -215,5 +260,32 @@ public class AdRepository implements Store {
                     return query.list();
                 }
         );
+    }
+
+    /**
+     * найти и удалить пользователя по id
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public boolean deletePostId(int id) {
+        boolean rsl = false;
+        if (id != 0) {
+            try {
+                Session session = sf.openSession();
+                Transaction tx = session.beginTransaction();
+                Post post = (Post) session.load(Post.class, id);
+                session.delete(post);
+                session.getTransaction().commit();
+                session.close();
+                rsl = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                StandardServiceRegistryBuilder.destroy(registry);
+            }
+        }
+        return rsl;
     }
 }

@@ -46,7 +46,7 @@ public class Car {
     public Car() {
     }
 
-    public Car of(String mark, String bodyType, String engine,
+    public static Car of(String mark, String bodyType, String engine,
                   String transmission, String color,
                   String drive, String mileage) {
         Car car = new Car();

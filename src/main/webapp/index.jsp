@@ -95,7 +95,7 @@
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Сегодняшние вакансии.
+                Сегодняшние объявления.
             </div>
             <div class="card-body">
                 <table id="table" class="table">

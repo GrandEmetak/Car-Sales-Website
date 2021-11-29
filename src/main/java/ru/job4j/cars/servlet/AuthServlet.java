@@ -23,7 +23,7 @@ import java.io.IOException;
  * admin.setEmail(email);
  * sc.setAttribute("user", admin);
  * @author SlartiBartFast-art
- * @since 20.10.21
+ * @since 26.11.21
  */
 public class AuthServlet extends HttpServlet {
 
@@ -61,7 +61,7 @@ public class AuthServlet extends HttpServlet {
             admin.setName(user.getName());
             admin.setEmail(user.getEmail());
             sc.setAttribute("user", admin);
-            resp.sendRedirect(req.getContextPath() + "/candidates.do"); // перевести на страницу где все
+            resp.sendRedirect(req.getContextPath() + "/candidate.do"); // перевести на страницу где все
         } else {
             req.setAttribute("error", "Не верный email или пароль");
             req.getRequestDispatcher("login.jsp").forward(req, resp);

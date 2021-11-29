@@ -12,6 +12,7 @@ import ru.job4j.cars.model.Photo;
 import ru.job4j.cars.model.Post;
 import ru.job4j.cars.model.User;
 
+import java.sql.Timestamp;
 import java.util.*;
 import java.util.function.Function;
 
@@ -115,6 +116,7 @@ public class AdRepository implements Store {
 
     /**
      * - сохранить машину в БД
+     *
      * @param car
      * @return
      */
@@ -339,4 +341,20 @@ public class AdRepository implements Store {
         }
         return rsl;
     }
+
+    public Date convertDays(Date date) {
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(date);
+        return cal.getTime();
+    }
+
+    public String convertStatus(String b) {
+        String rsl = "Продано/sold";
+        if (b.equals("f") || b.equals("false")) {
+            rsl = "Продается/for sale";
+            return rsl;
+        }
+        return rsl;
+    }
 }
+

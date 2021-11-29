@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
+ * - @WebServlet(urlPatterns = "/reg.do")
  * 4. Регистрация пользователя.
  * Security
  *  ATTENTION! -
@@ -20,7 +21,6 @@ import java.util.ArrayList;
  *  на аннотацию @WebServlet(urlPattern = " маппинг имя")
  *
  */
-@WebServlet(urlPatterns = "/reg.do")
 public class RegServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

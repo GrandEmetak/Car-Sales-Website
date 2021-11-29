@@ -5,6 +5,9 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.cars.model.Post" %>
 <%@ page import="ru.job4j.cars.store.AdRepository" %>
+<%@ page import="ru.job4j.cars.model.User" %>
+<%@ page import="ru.job4j.cars.model.Car" %>
+<%@ page import="ru.job4j.cars.model.Photo" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 
@@ -79,7 +82,17 @@
 <body>
 <%
     String id = request.getParameter("id");
-    Post post = new Post(0, "");
+    Post post = Post.of("", "", "", false);
+    post.setId(0);
+    User user = User.of("", "", "");
+    user.setId(0);
+    Car car = Car.of("", "", "", "", "", "", "");
+    car.setId(0);
+    Photo photo = Photo.of("");
+    photo.setId(0);
+    post.addPhoto(photo);
+    post.addCar(car);
+    post.addUser(user);
     // Candidate candidate = new Candidate(0, "", "", "");
     if (id != null) {
         //   candidate = PsqlStore.instOf().findByIdCandidate(Integer.parseInt(id));
@@ -91,9 +104,9 @@
         <div class="card" style="width: 100%">
             <div class="card-header">
                 <% if (id == null) { %>
-                <h5>Enter New Candidate information</h5>
+                <h5>Enter New Post information / Введите информацию для подачи вашего объявления</h5>
                 <% } else { %>
-                <h5>you are in the Candidate edit field</h5>
+                <h5>you are in the Post edit field / Вы находитесь на странице редактирования объявления</h5>
                 <% } %>
             </div>
             <div class="card-body">
@@ -101,7 +114,7 @@
                 <form action="<%=request.getContextPath()%>/candidates/save?id=<%=candidate.getId()%>" method="post">
                 был это но поменяли на  candidates.do
                 --%>
-                <form action="<%=request.getContextPath()%>/candidates.do?id=<%=post.getId()%>"
+                <form action="<%=request.getContextPath()%>/candidate.do?id=<%=post.getId()%>"
                       method="post"> <%--? --%>
                     <div class="form-group">
                         <div class="col-md-6 mb-3">
@@ -117,19 +130,19 @@
                                    placeholder="Please enter description Post" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label>City</label>
+                            <label>Price</label>
                             <input type="text" class="form-control" name="price" value="<%=post.getPrice()%>"
                                    id="price"
                                    placeholder="Please enter your price" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label>City</label>
+                            <label>Status</label>
                             <input type="text" class="form-control" name="status" value="<%=post.isStatus()%>"
                                    id="status"
                                    placeholder="Please enter your status post true/false" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label>City</label>
+                            <label>Mark</label>
                             <input type="text" class="form-control" name="mark" value="<%=post.getCar().getMark()%>"
                                    id="mark"
                                    placeholder="Please enter your mark auto" required> <!-- доработать в сервлете-->

@@ -13,9 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * - @WebServlet(urlPatterns = "/candidates.do")
+ * - @WebServlet(urlPatterns = "/candidate.do")
  * 2. CandidateServlet.
  * Создание Post (Супер объект, хранит в себе информацию Объявление-Машина-Владелец).
  * В методу doGet мы загружаем в request список объявлений.
@@ -33,7 +35,6 @@ import java.io.IOException;
  * @version 1
  * @since 26.11.21
  */
-@WebServlet(urlPatterns = "/candidates.do")
 public class CandidateServlet extends HttpServlet {
     /**
      * мы перенаправляем запрос в index.jsp.
@@ -60,20 +61,36 @@ public class CandidateServlet extends HttpServlet {
      */
     @Override // загрузка при запросе вывода этой страницы
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("posts", AdRepository.instOf().findAllPost()); // forEach str 88
-        req.getRequestDispatcher("candidates.jsp").forward(req, resp);
+        List<Post> postList =  AdRepository.instOf().findAllPost(); // forEach str 88
+        List<Post> afterList = new ArrayList<>();
+        for (Post post : postList) {
+            var d = post.getCreated();
+            post.setCreated(AdRepository.instOf().convertDays(d));
+//           var st = post.getStatus();
+//            System.out.println("Candidate  Post status : -" + post.getStatus());
+//            var gt = AdRepository.instOf().convertStatus(st);
+//            System.out.println("Candidate  Post status : -" + gt);
+//           post.setStatus(gt);
+             afterList.add(post);
+        }
+//        req.setAttribute("posts", AdRepository.instOf().findAllPost()); // forEach str 88
+        req.setAttribute("posts", afterList); // forEach str 88
+        req.getRequestDispatcher("candidate.jsp").forward(req, resp);
     }
 
-    @Override//сюда прилетает введенные данные из web/candidate/edit.jsp после валидации онклик
+    @Override//сюда прилетает введенные данные из web/candidate/edit.jsp после валидации онклик()
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         boolean bln = Boolean.parseBoolean(req.getParameter("status"));
+//        String bln = req.getParameter("status");
+
         int postID = Integer.parseInt(req.getParameter("id"));
         System.out.println("То что пришло по id-post : " + postID);
         // сохранение в Бд Поста или машины?
         Post post = Post.of(req.getParameter("header"),
                 req.getParameter("description"),
                 req.getParameter("price"), bln);
+//        req.getParameter("price"), bln);
         Car car = Car.of(req.getParameter("mark"),
                 req.getParameter("color"),
                 req.getParameter("validation1"),
@@ -90,6 +107,6 @@ public class CandidateServlet extends HttpServlet {
 
         AdRepository.instOf().savePost(post);
 
-        resp.sendRedirect(req.getContextPath() + "/candidates.do");
+        resp.sendRedirect(req.getContextPath() + "/candidate.do");
     }
 }

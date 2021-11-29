@@ -28,7 +28,17 @@ public class Temp {
 
 //        public boolean deletePostId(int id);
         AdRepository adRepository = new AdRepository();
-     /*   User user = User.of("John Smith", "SmithJohn@gmail.com", "John");
+ /*       Post post = adRepository.findPostBiId(1).get(0);
+        System.out.println("adRepository.findPostBiId(1).get(0) - Post : " + post);
+        var ft = post.getCreated();
+        var t = adRepository.convertDays(ft);
+        System.out.println("Data Gregor calendar : " + t);
+
+        var st = adRepository.convertStatus(post.getStatus());
+        System.out.println("Post staus : " + post.getStatus());
+        System.out.println("Convert boolean status - : " + st);*/
+
+        User user = User.of("John Smith", "SmithJohn@gmail.com", "John");
         Post post = Post.of("Lexus RX200t, 2016 год",
                 "- Климат-контроль 2-зонный, Обогрев рулевого колеса, Подогрев передних сидений,"
                         + " Электрообогрев лобового стекла,"
@@ -51,7 +61,7 @@ public class Temp {
         post.addPhoto(photoF);
 
         var savePost = adRepository.savePost(post);
-        System.out.println("То что сохранили в БД Объект пост : " + savePost);*/
+        System.out.println("То что сохранили в БД Объект пост : " + savePost);
 
    /*     var lasD = adRepository.lastDay();
         for (Post post1 : lasD) {

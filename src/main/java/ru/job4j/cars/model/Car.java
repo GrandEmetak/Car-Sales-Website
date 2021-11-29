@@ -39,9 +39,9 @@ public class Car {
 
     private String mileage;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USER_ID_FK"))
+//    private User user;
 
     public Car() {
     }
@@ -67,9 +67,9 @@ public class Car {
         return car;
     }
 
-    public void addUser(User user) {
-        this.user = user;
-    }
+//    public void addUser(User user) {
+//        this.user = user;
+//    }
 
     public Integer getId() {
         return id;
@@ -95,13 +95,13 @@ public class Car {
         this.bodyType = bodyType;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public String getEngine() {
         return engine;
@@ -160,10 +160,11 @@ public class Car {
         return Objects.hash(id);
     }
 
-    @Override
+    @Override //, User=%s
     public String toString() {
         return String.format("Car: id=%s, mark=%s, bodyType=%s, engine=%s,"
-                        + " transmission=%s, color=%s, drive=%s, mileage=%s, User=%s",
-                id, mark, bodyType, engine, transmission, color, drive, mileage, user);
+                        + " transmission=%s, color=%s, drive=%s, mileage=%s",
+//                id, mark, bodyType, engine, transmission, color, drive, mileage, user);
+        id, mark, bodyType, engine, transmission, color, drive, mileage);
     }
 }

@@ -34,13 +34,16 @@ public class Post {
 
     private boolean status;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USER_ID_FK"))
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "photo_id", referencedColumnName = "id")
     private Photo photo;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -167,8 +170,8 @@ public class Post {
 
     @Override
     public String toString() {
-        return String.format("Post: id=%s, header=%s, description=%s, price=%s, status=%s,"
-                        + " User=%s, Car=%s, created=%s",
-                id, header, description, photo, status, user, car, created);
+        return String.format("Post: id=%s, header=%s, description=%s, Photo=%s, status=%s,"
+                        + " User=%s, Car=%s, price=%s, created=%s",
+                id, header, description, photo, status, user, car, price, created);
     }
 }

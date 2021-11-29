@@ -75,14 +75,14 @@ public class AdRepository implements Store {
         Post rsl = null;
         try {
             Session session = sf.openSession();
-            Transaction tx = session.beginTransaction();
+            session.beginTransaction();
             var result = session.save(post);
             System.out.println("То что сохраняем : " + post);
             int index = (int) result;
             post.setId(index);
-            rsl = post;
             session.getTransaction().commit();
             session.close();
+            rsl = post;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -93,10 +93,10 @@ public class AdRepository implements Store {
 
     @Override
     public Photo savePhoto(Photo photo) {
-       Photo rsl = null;
+        Photo rsl = null;
         try {
             Session session = sf.openSession();
-            Transaction tx = session.beginTransaction();
+            session.beginTransaction();
             var result = session.save(photo);
             System.out.println("То что сохраняем : " + photo);
             int index = (int) result;
@@ -113,19 +113,24 @@ public class AdRepository implements Store {
 
     }
 
+    /**
+     * - сохранить машину в БД
+     * @param car
+     * @return
+     */
     @Override
     public Car saveCar(Car car) {
-       Car rsl = null;
+        Car rsl = null;
         try {
             Session session = sf.openSession();
-            Transaction tx = session.beginTransaction();
+            session.beginTransaction();
             var result = session.save(car);
             System.out.println("То что сохраняем : " + car);
             int index = (int) result;
             car.setId(index);
-            rsl = car;
             session.getTransaction().commit();
             session.close();
+            rsl = car;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -134,7 +139,6 @@ public class AdRepository implements Store {
         return rsl;
 
     }
-
 
     /**
      * - put User in to DB cars

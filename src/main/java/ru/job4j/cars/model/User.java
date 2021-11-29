@@ -31,7 +31,7 @@ public class User {
     private String email;
 
     private String password;
-//
+
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user_id")
 //    private List<Car> carList = new ArrayList<>();
 //

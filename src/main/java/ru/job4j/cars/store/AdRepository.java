@@ -73,6 +73,15 @@ public class AdRepository implements Store {
      */
     @Override
     public Post savePost(Post post) {
+        if (post.getId() == 0) {
+            System.out.println("save Post method " + post);
+            return saveByPost(post);
+        }
+        System.out.println(" User update Post" + post);
+        return updateByPost(post);
+    }
+
+    private Post saveByPost(Post post) {
         Post rsl = null;
         try {
             Session session = sf.openSession();
@@ -81,6 +90,24 @@ public class AdRepository implements Store {
             System.out.println("То что сохраняем : " + post);
             int index = (int) result;
             post.setId(index);
+            session.getTransaction().commit();
+            session.close();
+            rsl = post;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
+        return rsl;
+    }
+
+    private Post updateByPost(Post post) {
+        Post rsl = null;
+        try {
+            Session session = sf.openSession();
+            session.beginTransaction();
+            session.saveOrUpdate(post);
+            System.out.println("То что обновляем : " + post);
             session.getTransaction().commit();
             session.close();
             rsl = post;
@@ -111,7 +138,6 @@ public class AdRepository implements Store {
             StandardServiceRegistryBuilder.destroy(registry);
         }
         return rsl;
-
     }
 
     /**
@@ -139,7 +165,6 @@ public class AdRepository implements Store {
             StandardServiceRegistryBuilder.destroy(registry);
         }
         return rsl;
-
     }
 
     /**
@@ -342,19 +367,16 @@ public class AdRepository implements Store {
         return rsl;
     }
 
+    /**
+     * метод приводит дату к общепринятому виду
+     *
+     * @param date
+     * @return
+     */
     public Date convertDays(Date date) {
         GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(date);
         return cal.getTime();
-    }
-
-    public String convertStatus(String b) {
-        String rsl = "Продано/sold";
-        if (b.equals("f") || b.equals("false")) {
-            rsl = "Продается/for sale";
-            return rsl;
-        }
-        return rsl;
     }
 }
 

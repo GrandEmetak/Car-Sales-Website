@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script><!--Ajax Jquery -->
 
-    <script src="scripts/editcandidate/validate.js"></script>
+    <script src="../scripts/editcandidate/validate.js"></script>
     <script>
         function validate() {
             let x = Boolean(true);
@@ -62,18 +62,20 @@
             if ($('#color').val() === '') {
                 x = false;
             }
-            if ($('#validation01').val() === '') {
+            if ($('#body').val() === '') {
                 x = false;
             }
-            if ($('#validation02').val() === '') {
+            if ($('#transm').val() === '') {
                 x = false;
             }
-            if ($('#validation03').val() === '') {
+            if ($('#drive').val() === '') {
                 x = false;
             }
             if ($('#mileage').val() === '') {
                 x = false;
             }
+            let f = $('#body').val();
+            alert('то что в форме ' + f);
             return x;
         }
     </script>
@@ -103,9 +105,8 @@
                 <form action="<%=request.getContextPath()%>/candidates/save?id=<%=candidate.getId()%>" method="post">
                 был это но поменяли на  candidates.do
                 --%>
-                <form action="<%=request.getContextPath()%>/candidate.do?id=<%=post.getId()%>"
-                      method="post"> <%--? --%>
-<%--                    <input type="text" value="<%=session.setAttribute("id", );%>"/>--%>
+                <form action="<%=request.getContextPath()%>/postnew.do" method="post"> <%--? --%>
+                    <%--                    <input type="text" value="<%=session.setAttribute("id", );%>"/>--%>
                     <div class="form-group">
                         <div class="col-md-6 mb-3">
                             <label>Header</label>
@@ -115,7 +116,8 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Description you auto</label>
-                            <input type="text" class="form-control" name="position" value="<%=post.getDescription()%>"
+                            <input type="text" class="form-control" name="description"
+                                   value="<%=post.getDescription()%>"
                                    id="description"
                                    placeholder="Please enter description Post" required>
                         </div>
@@ -152,9 +154,10 @@
                                    placeholder="Please enter your color auto" required> <!-- доработать в сервлете-->
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="validation01">Body Type</label> <select class="custom-select" id="validation01"
-                                                                                required>
-                            <option selected disabled value="">Choose...</option>
+                            <label for="body">Body Type</label> <select class="custom-select" id="body"
+                                                                        required>
+                            <option selected disabled value="<%=post.getCar().getBodyType()%>">Choose...</option>
+                            <option>true</option>
                             <option>sedan</option>
                             <option>wagon</option>
                             <option>hatchback</option>
@@ -164,10 +167,12 @@
                             <option>suv</option>
                         </select>
                         </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="validation02">Transmission</label>
-                            <select class="custom-select" id="validation02" required>
-                                <option selected disabled value="">Choose...</option>
+
+                        <div class=" col-md-3 mb-3">
+                            <label for="transm">Transmission</label>
+                            <select class="custom-select" id="transm" required>
+                                <option selected disabled value="<%=post.getCar().getTransmission()%>">Choose...
+                                </option>
                                 <option>automate</option>
                                 <option>cvc</option>
                                 <option>manual</option>
@@ -175,9 +180,9 @@
                             </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="validation03">Drive</label>
-                            <select class="custom-select" id="validation03" required>
-                                <option selected disabled value="">Choose...</option>
+                            <label for="drive">Drive</label>
+                            <select class="custom-select" id="drive" required>
+                                <option selected disabled value="<%=post.getCar().getDrive()%>">Choose...</option>
                                 <option>front-wheel drive</option>
                                 <option>rear drive</option>
                                 <option>all road 4x4</option>

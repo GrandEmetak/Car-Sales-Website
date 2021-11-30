@@ -1,6 +1,7 @@
 <%-- библиотекой JSTL. Напомню, что Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.cars.model.Post" %>
+<%@ page import="ru.job4j.cars.model.User" %>
 <%@ page import="ru.job4j.cars.model.Car" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="ru.job4j.cars.store.AdRepository" %>
@@ -45,7 +46,8 @@
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Объявления</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить объявление</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/postnew.jsp?userID=${user.id}">Добавить объявление</a>
+                <input type="hidden" name="userId" value="${user.id}">
             </li>
             <c:if test="${user == null}">
                 <li class="nav-item">
@@ -119,7 +121,8 @@
 <%--                            <c:out value="${post.status}"/>--%>
                             <td><c:out value="${post.user.name}"/></td>
                             <td><c:out value="${post.created}"/></td>
-                            <td>                <%--добавить иконку редактирования в таблицу и ссылку на страницу edit. --%>
+                            <td>
+                                    <%--добавить иконку редактирования в таблицу и ссылку на страницу edit. --%>
                                 <a href="<c:url value='/candidate/edit.jsp?id=${post.id}'/>">
                                     <em class="fa fa-edit mr-3"></em>
                                 </a>
@@ -131,7 +134,6 @@
                                       method="post">
                                     <button>Delete post</button>
                                 </form>
-
                             </td>
                         </tr>
                     </c:forEach>

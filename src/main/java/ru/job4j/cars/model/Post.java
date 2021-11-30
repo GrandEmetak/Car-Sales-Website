@@ -63,8 +63,23 @@ public class Post {
         post.header = header;
         post.description = description;
         post.price = price;
-        post.status = false;
+        post.status = status;
         post.created = new Date(System.currentTimeMillis());
+        return post;
+    }
+
+    public static Post emptyP() {
+        Post post = Post.of("", "", "", false);
+        post.setId(0);
+        User user = User.of("", "", "");
+        user.setId(0);
+        Car car = Car.of("", "", "", "", "", "", "");
+        car.setId(0);
+        Photo photo = Photo.of("");
+        photo.setId(0);
+        post.addPhoto(photo);
+        post.addCar(car);
+        post.addUser(user);
         return post;
     }
 

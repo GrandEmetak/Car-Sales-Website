@@ -43,7 +43,7 @@ public class UploadServlet extends HttpServlet {
         String name = req.getParameter("id") + ".png";
         System.out.println("urlPatterns = \"/upload\")\n"
                 + "public class UploadServlet   NAME + " + name);
-        resp.sendRedirect(req.getContextPath() + "/candidates.do");
+        resp.sendRedirect(req.getContextPath() + "/candidate.do");
     }
 
    /* Метод doGet отображает список доступных файлов.

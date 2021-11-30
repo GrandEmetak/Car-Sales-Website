@@ -59,9 +59,10 @@ public class Temp {
         post.addUser(user);
         post.addCar(car);
         post.addPhoto(photoF);
+        System.out.println("Id new Post Object : " + post.getId());
 
-        var savePost = adRepository.savePost(post);
-        System.out.println("То что сохранили в БД Объект пост : " + savePost);
+       var savePost = adRepository.savePost(post);
+//        System.out.println("То что сохранили в БД Объект пост : " + savePost);
 
    /*     var lasD = adRepository.lastDay();
         for (Post post1 : lasD) {
@@ -75,10 +76,10 @@ public class Temp {
         for (Post post1 : makrAuto) {
             System.out.println("То что нашли объявления по марке авто : " + post1);
         }*/
-/*        var emailFind = adRepository.findByEmail("root@local");
-        for (User user1 : emailFind) {
-            System.out.println("То что нашли user email : " + user1);
-        }*/
+//        var emailFind = adRepository.findByEmail("root@local");
+//        for (User user1 : emailFind) {
+//            System.out.println("То что нашли user email : " + user1);
+//        }
 /*        var userBuID = AdRepository.instOf().findUserById(1);
         for (User user1 : userBuID) {
             System.out.println("То что нашли User by ID : " + user1);

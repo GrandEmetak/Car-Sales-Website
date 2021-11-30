@@ -57,10 +57,12 @@ public class AuthServlet extends HttpServlet {
         User user = AdRepository.instOf().findByEmail(email).get(0);
         if (user != null && user.getPassword().equals(password)) {
             HttpSession sc = req.getSession();
-            User admin = new User();
-            admin.setName(user.getName());
-            admin.setEmail(user.getEmail());
-            sc.setAttribute("user", admin);
+//            User admin = new User();
+//            admin.setName(user.getName());
+//            admin.setEmail(user.getEmail());
+//            admin.setId(user.getId());
+
+            sc.setAttribute("user", user);
             resp.sendRedirect(req.getContextPath() + "/candidate.do"); // перевести на страницу где все
         } else {
             req.setAttribute("error", "Не верный email или пароль");

@@ -36,6 +36,8 @@ import java.util.List;
  * @since 26.11.21
  */
 public class CandidateServlet extends HttpServlet {
+    private User userNew = null;
+
     /**
      * мы перенаправляем запрос в index.jsp.
      * req.getRequestDispatcher("index.jsp").forward(req, resp);
@@ -61,20 +63,21 @@ public class CandidateServlet extends HttpServlet {
      */
     @Override // загрузка при запросе вывода этой страницы
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Post> postList =  AdRepository.instOf().findAllPost(); // forEach str 88
+        HttpSession session = req.getSession();
+        var userid = session.getAttribute("user");
+        System.out.println("Что за ID Юзера Get: " + userid);
+        userNew = (User) userid;
+        List<Post> postList = AdRepository.instOf().findAllPost(); // forEach str 88
         List<Post> afterList = new ArrayList<>();
+
         for (Post post : postList) {
             var d = post.getCreated();
             post.setCreated(AdRepository.instOf().convertDays(d));
-//           var st = post.getStatus();
-//            System.out.println("Candidate  Post status : -" + post.getStatus());
-//            var gt = AdRepository.instOf().convertStatus(st);
-//            System.out.println("Candidate  Post status : -" + gt);
-//           post.setStatus(gt);
-             afterList.add(post);
+            afterList.add(post);
         }
 //        req.setAttribute("posts", AdRepository.instOf().findAllPost()); // forEach str 88
         req.setAttribute("posts", afterList); // forEach str 88
+        req.setAttribute("users", userNew);
         req.getRequestDispatcher("candidate.jsp").forward(req, resp);
     }
 
@@ -82,31 +85,32 @@ public class CandidateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         boolean bln = Boolean.parseBoolean(req.getParameter("status"));
-//        String bln = req.getParameter("status");
+        HttpSession session = req.getSession();
+        User userid = (User) session.getAttribute("user");
+        System.out.println("Что за ID Юзера Post: " + userid);
 
         int postID = Integer.parseInt(req.getParameter("id"));
         System.out.println("То что пришло по id-post : " + postID);
-        // сохранение в Бд Поста или машины?
+
         Post post = Post.of(req.getParameter("header"),
                 req.getParameter("description"),
                 req.getParameter("price"), bln);
-//        req.getParameter("price"), bln);
+
         Car car = Car.of(req.getParameter("mark"),
+                req.getParameter("validation01"),
+                req.getParameter("engine"),
+                req.getParameter("validation02"),
                 req.getParameter("color"),
-                req.getParameter("validation1"),
-                req.getParameter("validation3"),
-                req.getParameter("validation4"),
-                req.getParameter("validation5"),
+                req.getParameter("validation03"),
                 req.getParameter("mileage")
         );
-        User user = null;
-        user = AdRepository.instOf().findUserById(postID).get(0);
+        User user =  AdRepository.instOf().findUserById(postID).get(0);
 
-        post.addCar(car);
-        post.addUser(user);
+            post.addCar(car);
+            post.addUser(user);
+            AdRepository.instOf().savePost(post);
 
-        AdRepository.instOf().savePost(post);
+            resp.sendRedirect(req.getContextPath() + "/candidate.do");
 
-        resp.sendRedirect(req.getContextPath() + "/candidate.do");
     }
 }

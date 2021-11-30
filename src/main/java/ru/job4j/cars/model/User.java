@@ -114,13 +114,9 @@ public class User {
         return Objects.hash(id);
     }
 
-    @Override
+    @Override //, User=%s
     public String toString() {
-        return "User{"
-                + "id=" + id
-                + ", name='" + name + '\''
-                + ", email='" + email + '\''
-                + ", password='" + password + '\''
-                + '}';
+        return String.format("User: id=%s, name=%s, email=%s, password=%s",
+                id, name, email, password);
     }
 }

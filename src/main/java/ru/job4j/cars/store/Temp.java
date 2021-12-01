@@ -10,6 +10,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+/**
+ * класс представляет из себя тест работы методов в основном представленнных в AdRepositoryж
+ */
 public class Temp {
     public static Date subtractDays() {
         Date date = new Date(System.currentTimeMillis());
@@ -22,11 +25,6 @@ public class Temp {
 
     public static void main(String[] args) {
         System.out.println("Data day - one: " + subtractDays());
-//        public User saveUser(User user);
-//
-//        public Post savePost(Post post);
-
-//        public boolean deletePostId(int id);
         AdRepository adRepository = new AdRepository();
  /*       Post post = adRepository.findPostBiId(1).get(0);
         System.out.println("adRepository.findPostBiId(1).get(0) - Post : " + post);
@@ -59,10 +57,10 @@ public class Temp {
         post.addUser(user);
         post.addCar(car);
         post.addPhoto(photoF);
-        System.out.println("Id new Post Object : " + post.getId());
+        /* System.out.println("Id new Post Object : " + post.getId());*/
 
-       var savePost = adRepository.savePost(post);
-//        System.out.println("То что сохранили в БД Объект пост : " + savePost);
+ /*      var savePost = adRepository.savePost(post);
+        System.out.println("То что сохранили в БД Объект пост : " + savePost);*/
 
    /*     var lasD = adRepository.lastDay();
         for (Post post1 : lasD) {
@@ -72,14 +70,17 @@ public class Temp {
         for (Post post1 : photo) {
             System.out.println("То что нашли объявления с фото : " + post1);
         }*/
+
  /*       var makrAuto = adRepository.whenMarkAuto("Kia Sportage");
         for (Post post1 : makrAuto) {
             System.out.println("То что нашли объявления по марке авто : " + post1);
         }*/
-//        var emailFind = adRepository.findByEmail("root@local");
-//        for (User user1 : emailFind) {
-//            System.out.println("То что нашли user email : " + user1);
-//        }
+
+  /*      var emailFind = adRepository.findByEmail("root@local");
+        for (User user1 : emailFind) {
+            System.out.println("То что нашли user email : " + user1);
+        }*/
+
 /*        var userBuID = AdRepository.instOf().findUserById(1);
         for (User user1 : userBuID) {
             System.out.println("То что нашли User by ID : " + user1);
@@ -88,5 +89,7 @@ public class Temp {
         for (Post post1 : postById) {
             System.out.println("То что нашли объявления с фото : " + post1);
         }*/
+ /*       var listPost = adRepository.findPostByUserId(1);
+        listPost.stream().forEach(System.out::println);*/
     }
 }

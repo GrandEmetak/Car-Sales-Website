@@ -37,48 +37,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script><!--Ajax Jquery -->
 
-    <script src="../scripts/editcandidate/validate.js"></script>
-    <script>
-        function validate() {
-            let x = Boolean(true);
-            if ($('#header').val() === '') {
-                x = false;
-            }
-            if ($('#description').val() === '') {
-                x = false;
-            }
-            if ($('#engine').val() === '') {
-                x = false;
-            }
-            if ($('#price').val() === '') {
-                x = false;
-            }
-            if ($('#status').val() === '') {
-                x = false;
-            }
-            if ($('#mark').val() === '') {
-                x = false;
-            }
-            if ($('#color').val() === '') {
-                x = false;
-            }
-            if ($('#body').val() === '') {
-                x = false;
-            }
-            if ($('#transm').val() === '') {
-                x = false;
-            }
-            if ($('#drive').val() === '') {
-                x = false;
-            }
-            if ($('#mileage').val() === '') {
-                x = false;
-            }
-            let f = $('#body').val();
-            alert('то что в форме ' + f);
-            return x;
-        }
-    </script>
+    <script src="${pageContext.request.contextPath}/js/validate.js"></script>
+    <script src="${pageContext.request.contextPath}/js/postservl.js"></script>
+
+<%--    <script>--%>
+<%--        function validate() {--%>
+<%--            let x = Boolean(true);--%>
+<%--            if ($('#header').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#description').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#engine').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#price').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#status').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#mark').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#color').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#body').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#transm').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#drive').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#mileage').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            let f = $('#body').val();--%>
+<%--            alert('то что в форме ' + f);--%>
+<%--            return x;--%>
+<%--        }--%>
+<%--    </script>--%>
 
     <title>Работа мечты</title>
 </head>
@@ -101,12 +103,8 @@
                 <% } %>
             </div>
             <div class="card-body">
-                <%-- ниже адрес сервлета в web.xml длЯ загрузки указна метод ПОСТ
-                <form action="<%=request.getContextPath()%>/candidates/save?id=<%=candidate.getId()%>" method="post">
-                был это но поменяли на  candidates.do
-                --%>
-                <form action="<%=request.getContextPath()%>/postnew.do" method="post"> <%--? --%>
-                    <%--                    <input type="text" value="<%=session.setAttribute("id", );%>"/>--%>
+<%--                <form action="<%=request.getContextPath()%>/postnew.do" method="post">--%>
+                <form>
                     <div class="form-group">
                         <div class="col-md-6 mb-3">
                             <label>Header</label>
@@ -195,7 +193,7 @@
                                    id="mileage"
                                    placeholder="Please enter your car mileage" required>
                         </div>
-                        <button type="submit" class="btn btn-primary" onclick="validate()">Save</button>
+                        <button type="submit" class="btn btn-primary" onclick="postservl()">Save</button>
                     </div>
                 </form>
             </div>

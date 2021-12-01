@@ -39,6 +39,7 @@ public class CandidateServlet extends HttpServlet {
     private User userNew = null;
 
     /**
+     * загрузка при запросе вывода этой страницы
      * мы перенаправляем запрос в index.jsp.
      * req.getRequestDispatcher("index.jsp").forward(req, resp);
      * В методу doGet мы загружаем в request список вакансий.
@@ -55,33 +56,36 @@ public class CandidateServlet extends HttpServlet {
      * Если требуемый ресурс находится в том же контексте, что и сервлет, который его вызывает,
      * то для получения ресурса необходимо использовать метод
      * public RequestDispatcher getRequestDispatcher(String path);
-     *
+     *  req.setAttribute("posts", postList); // forEach str 88
      * @param req
      * @param resp
      * @throws ServletException
      * @throws IOException
      */
-    @Override // загрузка при запросе вывода этой страницы
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         var userid = session.getAttribute("user");
         System.out.println("Что за ID Юзера Get: " + userid);
         userNew = (User) userid;
-        List<Post> postList = AdRepository.instOf().findAllPost(); // forEach str 88
-        List<Post> afterList = new ArrayList<>();
+        List<Post> postList = AdRepository.instOf().findPostByUserId(userNew.getId());
 
-        for (Post post : postList) {
-            var d = post.getCreated();
-            post.setCreated(AdRepository.instOf().convertDays(d));
-            afterList.add(post);
-        }
-//        req.setAttribute("posts", AdRepository.instOf().findAllPost()); // forEach str 88
-        req.setAttribute("posts", afterList); // forEach str 88
+        postList.stream().forEach(post -> post.setCreated(AdRepository.instOf().convertDays(post.getCreated())));
+
+        req.setAttribute("posts", postList);
         req.setAttribute("users", userNew);
         req.getRequestDispatcher("candidate.jsp").forward(req, resp);
     }
 
-    @Override//сюда прилетает введенные данные из web/candidate/edit.jsp после валидации онклик()
+    /**
+     * сюда попадают введенные данные из web/candidate/edit.jsp после валидации онклик()
+     * то что было получено в форме изминения данных объявления
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         boolean bln = Boolean.parseBoolean(req.getParameter("status"));
@@ -111,6 +115,5 @@ public class CandidateServlet extends HttpServlet {
             AdRepository.instOf().savePost(post);
 
             resp.sendRedirect(req.getContextPath() + "/candidate.do");
-
     }
 }

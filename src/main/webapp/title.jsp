@@ -42,11 +42,12 @@
     <div class="row">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/title.do?userID=${user.id}">Объявления</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Объявления</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidate/postnew.jsp?userID=${user.id}">Добавить
                     объявление</a>
+                <%--                <input type="hidden" name="userId" value="${user.id}">--%>
             </li>
             <c:if test="${user == null}">
                 <li class="nav-item">
@@ -84,7 +85,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Autor</th>
                         <th scope="col">Data</th>
-                        <th scope="col">Edit/Delete</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -116,21 +117,9 @@
                                     <c:out value="Продано/sold"/>
                                 </c:if>
                             </td>
+                                <%--                            <c:out value="${post.status}"/>--%>
                             <td><c:out value="${post.user.name}"/></td>
                             <td><c:out value="${post.created}"/></td>
-                            <td>
-                                <a href="<c:url value='/candidate/edit.jsp?id=${post.id}'/>">
-                                    <em class="fa fa-edit mr-3"></em>
-                                </a>
-                                <br>
-                                <a href="<c:url value='/upload.jsp?id=${post.id}'/>">
-                                    Edit photo</a>
-                                <br>
-                                <form style="display: inline" action="<c:url value='/delete.do?id=${post.id}'/>"
-                                      method="post">
-                                    <button>Delete post</button>
-                                </form>
-                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>

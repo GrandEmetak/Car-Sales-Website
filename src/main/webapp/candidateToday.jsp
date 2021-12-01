@@ -71,10 +71,8 @@
 <body>
 <%
     String id = request.getParameter("id");
-    Post post = new Post(0, "");
-    // Candidate candidate = new Candidate(0, "", "", "");
+    Post post = Post.emptyP();
     if (id != null) {
-        //   candidate = PsqlStore.instOf().findByIdCandidate(Integer.parseInt(id));
         post = AdRepository.instOf().findPostBiId(Integer.parseInt(id)).get(0);
     }
 %>
@@ -85,8 +83,7 @@
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Объявления</a>
 
             <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить
-                    объявление</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/postnew.jsp?userID=${user.id}">Добавить объявление</a>
             </li>
             <c:if test="${user == null}">
                 <li class="nav-item">
@@ -132,17 +129,36 @@
                     <c:forEach items="${posts}" var="post">
                         <tr>
                             <td> <%-- Передали в ДонлоадСервлет по ключу name - id Кандидата, doGet вернул фото из папки с таким номером--%>
-                                <img src="<c:url value='/download?name=${post.id}'/>" width="50px" height="50px"/>
+                                <img src="<c:url value='/download?name=${post.id}'/>" width="100px" height="100px"/>
                             </td>
                             <td><c:out value="${post.header}"/></td>
                                 <%-- c:out value="post.name"- Вывод значения post. --%>
-                            <td><c:out value="${post.car.name}"/></td>
-                            <td><c:out value="${post.description}"/></td>
+                            <td>
+                                <c:out value="${post.car.bodyType}"/>
+                                <c:out value="${post.car.engine}"/>
+                                <c:out value="${post.car.transmission}"/>
+                            </td>
+                            </td>
+                            <td>
+                                <c:out value="${post.description}"/>
+                                <c:out value="${post.car.color}"/>
+                                <c:out value="${post.car.drive}"/>
+                                <c:out value="${post.car.mileage}"/>
+                            </td>
                             <td><c:out value="${post.price}"/></td>
-                            <td><c:out value="${post.status}"/></td>
+                            <td>
+                                <c:if test="${post.status != true}">
+                                    <c:out value="Продается/for sale"/>
+                                </c:if>
+                                <c:if test="${post.status != false}">
+                                    <c:out value="Продано/sold"/>
+                                </c:if>
+                            </td>
+                                <%--                            <c:out value="${post.status}"/>--%>
                             <td><c:out value="${post.user.name}"/></td>
                             <td><c:out value="${post.created}"/></td>
-                            <td>                <%--добавить иконку редактирования в таблицу и ссылку на страницу edit. --%>
+                            <td>
+                                    <%--добавить иконку редактирования в таблицу и ссылку на страницу edit. --%>
                                 <a href="<c:url value='/candidate/edit.jsp?id=${post.id}'/>">
                                     <em class="fa fa-edit mr-3"></em>
                                 </a>
@@ -152,9 +168,8 @@
                                 <br>
                                 <form style="display: inline" action="<c:url value='/delete.do?id=${post.id}'/>"
                                       method="post">
-                                    <button>Delete candidate</button>
+                                    <button>Delete post</button>
                                 </form>
-
                             </td>
                         </tr>
                     </c:forEach>

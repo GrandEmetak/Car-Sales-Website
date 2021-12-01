@@ -17,6 +17,7 @@ import java.util.*;
 import java.util.function.Function;
 
 /**
+ * Основной класс по работе с БД через hibernate
  * Реализовать пользовательские фильтры для площадок машин [#4745]
  * Уровень : 3. МидлКатегория : 3.3. HibernateТопик : 3.3.3. HQL, Criteria
  * - показать объявления за последний день
@@ -316,6 +317,27 @@ public class AdRepository implements Store {
                                     + "join fetch st.car b "
                                     + "join fetch st.photo c "
                                     + "where st.id = :sId", Post.class
+                    ).setParameter("sId", id);
+                    return query.list();
+                }
+        );
+    }
+
+    /**
+     * найти все посты Юзера по его id
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Post> findPostByUserId(int id) {
+        return this.tx(
+                session -> {
+                    var query = session.createQuery(
+                            "select distinct st from Post st "
+                                    + "join fetch st.user a "
+                                    + "join fetch st.car b "
+                                    + "join fetch st.photo c "
+                                    + "where st.user.id = :sId", Post.class
                     ).setParameter("sId", id);
                     return query.list();
                 }

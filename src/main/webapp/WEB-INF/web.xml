@@ -45,6 +45,10 @@
         <servlet-name>PostServlet</servlet-name>
         <servlet-class>ru.job4j.cars.servlet.PostServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TitleServlet</servlet-name>
+        <servlet-class>ru.job4j.cars.servlet.TitleServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AuthServlet</servlet-name>
         <url-pattern>/auth.do</url-pattern>
@@ -76,6 +80,10 @@
     <servlet-mapping>
         <servlet-name>PostServlet</servlet-name>
         <url-pattern>/postnew.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TitleServlet</servlet-name>
+        <url-pattern>/title.do</url-pattern>
     </servlet-mapping>
     <filter-mapping>
         <!--В url-pattern можно указать полный путь или маску поиска.

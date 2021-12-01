@@ -14,10 +14,24 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * postnew.do
+ * /postnew.do
+ * Сервлет отвечает за создание новых постов объявлений для зарегестрированных пользователей
+ * аннотация @WebServlet(urlPattern = " маппинг имя")
+ * @author SlartiBartFast-art
+ * @version 1
+ * @since 29.11.21
  */
 public class PostServlet extends HttpServlet {
-    @Override//сюда прилетает введенные данные из web/candidate/edit.jsp после валидации онклик()
+
+    /**
+     * сюда попадают введенные данные из web/candidate/postnew.jsp после валидации онклик()
+     * происходит запись в БД и перенаправдение на страницу с осталльными постами объявлений пользователя
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         boolean bln = Boolean.parseBoolean(req.getParameter("status"));
@@ -29,8 +43,7 @@ public class PostServlet extends HttpServlet {
         var desc2 =  (String) req.getParameter("transm");
         var desc3 =  req.getParameter("drive");
         System.out.println("Описание сервлет ПостСервел : "
-                + desc1 + " " + desc2 + " " + desc3
-                );
+                + desc1 + " " + desc2 + " " + desc3);
 
         Post post = Post.of(req.getParameter("header"),
                 req.getParameter("description"),
@@ -42,7 +55,7 @@ public class PostServlet extends HttpServlet {
                 req.getParameter("transm"),
                 req.getParameter("color"),
                 req.getParameter("drive"),
-                req.getParameter("mileage")
+              "пробег " + req.getParameter("mileage")
         );
         String fht = (String) req.getParameter("header");
         Photo photo = Photo.of(fht + ".jpg");
@@ -52,6 +65,5 @@ public class PostServlet extends HttpServlet {
         var t = AdRepository.instOf().savePost(post);
         System.out.println("PostServlet save " + t);
         resp.sendRedirect(req.getContextPath() + "/candidate.do");
-
     }
 }

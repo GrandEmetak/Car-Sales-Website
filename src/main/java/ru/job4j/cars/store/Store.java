@@ -13,6 +13,10 @@ import java.util.List;
  * - показать объявления с фото
  * - показать объявления определенной марки.
  * - поиск пользователей по email
+ *  - и др.
+ * @author SlartiBartFast-art
+ * @version 1
+ * @since 26.11.21
  */
 public interface Store {
 
@@ -39,5 +43,7 @@ public interface Store {
     public Photo savePhoto(Photo photo);
 
     public Car saveCar(Car car);
+
+    public List<Post> findPostByUserId(int id);
 
 }

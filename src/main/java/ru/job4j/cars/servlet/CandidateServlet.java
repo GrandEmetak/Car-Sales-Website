@@ -39,10 +39,8 @@ public class CandidateServlet extends HttpServlet {
     private User userNew = null;
 
     /**
-     * загрузка при запросе вывода этой страницы
-     * мы перенаправляем запрос в index.jsp.
-     * req.getRequestDispatcher("index.jsp").forward(req, resp);
-     * В методу doGet мы загружаем в request список вакансий.
+     *
+     * В методе doGet мы загружаем в request список постов/объявлений.
      * req.setAttribute("posts", Store.instOf().findAllPosts());
      * открытый интерфейс ServletRequest
      * Определяет объект для предоставления сервлету информации о запросе клиента.

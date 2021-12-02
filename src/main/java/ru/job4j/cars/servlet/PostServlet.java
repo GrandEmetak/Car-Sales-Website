@@ -15,7 +15,7 @@ import java.io.IOException;
 
 /**
  * /postnew.do
- * Сервлет отвечает за создание новых постов объявлений для зарегестрированных пользователей
+ * Сервлет отвечает за создание новых постов/объявлений для зарегестрированных пользователей
  * аннотация @WebServlet(urlPattern = " маппинг имя")
  *
  * @author SlartiBartFast-art
@@ -27,7 +27,7 @@ public class PostServlet extends HttpServlet {
     /**
      * сюда попадают введенные данные из web/candidate/postnew.jsp после валидации онклик()
      * происходит запись в БД и перенаправдение на страницу с осталльными постами объявлений пользователя
-     * для проверки содержимого использовать
+     * для проверки содержимого использовать -
      * HttpSession session = req.getSession();
      * User userid = (User) session.getAttribute("user");
      * System.out.println("Что за ID Юзера Post: " + userid);

@@ -13,6 +13,8 @@ import java.io.IOException;
 /**
  * -@WebServlet(urlPatterns = "/delete.do")
  * Серлет проводит действия по удалению Post
+ * @author SlartiBartFast-art
+ * @since 26.11.21
  */
 public class DeleteServlet extends HttpServlet {
 

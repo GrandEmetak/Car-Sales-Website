@@ -7,8 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+
 /**
- *- @WebServlet(urlPatterns = "/download")
+ * - @WebServlet(urlPatterns = "/download")
  * 1. Загрузка и скачивание файла. [#154183 #207844]
  * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.5.1. Form
  * класс DownloadServlet. Это servlet будет отдавать файл, который лежит на сервере.
@@ -22,11 +23,10 @@ import java.io.IOException;
  * @since 26.11.21
  */
 public class DownloadServlet extends HttpServlet {
+
     /**
-     * Теперь добавим в сервлете вывод на консоль содержимого папки c:\images
-     * for (File file : new File("c:\\images\\").listFiles()) {
-     * System.out.println(file.getAbsolutePath());
-     * Браузер отобразить содержимое файла. Почему так произошло?      *
+     * вывод на консоль содержимого папки c:\cars
+     * (File file : new File("c:\\cars\").listFiles())
      * HTTP - это текстовый протокол. По умолчанию все данные в протоколе считаются браузером, как текст.     *
      * Чтобы указать, что сервер отправляет файл нужно становить тип данных.     *
      * resp.setContentType("application/octet-stream");
@@ -34,9 +34,7 @@ public class DownloadServlet extends HttpServlet {
      * 1). Мы выставляем заголовок ответа в протоколе. Таким образом мы сообщаем браузеру, что будем отправлять файл.
      * 2). Открываем поток и записываем его в выходной поток servlet.
      * resp.getOutputStream().write(in.readAllBytes());
-     * +
-     * ATTENTION! -
-     * удален файл web.xml, произведена замена во всех классах на аннотацию @WebServlet(urlPattern = " маппинг имя")
+     * аннотация @WebServlet(urlPattern = " маппинг имя")
      * System.out.println("File name : " + file.getName());
      * String name = req.getParameter("name") + ".png";
      *

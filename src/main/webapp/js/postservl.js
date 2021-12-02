@@ -15,7 +15,6 @@ function postservl() {
                 + '&color=' + $('#color').val()
                 + '&drive=' + $('#drive').val()
                 + '&mileage=' + $('#mileage').val(),
-            // + '&user=' + f,
             dataType: 'text'
         }).done(function () {
             window.open('//localhost:8080/job4j_cars/candidate.do');

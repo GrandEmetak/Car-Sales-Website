@@ -1,4 +1,4 @@
-<%-- библиотекой JSTL. Напомню, что Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
+<%-- библиотекой JSTL. Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.cars.model.Post" %>
 <%@ page import="ru.job4j.cars.model.User" %>
@@ -47,7 +47,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidate/postnew.jsp?userID=${user.id}">Добавить
                     объявление</a>
-                <%--                <input type="hidden" name="userId" value="${user.id}">--%>
             </li>
             <c:if test="${user == null}">
                 <li class="nav-item">
@@ -89,7 +88,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%-- загрузка КандидатСервлеет, doGet - от него приходит перечень Кандидатов--%>
+
                     <c:forEach items="${posts}" var="post">
                         <tr>
                             <td>
@@ -117,7 +116,6 @@
                                     <c:out value="Продано/sold"/>
                                 </c:if>
                             </td>
-                                <%--                            <c:out value="${post.status}"/>--%>
                             <td><c:out value="${post.user.name}"/></td>
                             <td><c:out value="${post.created}"/></td>
                         </tr>

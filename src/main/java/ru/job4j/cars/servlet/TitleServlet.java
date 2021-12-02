@@ -14,18 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- /**
+ * Титульная страница - выводит объявления всех авторов активные и нет
  * - @WebServlet(urlPatterns = "/title.do")
  * 2. CandidateServlet.
  * Создание Post (Супер объект, хранит в себе информацию Объявление-Машина-Владелец).
  * В методу doGet мы загружаем в request список объявлений.
  * req.setAttribute("posts", Store.instOf().findAllPosts());
- * Обратите внимание в методе doPost тоже изменен адрес.
- * resp.sendRedirect(req.getContextPath() + "/candidates.do"); -- was candidates.jsp
- * 3. Редактирование вакансии. [#277566 #207261]02
- * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.3. Servlet
- * В этом уроке мы добавим возможность редактировать вакансию.
- * Последний элемент - это загрузка id в сервлет.
+ * <p>
  * Integer.valueOf(req.getParameter("id")),
  * аннотацию @WebServlet(urlPattern = " маппинг имя")
  *
@@ -37,6 +32,7 @@ public class TitleServlet extends HttpServlet {
     private User userNew = null;
 
     /**
+     * загрузка при запросе вывода этой страницы
      * мы перенаправляем запрос в index.jsp.
      * req.getRequestDispatcher("index.jsp").forward(req, resp);
      * В методу doGet мы загружаем в request список вакансий.
@@ -53,22 +49,26 @@ public class TitleServlet extends HttpServlet {
      * Если требуемый ресурс находится в том же контексте, что и сервлет, который его вызывает,
      * то для получения ресурса необходимо использовать метод
      * public RequestDispatcher getRequestDispatcher(String path);
+     * для получения информации использоватть -
+     * HttpSession session = req.getSession();
+     * var userid = session.getAttribute("user");
+     * System.out.println("Что за ID Юзера Get: " + userid);
      *
      * @param req
      * @param resp
      * @throws ServletException
      * @throws IOException
      */
-    @Override // загрузка при запросе вывода этой страницы
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         var userid = session.getAttribute("user");
-        System.out.println("Что за ID Юзера Get: " + userid);
+
         userNew = (User) userid;
         List<Post> postList = AdRepository.instOf().findAllPost();
         postList.stream().forEach(post -> post.setCreated(AdRepository.instOf().convertDays(post.getCreated())));
 
-        req.setAttribute("posts", postList); // forEach str 88
+        req.setAttribute("posts", postList);
         req.setAttribute("users", userNew);
         req.getRequestDispatcher("title.jsp").forward(req, resp);
     }

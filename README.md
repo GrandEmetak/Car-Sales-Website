@@ -42,7 +42,7 @@ associated with this user in the database and appear in the list of all posts wh
 By clicking on the ads tab, the user will be able to see all the ads from
 different users on this Internet site
 
-![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_4.jpg)
+![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_8.jpg)
 
 By clicking on the tab List of ads for the last 24 hours, the user will be able to access only the ads 
 submitted for the last 24 hours

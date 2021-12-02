@@ -21,21 +21,34 @@
 
 On the title page, the user is asked to register or authorize to view ads or submit / edit his post
 
+![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_1.jpg)
+
 After registration and authorization, the user will be greeted with a login form under his
 email and password with field validation
 
+![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_2.jpg)
+
 Then the user goes to the page with all his posts that he can edit / delete
+
+![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_3.jpg)
+
+![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_6.jpg)
 
 By clicking on the Submit ad tab, the user can submit a new ad, information from which will be
 associated with this user in the database and appear in the list of all posts when switching to the designated pages of the resource
 
+![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_7.jpg)
 
 By clicking on the ads tab, the user will be able to see all the ads from
 different users on this Internet site
 
+![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_4.jpg)
 
 By clicking on the tab List of ads for the last 24 hours, the user will be able to access only the ads 
 submitted for the last 24 hours
+
+![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_5.jpg)
+
 
 
 

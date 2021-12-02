@@ -34,7 +34,9 @@
 
     <title>Работа мечты</title>
 </head>
-<body>
+
+<body style="background: url('image/Screenshot_30.jpg') no-repeat fixed; -webkit-background-size: cover; background-size: cover;">
+
 <%
     String id = request.getParameter("id");
     Post post = Post.emptyP();
@@ -87,7 +89,6 @@
                         <th scope="col">Status</th>
                         <th scope="col">Autor</th>
                         <th scope="col">Data</th>
-                        <th scope="col">Edit/Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -120,19 +121,6 @@
                             </td>
                             <td><c:out value="${post.user.name}"/></td>
                             <td><c:out value="${post.created}"/></td>
-                            <td>
-                                <a href="<c:url value='/candidate/edit.jsp?id=${post.id}'/>">
-                                    <em class="fa fa-edit mr-3"></em>
-                                </a>
-                                <br>
-                                <a href="<c:url value='/upload.jsp?id=${post.id}'/>">
-                                    Edit photo</a>
-                                <br>
-                                <form style="display: inline" action="<c:url value='/delete.do?id=${post.id}'/>"
-                                      method="post">
-                                    <button>Delete post</button>
-                                </form>
-                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>

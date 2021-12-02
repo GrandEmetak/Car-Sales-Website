@@ -1,4 +1,12 @@
 /*BD cars*/
+create table users
+(
+    id       serial primary key,
+    email    varchar(255),
+    name     varchar(255),
+    password varchar(255)
+);
+
 create table cars
 (
     id           serial primary key,
@@ -29,13 +37,6 @@ create table posts
     user_id     INT     NOT NULL REFERENCES users (id)
 );
 
-create table users (
-                       id  serial primary key,
-                       email varchar(255),
-                       name varchar(255),
-                       password varchar(255)
-);
-
 insert into users(name, email, password)
 values ('Petr Arsentev', 'root@local', 'root');
 
@@ -46,7 +47,7 @@ values ('Honda Jazz', 'хэтчбек 5 дв.', 'бензин, 1.3 л 100 л.с.
 insert into cars(mark, bodytype, engine, transmission, color, drive, mileage)
 values ('Nissan Juke', 'suv', 'бензин, 1.6 л., 117 л.с.', 'вариатор', 'бордовый', 'передний', '89 000');
 
-INSERT INTO posts(header, description, price, status, created,  car_id, photo_id, user_id)
+INSERT INTO posts(header, description, price, status, created, car_id, photo_id, user_id)
 values ('Kia Sportage, 2012 год', 'ДИЛЕРСКИЙ АВТОМОБИЛЬ! МАКСИМАЛЬНАЯ КОМПЛЕКТАЦИЯ! ПОЛНЫЙ ПРИВОД! сигнализация.',
         '809 000 ₽', 'false', '2021-10-26 19:50:11.853', 1, 1, 1);
 INSERT INTO posts(header, description, price, status, created, car_id, photo_id, user_id)

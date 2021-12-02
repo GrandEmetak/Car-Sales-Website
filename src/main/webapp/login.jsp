@@ -19,7 +19,9 @@
 
     <title>Работа мечты</title>
 </head>
-<body>
+
+<body style="background: url('image/main fone site.jpg') no-repeat fixed; -webkit-background-size: cover; background-size: cover;">
+
 <div class="container pt-3">
 
     <div class="row">

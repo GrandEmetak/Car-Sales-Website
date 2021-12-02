@@ -59,8 +59,8 @@ public class Temp {
         post.addPhoto(photoF);
         /* System.out.println("Id new Post Object : " + post.getId());*/
 
-   /*   var savePost = adRepository.savePost(post);
-        System.out.println("То что сохранили в БД Объект пост : " + savePost);*/
+      var savePost = adRepository.savePost(post);
+        System.out.println("То что сохранили в БД Объект пост : " + savePost);
 
    /*     var lasD = adRepository.lastDay();
         for (Post post1 : lasD) {

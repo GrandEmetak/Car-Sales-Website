@@ -82,9 +82,11 @@
 <%--        }--%>
 <%--    </script>--%>
 
-    <title>Работа мечты</title>
+    <title>Cars</title>
 </head>
-<body>
+
+<body style="background: url('/image/Screenshot_30.jpg') no-repeat fixed; -webkit-background-size: cover; background-size: cover;">
+
 <%
     String id = request.getParameter("id");
     Post post = Post.emptyP();

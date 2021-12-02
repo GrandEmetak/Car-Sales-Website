@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="ru.job4j.cars.model.User" %><%-- --%>
+<%@ page import="ru.job4j.cars.model.User" %>
 <%@ page import="java.util.Collection" %>
 <!doctype html>
 <html lang="en">
@@ -31,12 +31,6 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-<%--<script type="text/javascript"> <!--start -->--%>
-<%--$(document).ready(function () {--%>
-<%--    sendGreeting();--%>
-<%--});--%>
-<%--</script>--%>
-
 <title>CARS</title>
 
 <H1>Cars</H1>
@@ -57,7 +51,9 @@
 <br>
 <br>
 <br>
-<body>
+
+<body style="background: url('image/main fone site.jpg') no-repeat fixed; -webkit-background-size: cover; background-size: cover;">
+
 <div class="container">
     <div class="row">
         <ul class="nav">
@@ -73,7 +69,7 @@
     <br>
     <div class="custom-control custom-switch">
         <input type="checkbox" class="custom-control-input" id="checkbox">
-        <label class="custom-control-label" for="checkbox">Show all elements</label>
+        <label class="custom-control-label" for="checkbox">Show all Posts</label>
     </div>
     <p id="text" style="display: none;">Каждый веб-разработчик знает, что такое текст-«рыба».
         Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов.
@@ -99,14 +95,18 @@
             </div>
             <div class="card-body">
                 <table id="table" class="table">
-                    <caption>list of notes according to the selected category</caption>
+                    <caption>After registration or authorization, the current posts will be available to you</caption>
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                        <th scope="col">Header</th>
+                        <th scope="col">Car Info</th>
                         <th scope="col">Description</th>
-                        <th scope="col">Created</th>
-                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Edit/Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -122,7 +122,7 @@
                     </script>
 
 
-                </table><!-- то что выбрали на радио кнопку-->
+                </table>
             </div>
         </div>
     </div>

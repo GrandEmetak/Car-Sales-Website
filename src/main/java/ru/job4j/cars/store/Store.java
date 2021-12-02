@@ -46,4 +46,6 @@ public interface Store {
 
     public List<Post> findPostByUserId(int id);
 
+    public List<Post> findPostByUserIdAndHeader(int id, String header);
+
 }

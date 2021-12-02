@@ -75,10 +75,10 @@ public class AdRepository implements Store {
     @Override
     public Post savePost(Post post) {
         if (post.getId() == 0) {
-            System.out.println("save Post method " + post);
+            System.out.println("save Post method Adrepository " + post);
             return saveByPost(post);
         }
-        System.out.println(" User update Post" + post);
+        System.out.println(" User update Post Adrepository " + post);
         return updateByPost(post);
     }
 
@@ -325,11 +325,43 @@ public class AdRepository implements Store {
 
     /**
      * найти все посты Юзера по его id
+     *
      * @param id
      * @return
      */
     @Override
     public List<Post> findPostByUserId(int id) {
+        List<Post> postList = new ArrayList<>();
+        try {
+            Session session = sf.openSession();
+            session.beginTransaction();
+            var query = session.createQuery(
+                    "select distinct st from Post st "
+                            + "join fetch st.user a "
+                            + "join fetch st.car b "
+                            + "join fetch st.photo c "
+                            + "where st.user.id = :sId", Post.class
+            ).setParameter("sId", id);
+            postList = query.list();
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
+        return postList;
+    }
+
+    /**
+     * найти Пост по id User + Пост header
+     *
+     * @param id
+     * @param header
+     * @return
+     */
+    @Override
+    public List<Post> findPostByUserIdAndHeader(int id, String header) {
         return this.tx(
                 session -> {
                     var query = session.createQuery(
@@ -337,8 +369,10 @@ public class AdRepository implements Store {
                                     + "join fetch st.user a "
                                     + "join fetch st.car b "
                                     + "join fetch st.photo c "
-                                    + "where st.user.id = :sId", Post.class
-                    ).setParameter("sId", id);
+                                    + "where st.user.id = :sId"
+                                    + " and st.header = :head", Post.class
+                    ).setParameter("sId", id)
+                            .setParameter("head", header);
                     return query.list();
                 }
         );
@@ -391,6 +425,7 @@ public class AdRepository implements Store {
 
     /**
      * метод приводит дату к общепринятому виду
+     * Tue Nov 30 19:44:46 YEKT 2021
      *
      * @param date
      * @return

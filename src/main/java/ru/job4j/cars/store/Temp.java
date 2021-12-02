@@ -59,7 +59,7 @@ public class Temp {
         post.addPhoto(photoF);
         /* System.out.println("Id new Post Object : " + post.getId());*/
 
- /*      var savePost = adRepository.savePost(post);
+   /*   var savePost = adRepository.savePost(post);
         System.out.println("То что сохранили в БД Объект пост : " + savePost);*/
 
    /*     var lasD = adRepository.lastDay();
@@ -91,5 +91,16 @@ public class Temp {
         }*/
  /*       var listPost = adRepository.findPostByUserId(1);
         listPost.stream().forEach(System.out::println);*/
+
+       /*var listPost  = adRepository.findPostByUserIdAndHeader(1, "Продажа Porsche Cayenne, 2015 год ");
+        listPost.stream().forEach(System.out::println);*/
+
+  /*     var listPost  = adRepository.findPostByUserIdAndHeader(1, "Продажа Porsche Cayenne, 2015 год ").get(0);
+        System.out.println("ТО что нашли в БД по id and Header : " + listPost);
+        listPost.setStatus(true);
+        listPost.setPrice("100500 rub");
+        listPost.getCar().setBodyType("wagon superT");
+        var rsl = adRepository.savePost(listPost);
+        System.out.println("ТО что получили после сохранения Post : " + rsl);*/
     }
 }

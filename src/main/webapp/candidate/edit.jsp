@@ -37,46 +37,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script><!--Ajax Jquery -->
 
-    <script src="scripts/editcandidate/validate.js"></script>
-    <script>
-        function validate() {
-            let x = Boolean(true);
-            if ($('#header').val() === '') {
-                x = false;
-            }
-            if ($('#description').val() === '') {
-                x = false;
-            }
-            if ($('#engine').val() === '') {
-                x = false;
-            }
-            if ($('#price').val() === '') {
-                x = false;
-            }
-            if ($('#status').val() === '') {
-                x = false;
-            }
-            if ($('#mark').val() === '') {
-                x = false;
-            }
-            if ($('#color').val() === '') {
-                x = false;
-            }
-            if ($('#validation01').val() === '') {
-                x = false;
-            }
-            if ($('#validation02').val() === '') {
-                x = false;
-            }
-            if ($('#validation03').val() === '') {
-                x = false;
-            }
-            if ($('#mileage').val() === '') {
-                x = false;
-            }
-            return x;
-        }
-    </script>
+    <script src="${pageContext.request.contextPath}/js/validateedit.js"></script>
+<%--    <script>--%>
+<%--        function validate() {--%>
+<%--            let x = Boolean(true);--%>
+<%--            if ($('#header').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#description').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#engine').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#price').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#status').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#mark').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#color').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#validation01').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#validation02').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#validation03').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            if ($('#mileage').val() === '') {--%>
+<%--                x = false;--%>
+<%--            }--%>
+<%--            return x;--%>
+<%--        }--%>
+<%--    </script>--%>
 
     <title>Работа мечты</title>
 </head>
@@ -99,19 +99,14 @@
                 <% } %>
             </div>
             <div class="card-body">
-                <%-- ниже адрес сервлета в web.xml длЯ загрузки указна метод ПОСТ
-                <form action="<%=request.getContextPath()%>/candidates/save?id=<%=candidate.getId()%>" method="post">
-                был это но поменяли на  candidates.do
-                --%>
                 <form action="<%=request.getContextPath()%>/candidate.do?id=<%=post.getId()%>"
-                      method="post"> <%--? --%>
-<%--                    <input type="text" value="<%=session.setAttribute("id", );%>"/>--%>
+                      method="post">
                     <div class="form-group">
                         <div class="col-md-6 mb-3">
-                            <label>Header</label>
+                            <label>Header - Please do not change the header if you want to edit the post</label>
                             <input type="text" class="form-control" name="header" value="<%=post.getHeader()%>"
                                    id="header"
-                                   placeholder="Pleas enter header you's post" required>
+                                   placeholder="Please do not change the header if you want to edit the post" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Description you auto</label>
@@ -143,18 +138,18 @@
                             <label>Mark</label>
                             <input type="text" class="form-control" name="mark" value="<%=post.getCar().getMark()%>"
                                    id="mark"
-                                   placeholder="Please enter your mark auto" required> <!-- доработать в сервлете-->
+                                   placeholder="Please enter your mark auto" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Color auto</label>
                             <input type="text" class="form-control" name="color" value="<%=post.getCar().getColor()%>"
                                    id="color"
-                                   placeholder="Please enter your color auto" required> <!-- доработать в сервлете-->
+                                   placeholder="Please enter your color auto" required>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="validation01">Body Type</label> <select class="custom-select" id="validation01"
+                            <label for="body">Body Type</label> <select class="custom-select" id="body"
                                                                                 required>
-                            <option selected disabled value="">Choose...</option>
+                            <option selected disabled value="<%=post.getCar().getBodyType()%>">Choose...</option>
                             <option>sedan</option>
                             <option>wagon</option>
                             <option>hatchback</option>
@@ -165,9 +160,9 @@
                         </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="validation02">Transmission</label>
-                            <select class="custom-select" id="validation02" required>
-                                <option selected disabled value="">Choose...</option>
+                            <label for="transm">Transmission</label>
+                            <select class="custom-select" id="transm" required>
+                                <option selected disabled value=""><%=post.getCar().getTransmission()%></option>
                                 <option>automate</option>
                                 <option>cvc</option>
                                 <option>manual</option>
@@ -175,9 +170,9 @@
                             </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="validation03">Drive</label>
-                            <select class="custom-select" id="validation03" required>
-                                <option selected disabled value="">Choose...</option>
+                            <label for="drive">Drive</label>
+                            <select class="custom-select" id="drive" required>
+                                <option selected disabled value="<%=post.getCar().getDrive()%>">Choose...</option>
                                 <option>front-wheel drive</option>
                                 <option>rear drive</option>
                                 <option>all road 4x4</option>
@@ -190,7 +185,7 @@
                                    id="mileage"
                                    placeholder="Please enter your car mileage" required>
                         </div>
-                        <button type="submit" class="btn btn-primary" onclick="validate()">Save</button>
+                        <button type="submit" class="btn btn-primary" onclick="validateedit()">Save</button>
                     </div>
                 </form>
             </div>

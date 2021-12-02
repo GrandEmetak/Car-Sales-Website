@@ -56,7 +56,10 @@ public class CandidateServlet extends HttpServlet {
      * Если требуемый ресурс находится в том же контексте, что и сервлет, который его вызывает,
      * то для получения ресурса необходимо использовать метод
      * public RequestDispatcher getRequestDispatcher(String path);
-     *  req.setAttribute("posts", postList); // forEach str 88
+     * req.setAttribute("posts", postList); // forEach str 88
+     * var userid = session.getAttribute("user");
+     * System.out.println("Что за ID Юзера Get: " + userid);
+     *
      * @param req
      * @param resp
      * @throws ServletException
@@ -66,7 +69,7 @@ public class CandidateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         var userid = session.getAttribute("user");
-        System.out.println("Что за ID Юзера Get: " + userid);
+
         userNew = (User) userid;
         List<Post> postList = AdRepository.instOf().findPostByUserId(userNew.getId());
 
@@ -80,6 +83,20 @@ public class CandidateServlet extends HttpServlet {
     /**
      * сюда попадают введенные данные из web/candidate/edit.jsp после валидации онклик()
      * то что было получено в форме изминения данных объявления
+     * для проверки содержимого использовать
+     * User userid = (User) session.getAttribute("user");
+     * System.out.println("Что за ID Юзера Post: " + userid);
+     * <p>
+     * int postID = Integer.parseInt(req.getParameter("id"));
+     * System.out.println("То что пришло по id-post : " + postID);
+     * <p>
+     * Post post = Post.of(req.getParameter("header"),
+     * req.getParameter("description"),
+     * req.getParameter("price"), bln);
+     * System.out.println(" Те что пустые : " + req.getParameter("body")
+     * + " " + req.getParameter("transm")
+     * + " " +  req.getParameter("drive"));
+     *
      * @param req
      * @param resp
      * @throws ServletException
@@ -91,29 +108,31 @@ public class CandidateServlet extends HttpServlet {
         boolean bln = Boolean.parseBoolean(req.getParameter("status"));
         HttpSession session = req.getSession();
         User userid = (User) session.getAttribute("user");
-        System.out.println("Что за ID Юзера Post: " + userid);
 
         int postID = Integer.parseInt(req.getParameter("id"));
-        System.out.println("То что пришло по id-post : " + postID);
 
         Post post = Post.of(req.getParameter("header"),
                 req.getParameter("description"),
                 req.getParameter("price"), bln);
 
         Car car = Car.of(req.getParameter("mark"),
-                req.getParameter("validation01"),
+                req.getParameter("body"),
                 req.getParameter("engine"),
-                req.getParameter("validation02"),
+                req.getParameter("transm"),
                 req.getParameter("color"),
-                req.getParameter("validation03"),
+                req.getParameter("drive"),
                 req.getParameter("mileage")
         );
-        User user =  AdRepository.instOf().findUserById(postID).get(0);
+        var post1 = AdRepository.instOf().findPostBiId(postID).get(0);
 
-            post.addCar(car);
-            post.addUser(user);
-            AdRepository.instOf().savePost(post);
+        post1.setHeader(post.getHeader());
+        post1.setDescription(post.getDescription());
+        post1.setPrice(post.getPrice());
+        post1.setStatus(post.isStatus());
+        post1.addCar(car);
 
-            resp.sendRedirect(req.getContextPath() + "/candidate.do");
+        AdRepository.instOf().savePost(post1);
+
+        resp.sendRedirect(req.getContextPath() + "/candidate.do");
     }
 }

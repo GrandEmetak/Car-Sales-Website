@@ -193,7 +193,7 @@
                                    id="mileage"
                                    placeholder="Please enter your car mileage" required>
                         </div>
-                        <button type="submit" class="btn btn-primary" onclick="postservl()">Save</button>
+                        <button type="button" class="btn btn-primary" onclick="postservl()">Save</button>
                     </div>
                 </form>
             </div>

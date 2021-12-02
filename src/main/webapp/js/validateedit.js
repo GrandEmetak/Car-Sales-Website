@@ -1,4 +1,4 @@
-function validate() {
+function validateedit() {
     let x = Boolean(true);
     if ($('#header').val() === '') {
         x = false;
@@ -33,5 +33,6 @@ function validate() {
     if ($('#mileage').val() === '') {
         x = false;
     }
+
     return x;
 }

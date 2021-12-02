@@ -16,13 +16,12 @@ function postservl() {
                 + '&drive=' + $('#drive').val()
                 + '&mileage=' + $('#mileage').val(),
             // + '&user=' + f,
-            dataType: 'json'
-        }).done(function (response) {
-            // console.log('OBJECT JSON ' + response);
+            dataType: 'text'
+        }).done(function () {
             window.open('//localhost:8080/job4j_cars/candidate.do');
             console.log('evrething is send ok ');
         }).fail(function (err) {
-            alert(err);
+            console.log('Error !')
         })
     }
 }

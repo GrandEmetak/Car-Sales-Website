@@ -32,7 +32,7 @@
     <%--Иконки редактирования (квадрат с карандашом) --%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Работа мечты</title>
+    <title>Cars</title>
 </head>
 
 <body style="background: url('image/Screenshot_30.jpg') no-repeat fixed; -webkit-background-size: cover; background-size: cover;">
@@ -48,7 +48,7 @@
     <div class="row">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Объявления</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidate.do?userID=${user.id}">Объявления</a>
 
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidate/postnew.jsp?userID=${user.id}">Добавить объявление</a>

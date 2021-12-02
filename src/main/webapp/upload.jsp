@@ -12,14 +12,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Cars</title>
 </head>
 <body>
 <%
     String id = request.getParameter("id");
-    //Candidate candidate = new Candidate(0, "Name NEMO");
     Post post = new Post(0, "");
     if (id != null) {
-        //candidate = PsqlStore.instOf().findByIdCandidate(Integer.parseInt(id));
         post = AdRepository.instOf().findPostBiId(Integer.parseInt(id)).get(0);
     }
 %>
@@ -34,19 +33,14 @@
             </thead>
             <tbody>
             <table class="container">
-                <%--   <c:forEach items="${candidates}" var="candidate"> --%>
                 <h2>Upload image</h2>
-                <%--  <jsp:text> <% request.getParameter("id");%></jsp:text>--%>
                 <form action="<%=request.getContextPath()%>/upload?id=<%=post.getId()%>" method="post"
                       enctype="multipart/form-data">
-                    <%--? --%>
-                    <%--   <form action="<c:url value='/upload?id=${candidate.id}'/>" method="post" enctype="multipart/form-data"> --%>
                     <div class="checkbox">
                         <input type="file" name="file">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
-                <%--  </c:forEach> --%>
             </table>
             </tbody>
         </table>

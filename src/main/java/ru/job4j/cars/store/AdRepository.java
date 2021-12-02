@@ -23,6 +23,8 @@ import java.util.function.Function;
  * - показать объявления за последний день
  * - показать объявления с фото
  * - показать объявления определенной марки.
+ * Реализовать площадку продаж машин. [#4747]
+ * Уровень : 3. МидлКатегория : 3.3. HibernateТопик : 3.3.2. Mapping
  */
 public class AdRepository implements Store {
     private static final AdRepository INST = new AdRepository();
@@ -302,25 +304,32 @@ public class AdRepository implements Store {
     }
 
     /**
-     * - найти Пост по id
+     * - find Post Object to id
+     * найти Пост по id
      *
-     * @param id
-     * @return
+     * @param id Post object
+     * @return List<Post>
      */
     @Override
     public List<Post> findPostBiId(int id) {
-        return this.tx(
-                session -> {
-                    var query = session.createQuery(
-                            "select distinct st from Post st "
-                                    + "join fetch st.user a "
-                                    + "join fetch st.car b "
-                                    + "join fetch st.photo c "
-                                    + "where st.id = :sId", Post.class
-                    ).setParameter("sId", id);
-                    return query.list();
-                }
-        );
+        List<Post> postList = new ArrayList<>();
+        try {
+            Session session = sf.openSession();
+            session.beginTransaction();
+            var query = session.createQuery(
+                    "select distinct st from Post st "
+                            + "join fetch st.user a "
+                            + "join fetch st.car b "
+                            + "join fetch st.photo c "
+                            + "where st.id = :sId", Post.class
+            ).setParameter("sId", id);
+            return query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
+        return postList;
     }
 
     /**

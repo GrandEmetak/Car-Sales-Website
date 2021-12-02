@@ -14,18 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Титульная страница - выводит объявления всех авторов активные и нет
+ * Титульная страница - выводит объявления - (Post object),
+ * (Супер объект, хранит в себе информацию Объявление-Машина-Владелец) всех авторов активные и нет
  * - @WebServlet(urlPatterns = "/title.do")
- * 2. CandidateServlet.
- * Создание Post (Супер объект, хранит в себе информацию Объявление-Машина-Владелец).
  * В методу doGet мы загружаем в request список объявлений.
  * req.setAttribute("posts", Store.instOf().findAllPosts());
- * <p>
- * Integer.valueOf(req.getParameter("id")),
  * аннотацию @WebServlet(urlPattern = " маппинг имя")
  *
  * @author SlartiBartFast-art
- * @version 1
  * @since 26.11.21
  */
 public class TitleServlet extends HttpServlet {
@@ -33,9 +29,8 @@ public class TitleServlet extends HttpServlet {
 
     /**
      * загрузка при запросе вывода этой страницы
-     * мы перенаправляем запрос в index.jsp.
-     * req.getRequestDispatcher("index.jsp").forward(req, resp);
-     * В методу doGet мы загружаем в request список вакансий.
+     * В методу doGet мы загружаем в request список объявлений.
+     * req.getRequestDispatcher("title.jsp").forward(req, resp);
      * req.setAttribute("posts", Store.instOf().findAllPosts());
      * открытый интерфейс ServletRequest
      * Определяет объект для предоставления сервлету информации о запросе клиента.

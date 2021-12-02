@@ -15,17 +15,17 @@ import java.io.IOException;
 
 /**
  * /postnew.do
- * Сервлет отвечает за создание новых постов/объявлений для зарегестрированных пользователей
+ * Сервлет отвечает за создание новых постов -
+ * Post Object - (объявлений для зарегестрированных пользователей)
  * аннотация @WebServlet(urlPattern = " маппинг имя")
  *
  * @author SlartiBartFast-art
- * @version 1
  * @since 29.11.21
  */
 public class PostServlet extends HttpServlet {
 
     /**
-     * сюда попадают введенные данные из web/candidate/postnew.jsp после валидации онклик()
+     * В данный метод, попадают введенные данные из web/candidate/postnew.jsp после валидации онклик()
      * происходит запись в БД и перенаправдение на страницу с осталльными постами объявлений пользователя
      * для проверки содержимого использовать -
      * HttpSession session = req.getSession();
@@ -70,7 +70,5 @@ public class PostServlet extends HttpServlet {
         AdRepository.instOf().savePost(post);
 
         resp.sendRedirect(req.getContextPath() + "/candidate.do");
-
-        System.out.println(" вывести после перенаправления :  Редирект");
     }
 }

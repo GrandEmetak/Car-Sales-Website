@@ -16,7 +16,6 @@ import java.util.List;
  * Серлет отвечает за посты объявлений за последне 24 часа
  * аннотация @WebServlet(urlPattern = " маппинг имя")
  * @author SlartiBartFast-art
- * @version 1
  * @since 29.11.21
  */
 public class CandidateTodayServlet extends HttpServlet {

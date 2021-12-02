@@ -12,7 +12,8 @@ import java.io.IOException;
 
 /**
  * -@WebServlet(urlPatterns = "/delete.do")
- * Серлет проводит действия по удалению Post
+ * Серлет проводит действия по удалению Post Object - глобальный объект, хранящий все данные
+ *
  * @author SlartiBartFast-art
  * @since 26.11.21
  */
@@ -25,8 +26,10 @@ public class DeleteServlet extends HttpServlet {
     }
 
     /**
-     * удаление кандидата из БД
-     * int id = PsqlStore.instOf().deleteCandidateId(Integer.parseInt(req.getParameter("id"))).getId();
+     * удаление кандидата(Post Object) из БД
+     * AdRepository.instOf().deletePostId(Integer.parseInt(s));
+     * проверить путь -   for (File name : new File("c:\\cars\\").listFiles()) {
+     * System.out.println("path : " + name);
      * удаление пути к рисунку
      * new File("c\\cars\\" + name.getName()).delete();
      *
@@ -39,9 +42,8 @@ public class DeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         var s = (req.getParameter("id"));
-         AdRepository.instOf().deletePostId(Integer.parseInt(s));
+        AdRepository.instOf().deletePostId(Integer.parseInt(s));
         for (File name : new File("c:\\cars\\").listFiles()) {
-            System.out.println("path : " + name);
             if (name.getName().startsWith(s)) {
                 new File("c\\cars\\" + name.getName()).delete();
             }

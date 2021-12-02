@@ -10,17 +10,13 @@ import java.io.IOException;
 
 /**
  * - @WebServlet(urlPatterns = "/download")
- * 1. Загрузка и скачивание файла. [#154183 #207844]
- * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.5.1. Form
- * класс DownloadServlet. Это servlet будет отдавать файл, который лежит на сервере.
+ * 1. Загрузка и скачивание файла.
+ * Это servlet будет отдавать файл, который лежит на сервере.
  * ознакомеление с возможностью servlet загружать файлы на сервер и отдавать их клиенту.
  * Http протокол позволяет передавать файлы между клиентом и сервером.
- * Давайте создадим DownloadServlet.
- * Пока наш сервлет ничего не делает. Задача этого сервлета отдать файл, который лежит на сервере.
  * - @WebServlet(urlPattern = " маппинг имя")
  *
  * @author SlartiBartFast-art
- * @since 26.11.21
  */
 public class DownloadServlet extends HttpServlet {
 
@@ -46,7 +42,6 @@ public class DownloadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
-        System.out.println("NAME + " + name);
         File downloadFile = null;
         for (File file : new File("c:\\cars\\").listFiles()) {
             var f = file.getName().split("\\.");

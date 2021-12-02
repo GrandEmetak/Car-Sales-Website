@@ -44,7 +44,7 @@
     <div class="row">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Объявления</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidate.do?userID=${user.id}">Объявления</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidate/postnew.jsp?userID=${user.id}">Добавить

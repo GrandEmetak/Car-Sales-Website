@@ -18,22 +18,15 @@ import java.util.List;
 
 /**
  * - @WebServlet(urlPatterns = "/candidate.do")
- * 2. CandidateServlet.
- * Создание Post (Супер объект, хранит в себе информацию Объявление-Машина-Владелец).
+ * CandidateServlet - Создание Post Object - это,
+ *  (Супер объект, хранит в себе информацию Объявление-Машина-Владелец).
  * В методу doGet мы загружаем в request список объявлений.
  * req.setAttribute("posts", Store.instOf().findAllPosts());
- * Обратите внимание в методе doPost тоже изменен адрес.
- * resp.sendRedirect(req.getContextPath() + "/candidates.do"); -- was candidates.jsp
- * 3. Редактирование вакансии. [#277566 #207261]02
- * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.3. Servlet
- * В этом уроке мы добавим возможность редактировать вакансию.
  * Последний элемент - это загрузка id в сервлет.
  * Integer.valueOf(req.getParameter("id")),
  * аннотацию @WebServlet(urlPattern = " маппинг имя")
  *
  * @author SlartiBartFast-art
- * @version 1
- * @since 26.11.21
  */
 public class CandidateServlet extends HttpServlet {
     private User userNew = null;
@@ -79,7 +72,7 @@ public class CandidateServlet extends HttpServlet {
     }
 
     /**
-     * сюда попадают введенные данные из web/candidate/edit.jsp после валидации онклик()
+     * В этот метод, попадают введенные данные из web/candidate/edit.jsp после валидации онклик()
      * то что было получено в форме изминения данных объявления
      * для проверки содержимого использовать
      * User userid = (User) session.getAttribute("user");

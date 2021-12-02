@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
- * класс представляет из себя тест работы методов в основном представленнных в AdRepositoryж
+ * класс представляет из себя тест работы методов в основном представленнных в AdRepository
  */
 public class Temp {
     public static Date subtractDays() {

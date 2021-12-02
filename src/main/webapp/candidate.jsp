@@ -1,4 +1,3 @@
-<%-- библиотекой JSTL. Напомню, что Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.cars.model.Post" %>
 <%@ page import="ru.job4j.cars.model.User" %>
@@ -89,7 +88,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%-- загрузка КандидатСервлеет, doGet - от него приходит перечень Кандидатов--%>
                     <c:forEach items="${posts}" var="post">
                         <tr>
                             <td>

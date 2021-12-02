@@ -18,20 +18,18 @@ import java.util.List;
 
 /**
  * -@WebServlet(urlPatterns = "/upload")
- * 1. Загрузка и скачивание файла. [#154183 #207844]
- * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.5.1. Form
- * класс UploadServlet. Это servlet будет обрабатывать загрузку файла на сервер.
- * +
- * ATTENTION! -
- * удален файл web.xml, произведена замена во всех классах на аннотацию @WebServlet(urlPattern = " маппинг имя")
+ * Загрузка и скачивание файла.
+ * Это servlet будет обрабатывать загрузку файла на сервер.
+ * аннотация @WebServlet(urlPattern = " маппинг имя")
  *
  * @author SlartiBartFast-art
- * @since 13.10.21
  */
 public class UploadServlet extends HttpServlet {
     /**
      * Передает по ключу candidates данные полученные в MemStore.instOf().findAllCandidates())
      * перенаправляет на страницу candidates.do
+     * AdRepository.instOf().findAllPost()) - показать все объявления из БД posts
+     *
      * @param req
      * @param resp
      * @throws ServletException
@@ -46,21 +44,13 @@ public class UploadServlet extends HttpServlet {
         resp.sendRedirect(req.getContextPath() + "/candidate.do");
     }
 
-   /* Метод doGet отображает список доступных файлов.
-   @Override
-     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<String> images = new ArrayList<>();
-        for (File name : new File("c:\\images\\").listFiles()) {
-            System.out.println("UploadServlet - images.add(name.getName())  - " + name.getName());
-            images.add(name.getName());
-        }
-        req.setAttribute("images", images);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/candidates.do");
-        dispatcher.forward(req, resp);
-    }*/
-
     /**
      * Метод doPost загружает выбранный файл на сервер в папку c:\cars\
+     * чтобы посмотреть седержимое List<FileItem> items
+     * System.out.println("what is come : " + item);
+     * + также System.out.println("d String : " + d[0] + " " + d[1]);
+     * h = s + "." + d[1];
+     * System.out.println("in the end :" + h);
      *
      * @param req
      * @param resp
@@ -78,13 +68,10 @@ public class UploadServlet extends HttpServlet {
         try {
             List<FileItem> items = upload.parseRequest(req);
             for (FileItem item : items) {
-                System.out.println("what is come : " + item);
                 var f = item.toString().split(",");
                 var g = f[0].split("=");
                 var d = g[1].split("\\.");
-                System.out.println("d String : " + d[0] + " " + d[1]);
                 h = s + "." + d[1];
-                System.out.println("in the end :" + h);
             }
             File folder = new File("c:\\cars\\");
             if (!folder.exists()) {

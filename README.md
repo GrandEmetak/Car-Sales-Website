@@ -35,7 +35,8 @@ Then the user goes to the page with all his posts that he can edit / delete
 ![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_6.jpg)
 
 By clicking on the Submit ad tab, the user can submit a new ad, information from which will be
-associated with this user in the database and appear in the list of all posts when switching to the designated pages of the resource
+associated with this user in the database and appear in the list of all posts when switching to the
+designated pages of the resource
 
 ![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_7.jpg)
 

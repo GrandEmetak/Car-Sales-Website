@@ -30,7 +30,7 @@ email and password with field validation
 
 Then the user goes to the page with all his posts that he can edit / delete
 
-![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_3.jpg)
+![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_03.jpg)
 
 ![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_6.jpg)
 
@@ -43,7 +43,7 @@ designated pages of the resource
 By clicking on the ads tab, the user will be able to see all the ads from
 different users on this Internet site
 
-![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_8.jpg)
+![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cars/blob/main/image/Screenshot_04.jpg)
 
 By clicking on the tab List of ads for the last 24 hours, the user will be able to access only the ads 
 submitted for the last 24 hours

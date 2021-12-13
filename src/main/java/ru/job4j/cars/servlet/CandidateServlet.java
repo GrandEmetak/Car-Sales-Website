@@ -47,7 +47,7 @@ public class CandidateServlet extends HttpServlet {
      * Если требуемый ресурс находится в том же контексте, что и сервлет, который его вызывает,
      * то для получения ресурса необходимо использовать метод
      * public RequestDispatcher getRequestDispatcher(String path);
-     * req.setAttribute("posts", postList); // forEach str 88
+     * req.setAttribute("posts", postList); - forEach str 88
      * var userid = session.getAttribute("user");
      * System.out.println("Что за ID Юзера Get: " + userid);
      *

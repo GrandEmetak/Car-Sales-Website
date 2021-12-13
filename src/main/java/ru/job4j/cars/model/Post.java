@@ -32,7 +32,6 @@ public class Post {
 
     private String price;
 
-//    private String status;
     private boolean status;
 
     @OneToOne(cascade = CascadeType.ALL)

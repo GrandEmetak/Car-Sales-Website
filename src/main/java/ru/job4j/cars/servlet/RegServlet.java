@@ -60,7 +60,7 @@ public class RegServlet extends HttpServlet {
             admin.setEmail(email);
             admin.setPassword(password);
             sc.setAttribute("user", admin);
-            AdRepository.instOf().saveUser(admin); //save user write
+            AdRepository.instOf().saveUser(admin);
             resp.sendRedirect(req.getContextPath() + "/posts.do");
         } else {
             req.setAttribute("error", "Не верный email, пароль или имя");

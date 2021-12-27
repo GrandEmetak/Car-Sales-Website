@@ -73,7 +73,7 @@ public class CarRepository implements CarRepoStore {
             Session session = sf.openSession();
             session.beginTransaction();
             var result = session.save(car);
-            System.out.println("То что сохраняем : " + car);
+            LOGGER.debug("То что сохраняем : " + car);
             int index = (int) result;
             car.setId(index);
             session.getTransaction().commit();
@@ -81,8 +81,6 @@ public class CarRepository implements CarRepoStore {
             rsl = car;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            StandardServiceRegistryBuilder.destroy(registry);
         }
         return rsl;
     }

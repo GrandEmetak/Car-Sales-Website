@@ -30,7 +30,7 @@ public class PostRepository implements Store {
 
     private static final PostRepository INST = new PostRepository();
 
-    private static final Logger LOGGER =  LogManager.getLogger(PostRepository.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(PostRepository.class.getName());
 
     private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure().build();
@@ -81,13 +81,10 @@ public class PostRepository implements Store {
     @Override
     public Post savePost(Post post) {
         if (post.getId() == 0) {
-            //System.out.println("save Post method Adrepository " + post);
-            //System.out.println(" User update Post Adrepository " + post);
-         LOGGER.info("save Post method PostRepository " + post);
             LOGGER.debug("debug -> save Post method PostRepository " + post);
             return saveByPost(post);
         }
-      LOGGER.info(" User update Post Adrepository " + post);
+        LOGGER.info(" User update Post PostRepository " + post);
         return updateByPost(post);
     }
 
@@ -97,8 +94,7 @@ public class PostRepository implements Store {
             Session session = sf.openSession();
             session.beginTransaction();
             var result = session.save(post);
-//            LOGGER.info("То что сохраняем : " + post);
-            System.out.println("То что сохраняем : " + post);
+            LOGGER.info("То что сохраняем : " + post);
             int index = (int) result;
             post.setId(index);
             session.getTransaction().commit();
@@ -106,8 +102,6 @@ public class PostRepository implements Store {
             rsl = post;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            StandardServiceRegistryBuilder.destroy(registry);
         }
         return rsl;
     }
@@ -118,15 +112,12 @@ public class PostRepository implements Store {
             Session session = sf.openSession();
             session.beginTransaction();
             session.saveOrUpdate(post);
-           // System.out.println("То что обновляем : " + post);
             LOGGER.info("То что обновляем : " + post);
             session.getTransaction().commit();
             session.close();
             rsl = post;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            StandardServiceRegistryBuilder.destroy(registry);
         }
         return rsl;
     }
@@ -138,7 +129,6 @@ public class PostRepository implements Store {
             Session session = sf.openSession();
             session.beginTransaction();
             var result = session.save(photo);
-//            System.out.println("То что сохраняем : " + photo);
             LOGGER.info("То что сохраняем : " + photo);
             int index = (int) result;
             photo.setId(index);
@@ -153,61 +143,6 @@ public class PostRepository implements Store {
         return rsl;
     }
 
-//    /**
-//     * +++
-//     * - сохранить машину в БД
-//     *
-//     * @param car
-//     * @return
-//     */
-//    @Override
-//    public Car saveCar(Car car) {
-//        Car rsl = null;
-//        try {
-//            Session session = sf.openSession();
-//            session.beginTransaction();
-//            var result = session.save(car);
-//            System.out.println("То что сохраняем : " + car);
-//            int index = (int) result;
-//            car.setId(index);
-//            session.getTransaction().commit();
-//            session.close();
-//            rsl = car;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            StandardServiceRegistryBuilder.destroy(registry);
-//        }
-//        return rsl;
-//    }
-
-//    /**
-//     * +++
-//     * - put User in to DB cars
-//     *
-//     * @param user Object to paste
-//     * @return Object User(includes new id) or User null Object
-//     */
-//    @Override
-//    public User saveUser(User user) {
-//        User rsl = null;
-//        try {
-//            Session session = sf.openSession();
-//            Transaction tx = session.beginTransaction();
-//            var result = session.save(user);
-//            int index = (int) result;
-//            user.setId(index);
-//            rsl = user;
-//            session.getTransaction().commit();
-//            session.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            StandardServiceRegistryBuilder.destroy(registry);
-//        }
-//        return rsl;
-//    }
-
     /**
      * - показать все объявления из БД posts
      *
@@ -215,74 +150,16 @@ public class PostRepository implements Store {
      */
     @Override
     public List<Post> findAllPost() {
-        Session session = sf.openSession();
-
-        System.out.println("status session boolean _> " + session.isOpen());
-        System.out.println("session - есть ли в данной сессии какие-либо изменения, " + session.isDirty());
-        System.out.println("Проверяет, подключена ли сессия в данный момент." + session.isConnected());
-        session.beginTransaction();
-
-//           postList = session.createQuery("SELECT a FROM Post a", Post.class).getResultList();
-        List<Post> result = session.createQuery("from Post").list();
-        LOGGER.debug("То что обновляем : " + result);
-        session.getTransaction().commit();
-
-        return result;
+        return this.tx(
+                session -> {
+                    var query = session.createQuery("from ru.job4j.cars.model.Post");
+                    LOGGER.info("info -> all Post method PostRepository ");
+                    LOGGER.debug("debug -> all Post method PostRepository ");
+                    System.out.println("ВСЕ ЧТО нашел то вынул ");
+                    return query.list();
+                }
+        );
     }
-
-//    @Override
-//    public List<Post> findAllPost() {
-//       List<Post> postList = new ArrayList<>();
-//        Session session = sf.openSession();
-//        Transaction transaction = null;
-//        try  {
-//            System.out.println("status session boolean _> " + session.isOpen());
-//            System.out.println("session - есть ли в данной сессии какие-либо изменения, " + session.isDirty());
-//            System.out.println("Проверяет, подключена ли сессия в данный момент." + session.isConnected());
-//            session.beginTransaction();
-//
-////           postList = session.createQuery("SELECT a FROM Post a", Post.class).getResultList();
-//            List<Post> result = session.createQuery("from Post").list();
-//            LOGGER.debug("То что обновляем : " + postList);
-//            session.getTransaction().commit();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            session.close();
-//            StandardServiceRegistryBuilder.destroy(registry);
-//        }
-//        return postList;
-
-//        return this.tx(
-//                session -> {
-//                    var query = session.createQuery("from ru.job4j.cars.model.Post");
-//                    LOGGER.info("info -> all Post method PostRepository ");
-//                    LOGGER.debug("debug -> all Post method PostRepository ");
-//                    System.out.println("ВСЕ ЧТО нашел то вынул ");
-//                    return query.list();
-//                }
-//        );
-   // }
-
-//    /**
-//     * +++
-//     * - find User object by id
-//     *
-//     * @param id User Object
-//     * @return List User Object
-//     */
-//    @Override
-//    public List<User> findUserById(int id) {
-//        return this.tx(
-//                session -> {
-//                    var query = session.createQuery("from ru.job4j.cars.model.User s "
-//                            + "where s.id = :sId")
-//                            .setParameter("sId", id);
-//                    return query.list();
-//                }
-//        );
-//    }
 
     /**
      * - показать объявления за последний день
@@ -381,8 +258,6 @@ public class PostRepository implements Store {
             return query.list();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            StandardServiceRegistryBuilder.destroy(registry);
         }
         return postList;
     }
@@ -412,8 +287,6 @@ public class PostRepository implements Store {
             LOGGER.info("Все что нашли Посты по Юзер ID");
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            StandardServiceRegistryBuilder.destroy(registry);
         }
         return postList;
     }
@@ -443,25 +316,6 @@ public class PostRepository implements Store {
         );
     }
 
-//    /**
-//     * +++
-//     * - поиск пользователей по email
-//     *
-//     * @param email
-//     * @return Collection List<> User object
-//     */
-//    @Override
-//    public List<User> findByEmail(String email) {
-//        return this.tx(
-//                session -> {
-//                    String sql = "from ru.job4j.cars.model.User where email = :email";
-//                    Query query = session.createQuery(sql);
-//                    query.setParameter("email", email);
-//                    return query.list();
-//                }
-//        );
-//    }
-
     /**
      * найти и удалить пост по id
      *
@@ -482,8 +336,6 @@ public class PostRepository implements Store {
                 rsl = true;
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                StandardServiceRegistryBuilder.destroy(registry);
             }
         }
         return rsl;

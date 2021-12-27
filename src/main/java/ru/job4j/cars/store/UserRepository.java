@@ -78,8 +78,6 @@ public class UserRepository implements  UserRepoStore {
             session.close();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            StandardServiceRegistryBuilder.destroy(registry);
         }
         return rsl;
     }

@@ -1,25 +1,23 @@
 package ru.job4j.cars.servlet;
 
 import ru.job4j.cars.model.User;
-import ru.job4j.cars.store.AdRepository;
+import ru.job4j.cars.store.PostRepository;
+import ru.job4j.cars.store.UserRepository;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * - @WebServlet(urlPatterns = "/reg.do")
  * 4. Регистрация пользователя.
  * Security
- *  ATTENTION! -
- *  удален файл web.xml, произведена замена во всех классах
- *  на аннотацию @WebServlet(urlPattern = " маппинг имя")
- *
+ * ATTENTION! -
+ * удален файл web.xml, произведена замена во всех классах
+ * на аннотацию @WebServlet(urlPattern = " маппинг имя")
  */
 public class RegServlet extends HttpServlet {
     @Override
@@ -48,7 +46,8 @@ public class RegServlet extends HttpServlet {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        User user = AdRepository.instOf().findByEmail(email).get(0);
+//        User user = PostRepository.instOf().findByEmail(email).get(0); remove to UserRepo
+        User user = UserRepository.instOf().findByEmail(email).get(0);
         if (user != null) {
             req.setAttribute("error", "данный пользователь уже существует");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
@@ -60,7 +59,8 @@ public class RegServlet extends HttpServlet {
             admin.setEmail(email);
             admin.setPassword(password);
             sc.setAttribute("user", admin);
-            AdRepository.instOf().saveUser(admin);
+//            PostRepository.instOf().saveUser(admin); - remove to userRepo
+            UserRepository.instOf().saveUser(admin);
             resp.sendRedirect(req.getContextPath() + "/posts.do");
         } else {
             req.setAttribute("error", "Не верный email, пароль или имя");

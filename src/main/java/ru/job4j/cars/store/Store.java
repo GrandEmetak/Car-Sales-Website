@@ -15,12 +15,9 @@ import java.util.List;
  * - поиск пользователей по email
  *  - и др.
  * @author SlartiBartFast-art
- * @version 1
  * @since 26.11.21
  */
 public interface Store {
-
-    public User saveUser(User user);
 
     public Post savePost(Post post);
 
@@ -32,17 +29,11 @@ public interface Store {
 
     public List<Post> whenMarkAuto(String name);
 
-    public List<User> findByEmail(String email);
-
-    public List<User> findUserById(int id);
-
     public List<Post> findPostBiId(int id);
 
     public boolean deletePostId(int id);
 
     public Photo savePhoto(Photo photo);
-
-    public Car saveCar(Car car);
 
     public List<Post> findPostByUserId(int id);
 

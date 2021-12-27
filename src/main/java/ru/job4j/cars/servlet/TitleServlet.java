@@ -2,7 +2,7 @@ package ru.job4j.cars.servlet;
 
 import ru.job4j.cars.model.Post;
 import ru.job4j.cars.model.User;
-import ru.job4j.cars.store.AdRepository;
+import ru.job4j.cars.store.PostRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -60,8 +59,8 @@ public class TitleServlet extends HttpServlet {
         var userid = session.getAttribute("user");
 
         userNew = (User) userid;
-        List<Post> postList = AdRepository.instOf().findAllPost();
-        postList.stream().forEach(post -> post.setCreated(AdRepository.instOf().convertDays(post.getCreated())));
+        List<Post> postList = PostRepository.instOf().findAllPost();
+        postList.stream().forEach(post -> post.setCreated(PostRepository.instOf().convertDays(post.getCreated())));
 
         req.setAttribute("posts", postList);
         req.setAttribute("users", userNew);

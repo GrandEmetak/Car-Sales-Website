@@ -4,7 +4,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import ru.job4j.cars.store.AdRepository;
+import ru.job4j.cars.store.PostRepository;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -37,7 +37,7 @@ public class UploadServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        req.setAttribute("candidates", AdRepository.instOf().findAllPost());
+        req.setAttribute("candidates", PostRepository.instOf().findAllPost());
         String name = req.getParameter("id") + ".png";
         System.out.println("urlPatterns = \"/upload\")\n"
                 + "public class UploadServlet   NAME + " + name);

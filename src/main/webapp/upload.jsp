@@ -1,5 +1,5 @@
 <%@ page import="ru.job4j.cars.model.Post" %>
-<%@ page import="ru.job4j.cars.store.AdRepository" %>
+<%@ page import="ru.job4j.cars.store.PostRepository" %>
 <%@ page import="ru.job4j.cars.model.User" %>
 <%@ page language="java" pageEncoding="UTF-8" session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -19,7 +19,7 @@
     String id = request.getParameter("id");
     Post post = new Post(0, "");
     if (id != null) {
-        post = AdRepository.instOf().findPostBiId(Integer.parseInt(id)).get(0);
+        post = PostRepository.instOf().findPostBiId(Integer.parseInt(id)).get(0);
     }
 %>
 <div class="container pt-3">

@@ -1,9 +1,8 @@
 package ru.job4j.cars.servlet;
 
-import ru.job4j.cars.store.AdRepository;
+import ru.job4j.cars.store.PostRepository;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +20,7 @@ public class DeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("posts", AdRepository.instOf().findAllPost());
+        req.setAttribute("posts", PostRepository.instOf().findAllPost());
         resp.sendRedirect(req.getContextPath() + "/candidates.do");
     }
 
@@ -42,7 +41,7 @@ public class DeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         var s = (req.getParameter("id"));
-        AdRepository.instOf().deletePostId(Integer.parseInt(s));
+        PostRepository.instOf().deletePostId(Integer.parseInt(s));
         for (File name : new File("c:\\cars\\").listFiles()) {
             if (name.getName().startsWith(s)) {
                 new File("c\\cars\\" + name.getName()).delete();

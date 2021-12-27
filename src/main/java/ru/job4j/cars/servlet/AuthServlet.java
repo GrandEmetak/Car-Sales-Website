@@ -1,12 +1,11 @@
 package ru.job4j.cars.servlet;
 
 import ru.job4j.cars.model.User;
-import ru.job4j.cars.store.AdRepository;
+import ru.job4j.cars.store.PostRepository;
+import ru.job4j.cars.store.UserRepository;
 
 import javax.servlet.http.*;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import java.io.IOException;
@@ -45,7 +44,8 @@ public class AuthServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        User user = AdRepository.instOf().findByEmail(email).get(0);
+//        User user = PostRepository.instOf().findByEmail(email).get(0); remove to userRepo
+        User user = UserRepository.instOf().findByEmail(email).get(0);
         if (user != null && user.getPassword().equals(password)) {
             HttpSession sc = req.getSession();
             sc.setAttribute("user", user);

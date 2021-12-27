@@ -4,7 +4,7 @@
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.cars.model.Post" %>
-<%@ page import="ru.job4j.cars.store.AdRepository" %>
+<%@ page import="ru.job4j.cars.store.PostRepository" %>
 <%@ page import="ru.job4j.cars.model.User" %>
 <%@ page import="ru.job4j.cars.model.Car" %>
 <%@ page import="ru.job4j.cars.model.Photo" %>
@@ -91,7 +91,7 @@
     String id = request.getParameter("id");
     Post post = Post.emptyP();
     if (id != null) {
-        post = AdRepository.instOf().findPostBiId(Integer.parseInt(id)).get(0);
+        post = PostRepository.instOf().findPostBiId(Integer.parseInt(id)).get(0);
     }
 %>
 <div class="needs-validation" novalidate>

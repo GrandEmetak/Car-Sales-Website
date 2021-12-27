@@ -1,19 +1,18 @@
 package ru.job4j.cars.servlet;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import ru.job4j.cars.model.Car;
 import ru.job4j.cars.model.Post;
 import ru.job4j.cars.model.User;
-import ru.job4j.cars.store.AdRepository;
+import ru.job4j.cars.store.PostRepository;
 
 import javax.servlet.http.*;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +28,9 @@ import java.util.List;
  * @author SlartiBartFast-art
  */
 public class CandidateServlet extends HttpServlet {
+
+    private static final Logger LOGGER =  LogManager.getLogger(CandidateServlet.class.getName());
+
     private User userNew = null;
 
     /**
@@ -62,10 +64,10 @@ public class CandidateServlet extends HttpServlet {
         var userid = session.getAttribute("user");
 
         userNew = (User) userid;
-        List<Post> postList = AdRepository.instOf().findPostByUserId(userNew.getId());
+        List<Post> postList = PostRepository.instOf().findPostByUserId(userNew.getId());
 
-        postList.stream().forEach(post -> post.setCreated(AdRepository.instOf().convertDays(post.getCreated())));
-
+        postList.stream().forEach(post -> post.setCreated(PostRepository.instOf().convertDays(post.getCreated())));
+        LOGGER.info("List -> " + postList);
         req.setAttribute("posts", postList);
         req.setAttribute("users", userNew);
         req.getRequestDispatcher("candidate.jsp").forward(req, resp);
@@ -114,7 +116,7 @@ public class CandidateServlet extends HttpServlet {
                 req.getParameter("drive"),
                 req.getParameter("mileage")
         );
-        var post1 = AdRepository.instOf().findPostBiId(postID).get(0);
+        var post1 = PostRepository.instOf().findPostBiId(postID).get(0);
 
         post1.setHeader(post.getHeader());
         post1.setDescription(post.getDescription());
@@ -122,7 +124,7 @@ public class CandidateServlet extends HttpServlet {
         post1.setStatus(post.isStatus());
         post1.addCar(car);
 
-        AdRepository.instOf().savePost(post1);
+        PostRepository.instOf().savePost(post1);
 
         resp.sendRedirect(req.getContextPath() + "/candidate.do");
     }

@@ -1,4 +1,3 @@
-/*BD cars*/
 create table users
 (
     id       serial primary key,
@@ -59,3 +58,4 @@ values ('Nissan Juke, 2011 год',
         '890 000 ₽', 'false', '2021-11-16 14:34:25.853', 1, 1, 1);
 INSERT INTO photos(imagename)
 values ('nameFhoto.jpg');
+

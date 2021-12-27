@@ -3,7 +3,7 @@
 <%@ page import="ru.job4j.cars.model.User" %>
 <%@ page import="ru.job4j.cars.model.Car" %>
 <%@ page import="java.util.Collection" %>
-<%@ page import="ru.job4j.cars.store.AdRepository" %>
+<%@ page import="ru.job4j.cars.store.PostRepository" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
@@ -35,7 +35,7 @@
     String id = request.getParameter("id");
     Post post = new Post(0, "");
     if (id != null) {
-        post = AdRepository.instOf().findPostBiId(Integer.parseInt(id)).get(0);
+        post = PostRepository.instOf().findPostBiId(Integer.parseInt(id)).get(0);
     }
 %>
 <div class="container pt-3">

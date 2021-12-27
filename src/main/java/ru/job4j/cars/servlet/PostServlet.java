@@ -4,7 +4,7 @@ import ru.job4j.cars.model.Car;
 import ru.job4j.cars.model.Photo;
 import ru.job4j.cars.model.Post;
 import ru.job4j.cars.model.User;
-import ru.job4j.cars.store.AdRepository;
+import ru.job4j.cars.store.PostRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -67,7 +67,7 @@ public class PostServlet extends HttpServlet {
         post.addUser(userid);
         post.addCar(car);
         post.addPhoto(photo);
-        AdRepository.instOf().savePost(post);
+        PostRepository.instOf().savePost(post);
 
         resp.sendRedirect(req.getContextPath() + "/candidate.do");
     }

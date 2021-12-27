@@ -8,7 +8,6 @@ import ru.job4j.cars.model.User;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 /**
  * класс представляет из себя тест работы методов в основном представленнных в AdRepository
@@ -25,7 +24,7 @@ public class Temp {
 
     public static void main(String[] args) {
         System.out.println("Data day - one: " + subtractDays());
-        AdRepository adRepository = new AdRepository();
+        PostRepository adRepository = new PostRepository();
  /*       Post post = adRepository.findPostBiId(1).get(0);
         System.out.println("adRepository.findPostBiId(1).get(0) - Post : " + post);
         var ft = post.getCreated();
@@ -36,31 +35,33 @@ public class Temp {
         System.out.println("Post staus : " + post.getStatus());
         System.out.println("Convert boolean status - : " + st);*/
 
-        User user = User.of("John Smith", "SmithJohn@gmail.com", "John");
-        Post post = Post.of("Lexus RX200t, 2016 год",
-                "- Климат-контроль 2-зонный, Обогрев рулевого колеса, Подогрев передних сидений,"
-                        + " Электрообогрев лобового стекла,"
-                        + " Электроскладывание зеркал, Система доступа без ключа, Светодиодные фары",
-                "3 649 000 ₽",
-                false
-        );
-        Car car = Car.of("Lexus RX200t",
-                "SUV",
-                "бензин, 2.0 л., 238 л.с., налог ",
-                "АКПП",
-                "белый",
-                "4WD",
-                "107 432"
-        );
-        Photo photoF = Photo.of("Lexus RX200t.jpg");
-
-        post.addUser(user);
-        post.addCar(car);
-        post.addPhoto(photoF);
+//        User user = User.of("John Smith", "SmithJohn@gmail.com", "John");
+//        Post post = Post.of("Lexus RX200t, 2016 год",
+//                "- Климат-контроль 2-зонный, Обогрев рулевого колеса, Подогрев передних сидений,"
+//                        + " Электрообогрев лобового стекла,"
+//                        + " Электроскладывание зеркал, Система доступа без ключа, Светодиодные фары",
+//                "3 649 000 ₽",
+//                false
+//        );
+//        Car car = Car.of("Lexus RX200t",
+//                "SUV",
+//                "бензин, 2.0 л., 238 л.с., налог ",
+//                "АКПП",
+//                "белый",
+//                "4WD",
+//                "107 432"
+//        );
+//        Photo photoF = Photo.of("Lexus RX200t.jpg");
+//
+//        post.addUser(user);
+//        post.addCar(car);
+//        post.addPhoto(photoF);
         /* System.out.println("Id new Post Object : " + post.getId());*/
+        var rsl =  adRepository.findAllPost();
+        rsl.stream().forEach(System.out::println);
 
-      var savePost = adRepository.savePost(post);
-        System.out.println("То что сохранили в БД Объект пост : " + savePost);
+//      var savePost = adRepository.savePost(post);
+//        System.out.println("То что сохранили в БД Объект пост : " + savePost);
 
    /*     var lasD = adRepository.lastDay();
         for (Post post1 : lasD) {

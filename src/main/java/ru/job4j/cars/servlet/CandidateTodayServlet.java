@@ -1,10 +1,9 @@
 package ru.job4j.cars.servlet;
 
 import ru.job4j.cars.model.Post;
-import ru.job4j.cars.store.AdRepository;
+import ru.job4j.cars.store.PostRepository;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,9 +44,9 @@ public class CandidateTodayServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Post> postLis = AdRepository.instOf().lastDay();
+        List<Post> postLis = PostRepository.instOf().lastDay();
         req.setAttribute("posts", postLis);
-        postLis.stream().forEach(post -> post.setCreated(AdRepository.instOf().convertDays(post.getCreated())));
+        postLis.stream().forEach(post -> post.setCreated(PostRepository.instOf().convertDays(post.getCreated())));
 
         req.getRequestDispatcher("candidateToday.jsp").forward(req, resp);
     }

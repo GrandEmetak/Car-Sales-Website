@@ -1,4 +1,4 @@
-package ru.job4j.cars.Temp;
+package ru.job4j.cars.temp;
 
 import ru.job4j.cars.model.Car;
 import ru.job4j.cars.model.Photo;

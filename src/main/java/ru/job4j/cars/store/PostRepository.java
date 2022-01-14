@@ -1,8 +1,5 @@
 package ru.job4j.cars.store;
 
-
-//import org.apache.log4j.*;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

@@ -46,7 +46,6 @@ public class RegServlet extends HttpServlet {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-//        User user = PostRepository.instOf().findByEmail(email).get(0); remove to UserRepo
         User user = UserRepository.instOf().findByEmail(email).get(0);
         if (user != null) {
             req.setAttribute("error", "данный пользователь уже существует");
@@ -59,7 +58,6 @@ public class RegServlet extends HttpServlet {
             admin.setEmail(email);
             admin.setPassword(password);
             sc.setAttribute("user", admin);
-//            PostRepository.instOf().saveUser(admin); - remove to userRepo
             UserRepository.instOf().saveUser(admin);
             resp.sendRedirect(req.getContextPath() + "/posts.do");
         } else {

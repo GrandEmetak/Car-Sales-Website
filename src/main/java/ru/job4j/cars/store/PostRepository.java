@@ -1,7 +1,7 @@
 package ru.job4j.cars.store;
 
 
-import org.apache.log4j.*;
+//import org.apache.log4j.*;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,6 +9,10 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 import ru.job4j.cars.model.Photo;
 import ru.job4j.cars.model.Post;
 
@@ -30,7 +34,11 @@ public class PostRepository implements Store {
 
     private static final PostRepository INST = new PostRepository();
 
-    private static final Logger LOGGER = LogManager.getLogger(PostRepository.class.getName());
+    private static final Logger LOGGER = LoggerFactory.getLogger(PostRepository.class.getName());
+
+    private static final Marker INFO = MarkerFactory.getMarker("INFO");
+
+    private static final Marker DEBUG = MarkerFactory.getMarker("DEBUG");
 
     private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure().build();
@@ -81,10 +89,10 @@ public class PostRepository implements Store {
     @Override
     public Post savePost(Post post) {
         if (post.getId() == 0) {
-            LOGGER.debug("debug -> save Post method PostRepository " + post);
+            LOGGER.debug(DEBUG, "debug -> save Post method PostRepository ", post);
             return saveByPost(post);
         }
-        LOGGER.info(" User update Post PostRepository " + post);
+        LOGGER.info(INFO, " User update Post PostRepository ", post);
         return updateByPost(post);
     }
 
@@ -94,12 +102,12 @@ public class PostRepository implements Store {
             Session session = sf.openSession();
             session.beginTransaction();
             var result = session.save(post);
-            LOGGER.info("То что сохраняем : " + post);
             int index = (int) result;
             post.setId(index);
             session.getTransaction().commit();
             session.close();
             rsl = post;
+            LOGGER.info(INFO, "То что сохраняем : ", post);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -112,10 +120,12 @@ public class PostRepository implements Store {
             Session session = sf.openSession();
             session.beginTransaction();
             session.saveOrUpdate(post);
-            LOGGER.info("То что обновляем : " + post);
+
             session.getTransaction().commit();
             session.close();
             rsl = post;
+            String str = "То что обновляем : ";
+            LOGGER.info(INFO, str, post);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -129,16 +139,14 @@ public class PostRepository implements Store {
             Session session = sf.openSession();
             session.beginTransaction();
             var result = session.save(photo);
-            LOGGER.info("То что сохраняем : " + photo);
             int index = (int) result;
             photo.setId(index);
             rsl = photo;
             session.getTransaction().commit();
             session.close();
+            LOGGER.info(INFO, "То что сохраняем : ", photo);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            StandardServiceRegistryBuilder.destroy(registry);
         }
         return rsl;
     }
@@ -153,9 +161,7 @@ public class PostRepository implements Store {
         return this.tx(
                 session -> {
                     var query = session.createQuery("from ru.job4j.cars.model.Post");
-                    LOGGER.info("info -> all Post method PostRepository ");
-                    LOGGER.debug("debug -> all Post method PostRepository ");
-                    System.out.println("ВСЕ ЧТО нашел то вынул ");
+                    LOGGER.debug(DEBUG, "info -> all Post method PostRepository ");
                     return query.list();
                 }
         );
@@ -284,7 +290,7 @@ public class PostRepository implements Store {
             postList = query.list();
             session.getTransaction().commit();
             session.close();
-            LOGGER.info("Все что нашли Посты по Юзер ID");
+            LOGGER.info(INFO, "Все что нашли Посты по Юзер ID");
         } catch (Exception e) {
             e.printStackTrace();
         }

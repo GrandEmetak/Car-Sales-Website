@@ -1,13 +1,15 @@
 package ru.job4j.cars.store;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 import ru.job4j.cars.model.Car;
 
 import java.util.function.Function;
@@ -17,7 +19,9 @@ import java.util.function.Function;
  */
 public class CarRepository implements CarRepoStore {
 
-    private static final Logger LOGGER =  LogManager.getLogger(CarRepository.class.getName());
+    private static final Logger LOGGER = LoggerFactory.getLogger(CarRepository.class.getName());
+
+    private static final Marker IMPORTANT = MarkerFactory.getMarker("DEBuG");
 
     private static final CarRepository INST = new CarRepository();
 
@@ -66,14 +70,14 @@ public class CarRepository implements CarRepoStore {
      * @param car
      * @return
      */
-   @Override
+    @Override
     public Car saveCar(Car car) {
         Car rsl = null;
+        LOGGER.debug(IMPORTANT, "То что сохраняем : ", car);
         try {
             Session session = sf.openSession();
             session.beginTransaction();
             var result = session.save(car);
-            LOGGER.debug("То что сохраняем : " + car);
             int index = (int) result;
             car.setId(index);
             session.getTransaction().commit();

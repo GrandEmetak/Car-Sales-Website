@@ -3,13 +3,11 @@ package ru.job4j.cars.store;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+import ru.job4j.cars.connect.DBSession;
 import ru.job4j.cars.model.Photo;
 import ru.job4j.cars.model.Post;
 
@@ -37,11 +35,7 @@ public class PostRepository implements Store {
 
     private static final Marker DEBUG = MarkerFactory.getMarker("DEBUG");
 
-    private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-            .configure().build();
-
-    private final SessionFactory sf = new MetadataSources(registry)
-            .buildMetadata().buildSessionFactory();
+    private final SessionFactory sf =  DBSession.getSessionFactory();
 
     public static PostRepository instOf() {
         return INST;

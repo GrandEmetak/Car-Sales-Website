@@ -7,6 +7,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
+import ru.job4j.cars.connect.DBSession;
 import ru.job4j.cars.model.User;
 
 import java.util.List;
@@ -18,11 +19,7 @@ import java.util.function.Function;
 public class UserRepository implements  UserRepoStore {
     private static final UserRepository INST = new UserRepository();
 
-    private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-            .configure().build();
-
-    private final SessionFactory sf = new MetadataSources(registry)
-            .buildMetadata().buildSessionFactory();
+    private final SessionFactory sf =  DBSession.getSessionFactory();
 
     public static UserRepository instOf() {
         return INST;

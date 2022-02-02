@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+import ru.job4j.cars.connect.DBSession;
 import ru.job4j.cars.model.Car;
 
 import java.util.function.Function;
@@ -21,14 +22,11 @@ public class CarRepository implements CarRepoStore {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CarRepository.class.getName());
 
-    private static final Marker IMPORTANT = MarkerFactory.getMarker("DEBuG");
+    private static final Marker IMPORTANT = MarkerFactory.getMarker("DEBUG");
 
     private static final CarRepository INST = new CarRepository();
 
-    private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-            .configure().build();
-    private final SessionFactory sf = new MetadataSources(registry)
-            .buildMetadata().buildSessionFactory();
+    private final SessionFactory sf =  DBSession.getSessionFactory();
 
     public static CarRepository instOf() {
         return INST;

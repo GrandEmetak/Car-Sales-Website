@@ -19,7 +19,7 @@ import java.util.function.Function;
 public class UserRepository implements  UserRepoStore {
     private static final UserRepository INST = new UserRepository();
 
-    private final SessionFactory sf =  DBSession.getSessionFactory();
+    private final SessionFactory sf =  DBSession.getInstance().getSessionFactory();
 
     public static UserRepository instOf() {
         return INST;

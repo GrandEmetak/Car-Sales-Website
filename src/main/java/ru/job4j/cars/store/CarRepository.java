@@ -26,7 +26,7 @@ public class CarRepository implements CarRepoStore {
 
     private static final CarRepository INST = new CarRepository();
 
-    private final SessionFactory sf =  DBSession.getSessionFactory();
+    private final SessionFactory sf =  DBSession.getInstance().getSessionFactory();
 
     public static CarRepository instOf() {
         return INST;

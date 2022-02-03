@@ -35,7 +35,7 @@ public class PostRepository implements Store {
 
     private static final Marker DEBUG = MarkerFactory.getMarker("DEBUG");
 
-    private final SessionFactory sf =  DBSession.getSessionFactory();
+    private static SessionFactory sf = DBSession.getInstance().getSessionFactory();
 
     public static PostRepository instOf() {
         return INST;
@@ -80,7 +80,7 @@ public class PostRepository implements Store {
     @Override
     public Post savePost(Post post) {
         if (post.getId() == 0) {
-            LOGGER.debug(DEBUG, "debug -> save Post method PostRepository ", post);
+            LOGGER.debug(DEBUG, "debug -> save Post method PostRepository {}", post);
             return saveByPost(post);
         }
         LOGGER.info(INFO, " User update Post PostRepository ", post);
@@ -98,7 +98,7 @@ public class PostRepository implements Store {
             session.getTransaction().commit();
             session.close();
             rsl = post;
-            LOGGER.info(INFO, "То что сохраняем : ", post);
+            LOGGER.info(INFO, "То что сохраняем : {}", post);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -152,7 +152,7 @@ public class PostRepository implements Store {
         return this.tx(
                 session -> {
                     var query = session.createQuery("from ru.job4j.cars.model.Post");
-                    LOGGER.debug(DEBUG, "info -> all Post method PostRepository ");
+                    LOGGER.debug(DEBUG, "info -> all Post method PostRepository {}");
                     return query.list();
                 }
         );

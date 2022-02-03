@@ -6,7 +6,10 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 /**
- * Singleton Data Base connection Hibernate
+ * Singleton Data Base connection Hibernate (inner holder)
+ * Ленивая инициализация.
+ * Потокобезопасность.
+ * Высокая производительность в многопоточной среде.
  */
 public class DBSession {
 
@@ -15,7 +18,15 @@ public class DBSession {
     private DBSession() {
     }
 
-    public static SessionFactory getSessionFactory() {
+    private static class DBSessionHolder {
+        public static final DBSession HOLDER_INSTANCE = new DBSession();
+    }
+
+    public static DBSession getInstance() {
+        return DBSessionHolder.HOLDER_INSTANCE;
+    }
+
+    public SessionFactory getSessionFactory() {
         if (factory == null) {
             StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                     .configure().build();
@@ -24,3 +35,8 @@ public class DBSession {
         return factory;
     }
 }
+
+
+
+
+

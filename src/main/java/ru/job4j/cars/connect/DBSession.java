@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.internal.SessionFactoryImpl;
 
 /**
  * Singleton Data Base connection Hibernate (inner holder)
@@ -35,6 +36,7 @@ public class DBSession {
         return factory;
     }
 }
+
 
 
 

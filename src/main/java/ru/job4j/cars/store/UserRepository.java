@@ -16,10 +16,10 @@ import java.util.function.Function;
 /**
  * Слой репозиторий по работе с БД and table users
  */
-public class UserRepository implements  UserRepoStore {
+public class UserRepository implements UserRepoStore {
     private static final UserRepository INST = new UserRepository();
 
-    private final SessionFactory sf =  DBSession.getInstance().getSessionFactory();
+    private final SessionFactory sf = DBSession.getInstance();
 
     public static UserRepository instOf() {
         return INST;

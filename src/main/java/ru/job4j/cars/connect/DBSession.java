@@ -14,26 +14,20 @@ import org.hibernate.internal.SessionFactoryImpl;
  */
 public class DBSession {
 
-    private static SessionFactory factory;
-
-    private DBSession() {
-    }
-
     private static class DBSessionHolder {
-        public static final DBSession HOLDER_INSTANCE = new DBSession();
+
+        public static final DBSessionHolder HOLDER_INSTANCE = new DBSessionHolder();
+
+        private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure().build();
+
+        private final SessionFactory factory = new MetadataSources(registry)
+                .buildMetadata().buildSessionFactory();
+
     }
 
-    public static DBSession getInstance() {
-        return DBSessionHolder.HOLDER_INSTANCE;
-    }
-
-    public SessionFactory getSessionFactory() {
-        if (factory == null) {
-            StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                    .configure().build();
-            factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-        }
-        return factory;
+    public static SessionFactory getInstance() {
+        return DBSessionHolder.HOLDER_INSTANCE.factory;
     }
 }
 

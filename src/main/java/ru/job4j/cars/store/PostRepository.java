@@ -35,7 +35,7 @@ public class PostRepository implements Store {
 
     private static final Marker DEBUG = MarkerFactory.getMarker("DEBUG");
 
-    private static SessionFactory sf = DBSession.getInstance().getSessionFactory();
+    private static SessionFactory sf = DBSession.getInstance();
 
     public static PostRepository instOf() {
         return INST;

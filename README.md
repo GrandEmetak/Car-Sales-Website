@@ -1,5 +1,5 @@
 [![Build Status](https://app.travis-ci.com/SlartiBartFast-art/job4j_cars.svg?branch=main)](https://app.travis-ci.com/SlartiBartFast-art/job4j_cars)
-
+![GitHub language count](https://img.shields.io/github/languages/count/SlartiBartFast-art/job4j_cars?logo=github)
 ![GitHub top language](https://img.shields.io/github/languages/top/SlartiBartFast-art/job4j_cars?logo=java&logoColor=red)
 
 # job4j_cars

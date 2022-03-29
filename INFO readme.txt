@@ -75,7 +75,6 @@
     * @since 22.11.21
     */
 
-
     public class DownloadServlet extends HttpServlet
      /**
          * - @WebServlet(urlPatterns = "/download")

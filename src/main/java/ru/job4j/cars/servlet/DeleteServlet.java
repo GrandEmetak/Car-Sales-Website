@@ -11,11 +11,11 @@ import java.io.IOException;
 
 /**
  * -@WebServlet(urlPatterns = "/delete.do")
- * Серлет проводит действия по удалению Post Object - глобальный объект, хранящий все данные
+ * Серлет проводит действия по удалению Post Object - глобальный объект,
+ * хранящий все данные
  *
  * @author SlartiBartFast-art
- * @since 26.11.21
- */
+  */
 public class DeleteServlet extends HttpServlet {
 
     @Override

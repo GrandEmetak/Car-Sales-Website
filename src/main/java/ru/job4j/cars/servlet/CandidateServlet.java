@@ -17,44 +17,21 @@ import java.util.List;
 
 /**
  * - @WebServlet(urlPatterns = "/candidate.do")
- * CandidateServlet - Создание Post Object - это,
- *  (Супер объект, хранит в себе информацию Объявление-Машина-Владелец).
- * В методу doGet мы загружаем в request список объявлений.
- * req.setAttribute("posts", Store.instOf().findAllPosts());
- * Последний элемент - это загрузка id в сервлет.
- * Integer.valueOf(req.getParameter("id")),
  * аннотацию @WebServlet(urlPattern = " маппинг имя")
  *
  * @author SlartiBartFast-art
  */
 public class CandidateServlet extends HttpServlet {
 
-    private static final Logger LOGGER =  LogManager.getLogger(CandidateServlet.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(CandidateServlet.class.getName());
 
     private User userNew = null;
 
     /**
+     * Метод doGet загружаем в request список постов/объявлений.
      *
-     * В методе doGet мы загружаем в request список постов/объявлений.
-     * req.setAttribute("posts", Store.instOf().findAllPosts());
-     * открытый интерфейс ServletRequest
-     * Определяет объект для предоставления сервлету информации о запросе клиента.
-     * Контейнер сервлета создает ServletRequest объект и передает его в качестве
-     * аргумента service методу сервлета .
-     * Интерфейс RequestDispatcher предоставляет два метода. Они есть:
-     * <p>
-     * public void forward (запрос ServletRequest, ответ ServletResponse) выдает исключение ServletException,
-     * java.io.IOException: перенаправляет запрос от сервлета к другому ресурсу
-     * (сервлету, файлу JSP или файлу HTML) на сервере.
-     * Если требуемый ресурс находится в том же контексте, что и сервлет, который его вызывает,
-     * то для получения ресурса необходимо использовать метод
-     * public RequestDispatcher getRequestDispatcher(String path);
-     * req.setAttribute("posts", postList); - forEach str 88
-     * var userid = session.getAttribute("user");
-     * System.out.println("Что за ID Юзера Get: " + userid);
-     *
-     * @param req
-     * @param resp
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */
@@ -74,21 +51,9 @@ public class CandidateServlet extends HttpServlet {
     }
 
     /**
-     * В этот метод, попадают введенные данные из web/candidate/edit.jsp после валидации онклик()
+     * В этот метод, попадают введенные данные из web/candidate/edit.jsp
+     * после валидации онклик()
      * то что было получено в форме изминения данных объявления
-     * для проверки содержимого использовать
-     * User userid = (User) session.getAttribute("user");
-     * System.out.println("Что за ID Юзера Post: " + userid);
-     * <p>
-     * int postID = Integer.parseInt(req.getParameter("id"));
-     * System.out.println("То что пришло по id-post : " + postID);
-     * <p>
-     * Post post = Post.of(req.getParameter("header"),
-     * req.getParameter("description"),
-     * req.getParameter("price"), bln);
-     * System.out.println(" Те что пустые : " + req.getParameter("body")
-     * + " " + req.getParameter("transm")
-     * + " " +  req.getParameter("drive"));
      *
      * @param req
      * @param resp

@@ -14,10 +14,11 @@ import java.util.List;
  * - @WebServlet(urlPatterns = "/candidateT.do")
  * Серлет отвечает за посты объявлений за последне 24 часа
  * аннотация @WebServlet(urlPattern = " маппинг имя")
+ *
  * @author SlartiBartFast-art
- * @since 29.11.21
  */
 public class CandidateTodayServlet extends HttpServlet {
+
     /**
      * мы перенаправляем запрос в index.jsp.
      * req.getRequestDispatcher("index.jsp").forward(req, resp);
@@ -27,18 +28,9 @@ public class CandidateTodayServlet extends HttpServlet {
      * Определяет объект для предоставления сервлету информации о запросе клиента.
      * Контейнер сервлета создает ServletRequest объект и передает его в качестве
      * аргумента service методу сервлета .
-     * Интерфейс RequestDispatcher предоставляет два метода. Они есть:
-     * <p>
-     * public void forward (запрос ServletRequest, ответ ServletResponse) выдает исключение ServletException,
-     * java.io.IOException: перенаправляет запрос от сервлета к другому ресурсу
-     * (сервлету, файлу JSP или файлу HTML) на сервере.
-     * Если требуемый ресурс находится в том же контексте, что и сервлет, который его вызывает,
-     * то для получения ресурса необходимо использовать метод
-     * public RequestDispatcher getRequestDispatcher(String path);
-     * для получения содержимого доавить в doGet postLis.stream().forEach(System.out::println);
      *
-     * @param req
-     * @param resp
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */

@@ -38,9 +38,9 @@ public class AuthFilter implements Filter {
      * return;
      * }
      *
-     * @param sreq
-     * @param sresp
-     * @param chain
+     * @param sreq ServletRequest
+     * @param sresp ServletResponse
+     * @param chain FilterChain
      * @throws IOException
      * @throws ServletException
      */

@@ -1,11 +1,14 @@
-[![Build Status](https://app.travis-ci.com/SlartiBartFast-art/job4j_cars.svg?branch=main)](https://app.travis-ci.com/SlartiBartFast-art/job4j_cars)
+# cars
+
+[![Build Status](https://app.travis-ci.com/SlartiBartFast-art/cars.svg?branch=main)](https://app.travis-ci.com/SlartiBartFast-art/cars)
 ![GitHub language count](https://img.shields.io/github/languages/count/SlartiBartFast-art/job4j_cars?logo=github)
 ![GitHub top language](https://img.shields.io/github/languages/top/SlartiBartFast-art/job4j_cars?logo=java&logoColor=red)
 ![GitHub last commit](https://img.shields.io/github/last-commit/SlartiBartFast-art/job4j_cars?logo=github)
 
-# job4j_cars
+---
+App Cars
 
-- The project is a simplified version of the car sales website.
+The project is a version of the car sales website.
   Registered user can edit, delete, update photos and change the status from
   "For Sale" to "Sold" in their posts.
   There is also a wide range of data filtering according to different criteria,
@@ -14,8 +17,7 @@
   Used stack technologies:
 
 - Java (Back-end)
-- HTML + (JS + Jquery + AJAX) (Front-end)
-  
+- HTML + (JS + Jquery + AJAX) (Front-end)  
 - Libraries (java):
 - Hibernate HQL/ JPA (data-base)
 - PostgreSQL PSQL (data-base)

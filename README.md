@@ -1,11 +1,11 @@
-# cars
+# Car Sales Website
 
 [![Build Status](https://app.travis-ci.com/GrandEmetak/cars.svg?branch=main)](https://app.travis-ci.com/GrandEmetak/cars)
 ![GitHub language count](https://img.shields.io/github/languages/count/GrandEmetak/cars?logo=github)
 ![GitHub top language](https://img.shields.io/github/languages/top/GrandEmetak/cars?logo=java&logoColor=red)
 ![GitHub last commit](https://img.shields.io/github/last-commit/GrandEmetak/cars?logo=github)
 
-App Cars
+App Car Sales Website
 
 The project is a version of the car sales website.
   Registered user can edit, delete, update photos and change the status from

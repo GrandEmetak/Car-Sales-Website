@@ -1,9 +1,9 @@
 
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.cars.model.Post" %>
+<%@ page import="com.carsales.model.Post" %>
 <%@ page import="java.util.Collection" %>
-<%@ page import="ru.job4j.cars.store.PostRepository" %>
-<%@ page import="ru.job4j.cars.model.User" %>
+<%@ page import="com.carsales.store.PostRepository" %>
+<%@ page import="com.carsales.model.User" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.LocalDateTime" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

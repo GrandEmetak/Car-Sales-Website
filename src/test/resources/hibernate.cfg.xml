@@ -14,10 +14,10 @@
         <property name="hbm2ddl.auto">create</property>
         <!-- List of XML mapping files -->
 
-        <mapping class="ru.job4j.cars.model.Car"/>
-        <mapping class="ru.job4j.cars.model.Photo"/>
-        <mapping class="ru.job4j.cars.model.Post"/>
-        <mapping class="ru.job4j.cars.model.User"/>
+        <mapping class="com.carsales.model.Car"/>
+        <mapping class="com.carsales.model.Photo"/>
+        <mapping class="com.carsales.model.Post"/>
+        <mapping class="com.carsales.model.User"/>
 
 
     </session-factory>

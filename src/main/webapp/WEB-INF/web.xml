@@ -11,43 +11,43 @@
     <display-name>Archetype Created Web Application</display-name>
     <servlet>
         <servlet-name>AuthServlet</servlet-name>
-        <servlet-class>ru.job4j.cars.servlet.AuthServlet</servlet-class>
+        <servlet-class>com.carsales.servlet.AuthServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RegServlet</servlet-name>
-        <servlet-class>ru.job4j.cars.servlet.RegServlet</servlet-class>
+        <servlet-class>com.carsales.servlet.RegServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CandidateTodayServlet</servlet-name>
-        <servlet-class>ru.job4j.cars.servlet.CandidateTodayServlet</servlet-class>
+        <servlet-class>com.carsales.servlet.CandidateTodayServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CandidateServlet</servlet-name>
-        <servlet-class>ru.job4j.cars.servlet.CandidateServlet</servlet-class>
+        <servlet-class>com.carsales.servlet.CandidateServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DownloadServlet</servlet-name>
-        <servlet-class>ru.job4j.cars.servlet.DownloadServlet</servlet-class>
+        <servlet-class>com.carsales.servlet.DownloadServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>ru.job4j.cars.servlet.UploadServlet</servlet-class>
+        <servlet-class>com.carsales.servlet.UploadServlet</servlet-class>
     </servlet>
     <filter>
         <filter-name>AuthFilter</filter-name>
-        <filter-class>ru.job4j.cars.filter.AuthFilter</filter-class>
+        <filter-class>com.carsales.filter.AuthFilter</filter-class>
     </filter>
     <servlet>
         <servlet-name>DeleteServlet</servlet-name>
-        <servlet-class>ru.job4j.cars.servlet.DeleteServlet</servlet-class>
+        <servlet-class>com.carsales.servlet.DeleteServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PostServlet</servlet-name>
-        <servlet-class>ru.job4j.cars.servlet.PostServlet</servlet-class>
+        <servlet-class>com.carsales.servlet.PostServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TitleServlet</servlet-name>
-        <servlet-class>ru.job4j.cars.servlet.TitleServlet</servlet-class>
+        <servlet-class>com.carsales.servlet.TitleServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AuthServlet</servlet-name>

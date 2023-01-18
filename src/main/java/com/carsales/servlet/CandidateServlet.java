@@ -19,7 +19,6 @@ import java.util.List;
  * - @WebServlet(urlPatterns = "/candidate.do")
  * аннотацию @WebServlet(urlPattern = " маппинг имя")
  *
- * @author SlartiBartFast-art
  */
 public class CandidateServlet extends HttpServlet {
 

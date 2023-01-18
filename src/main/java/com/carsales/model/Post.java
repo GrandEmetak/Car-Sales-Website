@@ -8,7 +8,6 @@ import java.util.Objects;
 
 /**
  * Модель данных описывающая объявление(Post)
- * @author SlartiBartFast-art
  * @since 22.11.21
  */
 @Entity

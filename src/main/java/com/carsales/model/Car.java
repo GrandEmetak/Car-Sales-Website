@@ -7,7 +7,6 @@ import java.util.Objects;
 
 /**
  * Модель данных описывающая Автомобиль
- * @author SlartiBartFast-art
  */
 @Entity
 @Table(name = "cars")

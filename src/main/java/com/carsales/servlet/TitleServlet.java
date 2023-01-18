@@ -19,8 +19,6 @@ import java.util.List;
  * В методу doGet мы загружаем в request список объявлений.
  * req.setAttribute("posts", Store.instOf().findAllPosts());
  * аннотацию @WebServlet(urlPattern = " маппинг имя")
- *
- * @author SlartiBartFast-art
  * @since 26.11.21
  */
 public class TitleServlet extends HttpServlet {

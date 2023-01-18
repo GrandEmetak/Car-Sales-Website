@@ -28,8 +28,7 @@
   * - Добавьте POJO классы и hibernate mapping. В этом задании нужно использовать аннотации.
   * - Загрузите схему в корень репозитория в папку db.
   *
-  * @author SlartiBartFast-art
-  * @version 01
+
   * @since 22.11.21
   */
 
@@ -42,8 +41,7 @@
   * - Спроектируйте SQL схему для сайта по продажам машин.
   * - Добавьте POJO классы и hibernate mapping. В этом задании нужно использовать аннотации.
   * - Загрузите схему в корень репозитория в папку db.
-  * @author SlartiBartFast-art
-  * @version 01
+ 
   * @since 24.11.21
   */
 
@@ -56,8 +54,7 @@
    * - Добавьте POJO классы и hibernate mapping. В этом задании нужно использовать аннотации.
    * - Загрузите схему в корень репозитория в папку db.
    *
-   * @author SlartiBartFast-art
-   * @version 01
+   
    * @since 22.11.21
    */
 
@@ -70,8 +67,7 @@
     * - Добавьте POJO классы и hibernate mapping. В этом задании нужно использовать аннотации.
     * - Загрузите схему в корень репозитория в папку db.
     *
-    * @author SlartiBartFast-art
-    * @version 01
+   
     * @since 22.11.21
     */
 
@@ -84,7 +80,7 @@
          * Http протокол позволяет передавать файлы между клиентом и сервером.
          * - @WebServlet(urlPattern = " маппинг имя")
          *
-         * @author SlartiBartFast-art
+       
          */
 
 
@@ -103,7 +99,7 @@
    * Integer.valueOf(req.getParameter("id")),
    * аннотацию @WebServlet(urlPattern = " маппинг имя")
    *
-   * @author SlartiBartFast-art
+  
 
 
    /**

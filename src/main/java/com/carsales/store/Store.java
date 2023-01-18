@@ -12,8 +12,7 @@ import java.util.List;
  * - показать объявления определенной марки.
  * - поиск пользователей по email
  *  - и др.
- * @author SlartiBartFast-art
- * @since 26.11.21
+  * @since 26.11.21
  */
 public interface Store {
 

@@ -15,9 +15,7 @@ import java.io.IOException;
  * ознакомеление с возможностью servlet загружать файлы на сервер и отдавать их клиенту.
  * Http протокол позволяет передавать файлы между клиентом и сервером.
  * - @WebServlet(urlPattern = " маппинг имя")
- *
- * @author SlartiBartFast-art
- */
+  */
 public class DownloadServlet extends HttpServlet {
 
     /**

@@ -13,8 +13,6 @@ import java.io.IOException;
  * -@WebServlet(urlPatterns = "/delete.do")
  * Серлет проводит действия по удалению Post Object - глобальный объект,
  * хранящий все данные
- *
- * @author SlartiBartFast-art
   */
 public class DeleteServlet extends HttpServlet {
 

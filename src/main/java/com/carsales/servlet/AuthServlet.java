@@ -16,9 +16,7 @@ import java.io.IOException;
  * Сервлет проверяет почту и пароль, если они совпадают, то переходит на страницу вакансий.
  * Если нет, то возвращает обратно на страницу Login.
  * Регистрация пользователя.
- *
- * @author SlartiBartFast-art
- */
+  */
 public class AuthServlet extends HttpServlet {
 
     /**

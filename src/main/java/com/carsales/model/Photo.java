@@ -5,7 +5,6 @@ import java.util.Objects;
 
  /**
  * Модель данных изображения для объявления(Post)
- * @author SlartiBartFast-art
  * @since 24.11.21
  */
 @Entity

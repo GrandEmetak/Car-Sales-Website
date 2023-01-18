@@ -17,9 +17,7 @@ import java.io.IOException;
  * /postnew.do
  * Сервлет отвечает за создание новых постов -
  * Post Object - (объявлений для зарегестрированных пользователей)
- * аннотация @WebServlet(urlPattern = " маппинг имя")
- *
- * @author SlartiBartFast-art
+ * аннотация @WebServlet(urlPattern = " маппинг имя") *
  * @since 29.11.21
  */
 public class PostServlet extends HttpServlet {

@@ -21,8 +21,6 @@ import java.util.List;
  * Загрузка и скачивание файла.
  * Это servlet будет обрабатывать загрузку файла на сервер.
  * аннотация @WebServlet(urlPattern = " маппинг имя")
- *
- * @author SlartiBartFast-art
  */
 public class UploadServlet extends HttpServlet {
     /**

@@ -7,7 +7,6 @@ import java.util.Objects;
 
 /**
  * Модель данных описывает пользователя/владельца объявления(Post)
- * @author SlartiBartFast-art
  * @since 22.11.21
  */
 @Entity

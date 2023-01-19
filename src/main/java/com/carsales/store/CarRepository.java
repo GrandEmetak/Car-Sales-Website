@@ -35,7 +35,6 @@ public class CarRepository implements CarRepoStore {
     @Override
     public Car saveCar(Car car) {
         Car rsl = null;
-        LOGGER.debug(IMPORTANT, "То что сохраняем : ", car);
         try {
             Session session = wrapper.getSf().openSession();
             session.beginTransaction();

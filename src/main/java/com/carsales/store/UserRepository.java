@@ -68,7 +68,6 @@ public class UserRepository implements UserRepoStore {
     }
 
     /**
-     * +++
      * Authservle
      * Regservlet
      * - поиск пользователей по email

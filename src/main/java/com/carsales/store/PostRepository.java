@@ -4,6 +4,7 @@ import com.carsales.model.Photo;
 import com.carsales.model.Post;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
@@ -20,7 +21,6 @@ import java.util.*;
  * - показать объявления с фото
  * - показать объявления определенной марки.
  * и др.
- * Logger LOGGER = Logger.getLogger(имя класса для которго мы получаем Логгер);
  */
 public class PostRepository implements Store {
 
@@ -48,10 +48,8 @@ public class PostRepository implements Store {
     @Override
     public Post savePost(Post post) {
         if (post.getId() == 0) {
-            LOGGER.debug(DEBUG, "debug -> save Post method PostRepository {}", post);
             return saveByPost(post);
         }
-        LOGGER.info(INFO, " User update Post PostRepository ", post);
         return updateByPost(post);
     }
 
@@ -66,7 +64,6 @@ public class PostRepository implements Store {
             session.getTransaction().commit();
             session.close();
             rsl = post;
-            LOGGER.info(INFO, "То что сохраняем : {}", post);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,8 +80,6 @@ public class PostRepository implements Store {
             session.getTransaction().commit();
             session.close();
             rsl = post;
-            String str = "То что обновляем : ";
-            LOGGER.info(INFO, str, post);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,7 +98,6 @@ public class PostRepository implements Store {
             rsl = photo;
             session.getTransaction().commit();
             session.close();
-            LOGGER.info(INFO, "То что сохраняем : ", photo);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -119,8 +113,7 @@ public class PostRepository implements Store {
     public List<Post> findAllPost() {
         return this.wrapper.tx(
                 session -> {
-                    var query = session.createQuery("SELECT p FROM Post p");
-                    LOGGER.debug(DEBUG, "info -> all Post method PostRepository {}");
+                    var query = session.createQuery("SELECT p FROM Post p ORDER BY p.id");
                     return query.list();
                 }
         );
@@ -133,13 +126,16 @@ public class PostRepository implements Store {
      */
     @Override
     public List<Post> lastDay() {
+
         return this.wrapper.tx(
                 session -> {
                     var query = session.createQuery("SELECT p FROM Post p"
-                            + " where p.created between :start and :finish"
+                            + " where p.created between :start and :finish "
+                            + "order by p.created"
                     )
                             .setParameter("start", subtractDays())
                             .setParameter("finish", new Date(System.currentTimeMillis()));
+
                     return query.list();
                 }
         );

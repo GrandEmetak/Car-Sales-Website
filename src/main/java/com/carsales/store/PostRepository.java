@@ -39,6 +39,16 @@ public class PostRepository implements Store {
     }
 
 
+    @Override
+    public List<Post> findAllPost() {
+        return this.wrapper.tx(
+                session -> {
+                    var query = session.createQuery("SELECT p FROM Post p ORDER BY p.id ASC");
+                    return query.list();
+                }
+        );
+    }
+
     /**
      * save Post Object in to DB Post
      *
@@ -105,28 +115,12 @@ public class PostRepository implements Store {
     }
 
     /**
-     * - показать все объявления из БД posts
-     *
-     * @return
-     */
-    @Override
-    public List<Post> findAllPost() {
-        return this.wrapper.tx(
-                session -> {
-                    var query = session.createQuery("SELECT p FROM Post p ORDER BY p.id");
-                    return query.list();
-                }
-        );
-    }
-
-    /**
      * - показать объявления за последний день
      *
-     * @return Collection List<> Post object
+     * @return Collection List Post object
      */
     @Override
     public List<Post> lastDay() {
-
         return this.wrapper.tx(
                 session -> {
                     var query = session.createQuery("SELECT p FROM Post p"
@@ -158,7 +152,7 @@ public class PostRepository implements Store {
     /**
      * - показать объявления с фото
      *
-     * @return Collection List<> Post object
+     * @return Collection List Post object
      */
     @Override
     public List<Post> whenPhotoTrue() {
@@ -178,7 +172,7 @@ public class PostRepository implements Store {
      * - показать объявления определенной марки.
      *
      * @param name auto mark
-     * @return Collection List<> Post object
+     * @return Collection List Post object
      */
     @Override
     public List<Post> whenMarkAuto(String name) {
@@ -197,11 +191,10 @@ public class PostRepository implements Store {
     }
 
     /**
-     * - find Post Object to id
-     * найти Пост по id
+     * - find Post Object to id  найти Пост по id
      *
      * @param id Post object
-     * @return List<Post>
+     * @return ListPost
      */
     @Override
     public List<Post> findPostBiId(int id) {
@@ -227,7 +220,7 @@ public class PostRepository implements Store {
      * найти все посты Юзера по его id
      *
      * @param id
-     * @return
+     * @return List Post
      */
     @Override
     public List<Post> findPostByUserId(int id) {
@@ -254,10 +247,6 @@ public class PostRepository implements Store {
 
     /**
      * найти Пост по id User + Пост header
-     *
-     * @param id
-     * @param header
-     * @return
      */
     @Override
     public List<Post> findPostByUserIdAndHeader(int id, String header) {
@@ -279,9 +268,6 @@ public class PostRepository implements Store {
 
     /**
      * найти и удалить пост по id
-     *
-     * @param id
-     * @return
      */
     @Override
     public boolean deletePostId(int id) {
@@ -305,9 +291,6 @@ public class PostRepository implements Store {
     /**
      * метод приводит дату к общепринятому виду
      * Tue Nov 30 19:44:46 YEKT 2021
-     *
-     * @param date
-     * @return
      */
     public Date convertDays(Date date) {
         GregorianCalendar cal = new GregorianCalendar();

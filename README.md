@@ -3,7 +3,11 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/Halsyon/Automobile-marketplace?logo=java&logoColor=red)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Halsyon/Automobile-marketplace?logo=github)
 
-# Automobile marketplace
+<p align="left">
+    <img alt="ViewCount" src="https://views.whatilearened.today/views/github/Automobile-marketplace/Generalization.svg">
+</p>
+
+ App Automobile marketplace
 
 The project is a version of the automobile sales website.
   Registered user can edit, delete, update photos and change the status from
@@ -14,9 +18,8 @@ The project is a version of the automobile sales website.
   Used stack technologies:
 
 - Java (Back-end)
-- HTML + (JS + Jquery + AJAX) (Front-end)  
-- Libraries (java):
-- Hibernate HQL/ JPA (data-base)
+- HTML + (JS + Jquery + AJAX) (Front-end)
+- Hibernate JPA 
 - PostgreSQL PSQL (data-base)
 - JSP
 - Jackson (parse JSON)
@@ -53,7 +56,7 @@ submitted for the last 24 hours
 
 ![Image of Arch](https://github.com/Halsyon/Automobile-marketplace/blob/main/image/Screenshot_5.jpg)
 
-## Contact
+### Contact
 You can email me grandjek@tutanota.com anything you would like to say about this software.
 
 

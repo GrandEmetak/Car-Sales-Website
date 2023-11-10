@@ -123,7 +123,7 @@
                                 </a>
                                 <br>
                                 <a href="<c:url value='/upload.jsp?id=${post.id}'/>">
-                                    Edit photo</a>
+                                    Edit image</a>
                                 <br>
                                 <form style="display: inline" action="<c:url value='/delete.do?id=${post.id}'/>"
                                       method="post">

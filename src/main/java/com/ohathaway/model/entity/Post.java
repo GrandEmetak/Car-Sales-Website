@@ -1,3 +1,18 @@
+/*
+Copyright (c) 2016-2023 VMware Inc. or its affiliates, All Rights Reserved Halsyon.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ */
 package com.ohathaway.model.entity;
 
 import java.util.Date;
@@ -8,23 +23,28 @@ import java.util.Objects;
 
 /**
  * Модель данных описывающая объявление(Post)
+ *
  * @since 22.11.21
  */
 @Entity
-@Table(name = "posts")
+@Table(name = "post", schema = "develop")
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
+    @Column(name = "header")
     private String header;
 
+    @Column(name = "description")
     private String description;
 
+    @Column(name = "price")
     private String price;
 
-    private boolean status;
+    @Column(name = "status")
+    private Boolean status;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USER_ID_FK"))
@@ -36,7 +56,7 @@ public class Post {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "photo_id", referencedColumnName = "id")
-    private Photo photo;
+    private Image image;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
@@ -49,7 +69,12 @@ public class Post {
         this.header = header;
     }
 
-    public static Post of(String header, String description, String price, boolean status) {
+    public static Post of(
+            String header,
+            String description,
+            String price,
+            Boolean status
+    ) {
         Post post = new Post();
         post.header = header;
         post.description = description;
@@ -66,9 +91,9 @@ public class Post {
         user.setId(0);
         Auto auto = Auto.of("", "", "", "", "", "", "");
         auto.setId(0);
-        Photo photo = Photo.of("");
-        photo.setId(0);
-        post.addPhoto(photo);
+        Image image = Image.of("");
+        image.setId(0);
+        post.addPhoto(image);
         post.addCar(auto);
         post.addUser(user);
         return post;
@@ -82,8 +107,8 @@ public class Post {
         this.user = usr;
     }
 
-    public void addPhoto(Photo ph) {
-        this.photo = ph;
+    public void addPhoto(Image ph) {
+        this.image = ph;
     }
 
     public int getId() {
@@ -142,12 +167,12 @@ public class Post {
         this.created = created;
     }
 
-    public Photo getPhoto() {
-        return photo;
+    public Image getPhoto() {
+        return image;
     }
 
-    public void setPhoto(Photo photo) {
-        this.photo = photo;
+    public void setPhoto(Image image) {
+        this.image = image;
     }
 
     public String getPrice() {
@@ -167,7 +192,7 @@ public class Post {
             return false;
         }
         Post post = (Post) o;
-        return id == post.id;
+        return id.equals(post.id);
     }
 
     @Override
@@ -178,7 +203,7 @@ public class Post {
     @Override
     public String toString() {
         return String.format("Post: id=%s, header=%s, description=%s, Photo=%s, status=%s,"
-                        + " User=%s, Car=%s, price=%s, created=%s",
-                id, header, description, photo, status, user, auto, price, created);
+                             + " User=%s, Car=%s, price=%s, created=%s",
+                id, header, description, image, status, user, auto, price, created);
     }
 }

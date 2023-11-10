@@ -1,6 +1,6 @@
 package com.ohathaway.store;
 
-import com.ohathaway.model.entity.Photo;
+import com.ohathaway.model.entity.Image;
 import com.ohathaway.model.entity.Post;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public interface Store {
 
     public boolean deletePostId(int id);
 
-    public Photo savePhoto(Photo photo);
+    public Image savePhoto(Image image);
 
     public List<Post> findPostByUserId(int id);
 

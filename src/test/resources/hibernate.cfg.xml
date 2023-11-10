@@ -15,7 +15,7 @@
         <!-- List of XML mapping files -->
 
         <mapping class="com.ohathaway.model.entity.Auto"/>
-        <mapping class="com.ohathaway.model.entity.Photo"/>
+        <mapping class="com.ohathaway.model.entity.Image"/>
         <mapping class="com.ohathaway.model.entity.Post"/>
         <mapping class="com.ohathaway.model.entity.User"/>
 

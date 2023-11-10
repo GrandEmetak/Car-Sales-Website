@@ -1,7 +1,7 @@
 package com.ohathaway.servlet;
 
 import com.ohathaway.model.entity.Auto;
-import com.ohathaway.model.entity.Photo;
+import com.ohathaway.model.entity.Image;
 import com.ohathaway.model.entity.User;
 import com.ohathaway.model.entity.Post;
 import com.ohathaway.store.PostRepository;
@@ -61,10 +61,10 @@ public class PostServlet extends HttpServlet {
                 req.getParameter("mileage")
         );
         String fht = (String) req.getParameter("header");
-        Photo photo = Photo.of(fht + ".jpg");
+        Image image = Image.of(fht + ".jpg");
         post.addUser(userid);
         post.addCar(auto);
-        post.addPhoto(photo);
+        post.addPhoto(image);
         PostRepository.instOf().savePost(post);
 
         resp.sendRedirect(req.getContextPath() + "/candidate.do");

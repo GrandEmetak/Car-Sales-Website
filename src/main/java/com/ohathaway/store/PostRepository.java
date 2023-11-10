@@ -1,6 +1,6 @@
 package com.ohathaway.store;
 
-import com.ohathaway.model.entity.Photo;
+import com.ohathaway.model.entity.Image;
 import com.ohathaway.model.entity.Post;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -96,15 +96,15 @@ public class PostRepository implements Store {
     }
 
     @Override
-    public Photo savePhoto(Photo photo) {
-        Photo rsl = null;
+    public Image savePhoto(Image image) {
+        Image rsl = null;
         try {
             Session session = wrapper.getSf().openSession();
             session.beginTransaction();
-            var result = session.save(photo);
+            var result = session.save(image);
             int index = (int) result;
-            photo.setId(index);
-            rsl = photo;
+            image.setId(index);
+            rsl = image;
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {

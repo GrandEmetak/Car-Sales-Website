@@ -7,7 +7,7 @@
 <%@ page import="com.ohathaway.store.PostRepository" %>
 <%@ page import="com.ohathaway.model.entity.User" %>
 <%@ page import="com.ohathaway.model.entity.Auto" %>
-<%@ page import="com.ohathaway.model.entity.Photo" %>
+<%@ page import="com.ohathaway.model.entity.Image" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 

@@ -15,74 +15,58 @@ limitations under the License.
  */
 package com.ohathaway.model.entity;
 
-import javax.persistence.GenerationType;
 import javax.persistence.*;
-
 import java.util.Objects;
 
 /**
- * Модель данных описывает пользователя/владельца объявления(Post)
- * @since 22.11.21
+ * Модель данных изображения для объявления(Post)
+ *
+ * @since 24.11.21
  */
 @Entity
-@Table(name = "user", schema = "develop")
-public class User {
+@Table(name = "photos", schema = "develop")
+public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(name = "name")
-    private String name;
+    private String imageName;
 
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "password")
-    private String password;
-
-    public User() {
+    public Image() {
     }
 
-    public static User of(String name, String email, String password) {
-        User user = new User();
-        user.name = name;
-        user.email = email;
-        user.password = password;
-        return user;
+    public static Image of(String name) {
+        Image image = new Image();
+        image.imageName = name;
+        /* photo.image = image;*/
+        return image;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getImageName() {
+        return imageName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
-    public String getEmail() {
-        return email;
+  /*  public byte[] getImage() {
+        return image;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setImage(byte[] image) {
+        this.image = image;
+    }*/
 
     @Override
     public boolean equals(Object o) {
@@ -92,8 +76,8 @@ public class User {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        User user = (User) o;
-        return id.equals(user.id);
+        Image image = (Image) o;
+        return Objects.equals(id, image.id);
     }
 
     @Override
@@ -103,7 +87,9 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("User: id=%s, name=%s, email=%s, password=%s",
-                id, name, email, password);
+        return "Image {"
+               + "id=" + id
+               + ", imageName='" + imageName + '\''
+               + '}';
     }
 }

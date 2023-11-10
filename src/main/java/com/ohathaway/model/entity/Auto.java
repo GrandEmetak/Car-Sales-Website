@@ -24,11 +24,11 @@ import java.util.Objects;
  * Модель данных описывающая Автомобиль
  */
 @Entity
-@Table(name = "cars", schema = "")
+@Table(name = "auto", schema = "develop")
 public class Auto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     private String mark;

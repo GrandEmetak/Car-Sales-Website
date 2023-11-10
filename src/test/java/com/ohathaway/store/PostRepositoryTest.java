@@ -1,7 +1,7 @@
 package com.ohathaway.store;
 
 import com.ohathaway.model.entity.Auto;
-import com.ohathaway.model.entity.Photo;
+import com.ohathaway.model.entity.Image;
 import com.ohathaway.model.entity.User;
 import org.junit.Test;
 import com.ohathaway.model.entity.Post;
@@ -37,11 +37,11 @@ public class PostRepositoryTest {
                 "4WD",
                 "107 432"
         );
-        Photo photoF = Photo.of("Lexus RX200t.jpg");
+        Image imageF = Image.of("Lexus RX200t.jpg");
 
         post.addUser(user);
         post.addCar(auto);
-        post.addPhoto(photoF);
+        post.addPhoto(imageF);
 
         var savePost = postRepository.savePost(post);
         assertEquals(post.getDescription(), savePost.getDescription()
@@ -51,9 +51,9 @@ public class PostRepositoryTest {
     @Test
     public void savePhoto() {
         PostRepository postRepository = new PostRepository();
-        Photo photoF = Photo.of("Lexus RX200t.jpg");
-       Photo rsl = postRepository.savePhoto(photoF);
-        assertEquals(photoF.getImageName(), rsl.getImageName());
+        Image imageF = Image.of("Lexus RX200t.jpg");
+       Image rsl = postRepository.savePhoto(imageF);
+        assertEquals(imageF.getImageName(), rsl.getImageName());
     }
 
     @Test
@@ -76,11 +76,11 @@ public class PostRepositoryTest {
                 "4WD",
                 "107 432"
         );
-        Photo photoF = Photo.of("Lexus RX200t.jpg");
+        Image imageF = Image.of("Lexus RX200t.jpg");
 
         post.addUser(user);
         post.addCar(auto);
-        post.addPhoto(photoF);
+        post.addPhoto(imageF);
 
         var savePost = postRepository.savePost(post);
 
@@ -108,11 +108,11 @@ public class PostRepositoryTest {
                 "4WD",
                 "17 432"
         );
-        Photo photoF = Photo.of("Ford 500.jpg");
+        Image imageF = Image.of("Ford 500.jpg");
 
         post.addUser(user);
         post.addCar(auto);
-        post.addPhoto(photoF);
+        post.addPhoto(imageF);
 
         var savePost = postRepository.savePost(post);
 
@@ -140,11 +140,11 @@ public class PostRepositoryTest {
                 "4WD",
                 "17 432"
         );
-        Photo photoF = Photo.of("Ford 500.jpg");
+        Image imageF = Image.of("Ford 500.jpg");
 
         post.addUser(user);
         post.addCar(auto);
-        post.addPhoto(photoF);
+        post.addPhoto(imageF);
         Post savePostwhithFoto = postRepository.savePost(post);
 
         User user1 = User.of("John Smith", "SmithJohn@gmail.com", "John");
@@ -163,7 +163,7 @@ public class PostRepositoryTest {
                 "4WD",
                 "107 432"
         );
-        Photo photoF1 = null;
+        Image imageF1 = null;
 
         post1.addUser(user1);
         post1.addCar(auto1);
@@ -194,11 +194,11 @@ public class PostRepositoryTest {
                 "4WD",
                 "17 432"
         );
-        Photo photoF = Photo.of("Ford 500.jpg");
+        Image imageF = Image.of("Ford 500.jpg");
 
         post.addUser(user);
         post.addCar(auto);
-        post.addPhoto(photoF);
+        post.addPhoto(imageF);
         Post savePostwhithFoto = postRepository.savePost(post);
         List<Post> resultList = postRepository.whenMarkAuto("Ford F500");
         assertEquals(savePostwhithFoto.getHeader(), resultList.get(0).getHeader());
@@ -222,11 +222,11 @@ public class PostRepositoryTest {
                 "4WD",
                 "17 432"
         );
-        Photo photoF = Photo.of("Ford 500.jpg");
+        Image imageF = Image.of("Ford 500.jpg");
 
         post.addUser(user);
         post.addCar(auto);
-        post.addPhoto(photoF);
+        post.addPhoto(imageF);
         Post savePost = postRepository.savePost(post);
         List<Post> resultList = postRepository.findPostBiId(1);
         assertEquals(savePost.getHeader(), resultList.get(0).getHeader());
@@ -250,11 +250,11 @@ public class PostRepositoryTest {
                 "4WD",
                 "17 432"
         );
-        Photo photoF = Photo.of("Ford 500.jpg");
+        Image imageF = Image.of("Ford 500.jpg");
 
         post.addUser(user);
         post.addCar(auto);
-        post.addPhoto(photoF);
+        post.addPhoto(imageF);
         Post savePost = postRepository.savePost(post);
         List<Post> resultList = postRepository.findPostBiId(savePost.getId());
         assertEquals(savePost, resultList.get(0));
@@ -278,11 +278,11 @@ public class PostRepositoryTest {
                 "4WD",
                 "17 432"
         );
-        Photo photoF = Photo.of("Ford 500.jpg");
+        Image imageF = Image.of("Ford 500.jpg");
 
         post.addUser(user);
         post.addCar(auto);
-        post.addPhoto(photoF);
+        post.addPhoto(imageF);
         Post savePost = postRepository.savePost(post);
         List<Post> resultList = postRepository.findPostByUserIdAndHeader(savePost.getId(), post.getHeader());
         assertEquals(savePost, resultList.get(0));
@@ -306,11 +306,11 @@ public class PostRepositoryTest {
                 "4WD",
                 "17 432"
         );
-        Photo photoF = Photo.of("Ford 500.jpg");
+        Image imageF = Image.of("Ford 500.jpg");
 
         post.addUser(user);
         post.addCar(auto);
-        post.addPhoto(photoF);
+        post.addPhoto(imageF);
         Post savePost = postRepository.savePost(post);
         boolean d = postRepository.deletePostId(savePost.getId());
         assertEquals(true, d);

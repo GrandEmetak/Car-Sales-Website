@@ -20,10 +20,10 @@
         <property name="use_sql_comments">true</property>
 
 
-        <mapping class="com.carsales.model.Car"/>
-        <mapping class="com.carsales.model.User"/>
-        <mapping class="com.carsales.model.Post"/>
-        <mapping class="com.carsales.model.Photo"/>
+        <mapping class="com.carsales.model.entity.Car"/>
+        <mapping class="com.carsales.model.entity.User"/>
+        <mapping class="com.carsales.model.entity.Post"/>
+        <mapping class="com.carsales.model.entity.Photo"/>
 
 
     </session-factory>

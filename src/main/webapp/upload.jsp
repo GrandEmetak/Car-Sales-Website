@@ -1,6 +1,6 @@
-<%@ page import="com.carsales.model.Post" %>
+<%@ page import="com.carsales.model.entity.Post" %>
 <%@ page import="com.carsales.store.PostRepository" %>
-<%@ page import="com.carsales.model.User" %>
+<%@ page import="com.carsales.model.entity.User" %>
 <%@ page language="java" pageEncoding="UTF-8" session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>

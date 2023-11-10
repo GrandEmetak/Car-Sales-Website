@@ -1,6 +1,6 @@
 package com.carsales.store;
 
-import com.carsales.model.User;
+import com.carsales.model.entity.User;
 
 import java.util.List;
 

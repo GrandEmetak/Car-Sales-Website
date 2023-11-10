@@ -1,10 +1,9 @@
 package com.carsales.store;
 
-import com.carsales.model.Photo;
-import com.carsales.model.Post;
+import com.carsales.model.entity.Photo;
+import com.carsales.model.entity.Post;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;

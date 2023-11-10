@@ -1,6 +1,6 @@
 package com.carsales.servlet;
 
-import com.carsales.model.User;
+import com.carsales.model.entity.User;
 import com.carsales.store.UserRepository;
 
 import javax.servlet.http.*;

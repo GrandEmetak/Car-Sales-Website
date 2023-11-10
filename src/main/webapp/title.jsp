@@ -1,8 +1,8 @@
 <%-- библиотекой JSTL. Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="com.carsales.model.Post" %>
-<%@ page import="com.carsales.model.User" %>
-<%@ page import="com.carsales.model.Car" %>
+<%@ page import="com.carsales.model.entity.Post" %>
+<%@ page import="com.carsales.model.entity.User" %>
+<%@ page import="com.carsales.model.entity.Car" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="com.carsales.store.PostRepository" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

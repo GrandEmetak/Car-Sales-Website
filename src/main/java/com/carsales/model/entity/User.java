@@ -1,4 +1,4 @@
-package com.carsales.model;
+package com.carsales.model.entity;
 
 import javax.persistence.GenerationType;
 import javax.persistence.*;

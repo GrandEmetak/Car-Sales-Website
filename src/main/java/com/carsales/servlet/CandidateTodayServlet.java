@@ -1,6 +1,6 @@
 package com.carsales.servlet;
 
-import com.carsales.model.Post;
+import com.carsales.model.entity.Post;
 import com.carsales.store.PostRepository;
 
 import javax.servlet.ServletException;

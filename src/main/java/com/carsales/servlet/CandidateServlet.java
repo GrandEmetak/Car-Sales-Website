@@ -1,10 +1,10 @@
 package com.carsales.servlet;
 
-import com.carsales.model.Car;
-import com.carsales.model.User;
+import com.carsales.model.entity.Car;
+import com.carsales.model.entity.User;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import com.carsales.model.Post;
+import com.carsales.model.entity.Post;
 import com.carsales.store.PostRepository;
 
 import javax.servlet.http.*;

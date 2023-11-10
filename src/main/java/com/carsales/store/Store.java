@@ -1,7 +1,7 @@
 package com.carsales.store;
 
-import com.carsales.model.Photo;
-import com.carsales.model.Post;
+import com.carsales.model.entity.Photo;
+import com.carsales.model.entity.Post;
 
 import java.util.List;
 

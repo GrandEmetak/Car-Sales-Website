@@ -1,10 +1,10 @@
 package com.carsales.store;
 
-import com.carsales.model.Car;
-import com.carsales.model.Photo;
-import com.carsales.model.User;
+import com.carsales.model.entity.Car;
+import com.carsales.model.entity.Photo;
+import com.carsales.model.entity.User;
 import org.junit.Test;
-import com.carsales.model.Post;
+import com.carsales.model.entity.Post;
 
 import java.util.List;
 

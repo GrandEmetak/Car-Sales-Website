@@ -1,6 +1,6 @@
 package com.carsales.store;
 
-import com.carsales.model.Car;
+import com.carsales.model.entity.Car;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

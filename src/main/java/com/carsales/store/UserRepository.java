@@ -1,6 +1,6 @@
 package com.carsales.store;
 
-import com.carsales.model.User;
+import com.carsales.model.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;

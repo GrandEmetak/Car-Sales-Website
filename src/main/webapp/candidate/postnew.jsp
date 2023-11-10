@@ -3,11 +3,11 @@
 --%>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="com.carsales.model.entity.Post" %>
-<%@ page import="com.carsales.store.PostRepository" %>
-<%@ page import="com.carsales.model.entity.User" %>
-<%@ page import="com.carsales.model.entity.Car" %>
-<%@ page import="com.carsales.model.entity.Photo" %>
+<%@ page import="com.ohathaway.model.entity.Post" %>
+<%@ page import="com.ohathaway.store.PostRepository" %>
+<%@ page import="com.ohathaway.model.entity.User" %>
+<%@ page import="com.ohathaway.model.entity.Auto" %>
+<%@ page import="com.ohathaway.model.entity.Photo" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 
@@ -161,7 +161,7 @@
                             <option>sedan</option>
                             <option>wagon</option>
                             <option>hatchback</option>
-                            <option>micro compact car</option>
+                            <option>micro compact auto</option>
                             <option>landau</option>
                             <option>pickup track</option>
                             <option>suv</option>
@@ -193,7 +193,7 @@
                             <input type="text" class="form-control" name="mileage"
                                    value="<%=post.getCar().getMileage()%>"
                                    id="mileage"
-                                   placeholder="Please enter your car mileage" required>
+                                   placeholder="Please enter your auto mileage" required>
                         </div>
                         <button type="button" class="btn btn-primary" onclick="postservl()">Save</button>
                     </div>

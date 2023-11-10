@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="com.carsales.model.entity.Post" %>
-<%@ page import="com.carsales.model.entity.User" %>
-<%@ page import="com.carsales.model.entity.Car" %>
+<%@ page import="com.ohathaway.model.entity.Post" %>
+<%@ page import="com.ohathaway.model.entity.User" %>
+<%@ page import="com.ohathaway.model.entity.Auto" %>
 <%@ page import="java.util.Collection" %>
-<%@ page import="com.carsales.store.PostRepository" %>
+<%@ page import="com.ohathaway.store.PostRepository" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
@@ -95,16 +95,16 @@
                             </td>
                             <td><c:out value="${post.header}"/></td>
                             <td>
-                                <c:out value="${post.car.bodyType}"/>
-                                <c:out value="${post.car.engine}"/>
-                                <c:out value="${post.car.transmission}"/>
+                                <c:out value="${post.auto.bodyType}"/>
+                                <c:out value="${post.auto.engine}"/>
+                                <c:out value="${post.auto.transmission}"/>
                             </td>
                             </td>
                             <td>
                                 <c:out value="${post.description}"/>
-                                <c:out value="${post.car.color}"/>
-                                <c:out value="${post.car.drive}"/>
-                                <c:out value="${post.car.mileage}"/>
+                                <c:out value="${post.auto.color}"/>
+                                <c:out value="${post.auto.drive}"/>
+                                <c:out value="${post.auto.mileage}"/>
                             </td>
                             <td><c:out value="${post.price}"/></td>
                             <td>

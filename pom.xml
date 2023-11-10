@@ -9,7 +9,7 @@
   <version>1.0</version>
   <packaging>war</packaging>
 
-  <name>The App car sales website Maven Webapp</name>
+  <name>The App auto sales website Maven Webapp</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

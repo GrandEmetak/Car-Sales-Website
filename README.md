@@ -2,12 +2,9 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/Halsyon/Automobile-marketplace?logo=github)
 ![GitHub top language](https://img.shields.io/github/languages/top/Halsyon/Automobile-marketplace?logo=java&logoColor=red)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Halsyon/Automobile-marketplace?logo=github)
+ <img alt="ViewCount" src="https://views.whatilearened.today/views/github/Automobile-marketplace/Generalization.svg">
 
-<p align="left">
-    <img alt="ViewCount" src="https://views.whatilearened.today/views/github/Automobile-marketplace/Generalization.svg">
-</p>
-
- App Automobile marketplace
+ ### App Automobile marketplace
 
 The project is a version of the automobile sales website.
   Registered user can edit, delete, update photos and change the status from
